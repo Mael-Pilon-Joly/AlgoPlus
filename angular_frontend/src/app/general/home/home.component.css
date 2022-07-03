@@ -1,0 +1,92 @@
+@font-face {
+    font-family: 'Satisfy-Regular';
+    src: url(../../../assets/Courgette-Regular.ttf) format("truetype");
+    font-weight: 400;
+}
+
+.wrapper {
+    padding-left: 38px;
+    font-family: "Satisfy-Regular";
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    row-gap: 10px;
+    height: 100vh;
+}
+
+.wrapper .grid1 {
+    grid-column-start: 9;
+    grid-column-end: 11;
+    grid-row-start: 1;
+    grid-row-end: 10;
+    background-color: rgb(2, 27, 2) !important;
+}
+
+.wrapper .background1 {
+    grid-column-start: 2;
+    grid-column-end: 9;
+    grid-row-start: 1;
+    grid-row-end: 10;
+    background-color: rgb(2, 27, 2);
+}
+
+.wrapper .first_image {
+    margin-left: 5px;
+    grid-column-start: 2;
+    border-radius: 50%;
+    grid-column-end: 6;
+    grid-row-start: 1;
+    grid-row-end: 4;
+}
+
+.wrapper .first_p {
+    font-size: 1.1vw;
+    padding: 20px;
+    color: #faf9f9;
+    grid-column-start: 6;
+    grid-column-end: 9;
+    grid-row-start: 1;
+    grid-row-end: 5;
+    background-color: rgb(2, 27, 2);
+}
+
+.wrapper .second_p {
+    font-size: 1.1vw;
+    padding: 20px;
+    grid-column-start: 2;
+    grid-column-end: 6;
+    grid-row-start: 4;
+    grid-row-end: 8;
+    color: #faf9f9;
+    background-color: rgb(2, 27, 2);
+}
+
+.wrapper .second_image {
+    margin-right: 5px;
+    border-radius: 55%;
+    grid-column-start: 6;
+    grid-column-end: 9;
+    grid-row-start: 5;
+    grid-row-end: 9;
+    background-color: rgb(2, 27, 2);
+}
+
+.wrapper .third_p {
+    font-size: 1.1vw;
+    padding: 20px;
+    grid-column-start: 2;
+    grid-column-end: 6;
+    grid-row-start: 8;
+    grid-row-end: 10;
+    background-color: rgb(249, 252, 249);
+}
+
+.wrapper .background2 {
+    font-size: 1.1vw;
+    padding: 20px;
+    grid-column-start: 6;
+    grid-column-end: 9;
+    grid-row-start: 8;
+    grid-row-end: 10;
+    background-color: rgb(249, 252, 249);
+}

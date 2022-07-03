@@ -1,0 +1,71 @@
+<div>
+    <nav>
+        <div class="container-fluid">
+            <div class="child-container">
+                <div class="link">
+                    <img class="logo" src="assets/algorithmn.png" alt="logo" style=" width: 100%; height: auto; max-width: 70px; vertical-align:middle">
+
+                </div>
+                <div class="laguage">
+                    <img (click)="translate.use('en')" class="en" src="assets/english.png " alt="logo " style=" width: 90%; height: auto; max-width: 40px; vertical-align:middle ">
+                </div>
+                <div class="laguage ">
+                    <img (click)="translation.emit('fr')" class="fr " src="assets/francais.png " alt="logo " style=" width: 90%; height: auto; max-width: 40px; vertical-align:middle ">
+                </div>
+                <div class="link ">
+                    <a mat-button routerLinkActive="active " routerLink="/home">{{ 'home' | translate }}</a>
+                </div>
+            </div>
+            <div class="child-container ">
+                <div class="link ">
+                    <a mat-button *ngIf="this.isLoggedIn" href="javascript:void(0);" (click)="logout()">{{ 'logout' | translate }}</a>
+                </div>
+                <div class="link ">
+                    <a mat-button *ngIf="!this.isLoggedIn" routerLinkActive="active " routerLink="/login">{{ 'login' | translate }}</a>
+                </div>
+                <div class="link ">
+                    <a mat-button routerLinkActive="active " routerLink="/signup">{{ 'signup' | translate }}</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="viewport">
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <header>
+                <a href="#">AlgoPlus</a>
+            </header>
+            <ul class="nav">
+
+                <li>
+                    <a href="#">
+                        <fa-icon [icon]="faClipboardList"></fa-icon>
+                        &nbsp; {{ 'dashboard' | translate }}
+                    </a>
+
+                </li>
+
+                <li>
+                    <a href="#">
+                        <img src="../../../assets/newspaperwhite.png" height=20px weight=20px> &nbsp; {{ 'articles' | translate }}
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="../../../assets/white-calender.png" height=20px weight=20px> &nbsp; {{ 'events' | translate }}
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <fa-icon [icon]="faMailBulk"></fa-icon>
+                        &nbsp; {{ 'contact' | translate }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+
+    </div>
+
+</div>
+<router-outlet></router-outlet>

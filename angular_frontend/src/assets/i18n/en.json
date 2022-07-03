@@ -1,0 +1,16 @@
+{
+    "home": "Home",
+    "login": "Log in",
+    "signup": "Sign up",
+    "website_mission_section1": "Our mission is simple: To help all computer enthusiasts of all different levels to improve their theoretical and practical foundations. By practicing solving realistic exercises on the AlgoPlus website, you will practice your logical reasoning, your knowledge of algorithms and data structure, while trying to produce the most optimal code possible. All in the programming language of your choice!",
+    "website_mission_section2": "Our website also allows users to share articles, exercises and videos with other users for free, or by requesting a contribution. Make yourself known and work to grow your network of contacts in the industry by actively participating in the different sections of the site. Engaged users will be rewarded with leaderboard points.",
+    "website_mission_section3": "Customize your profile, add a resume, and share exercises you've solved to attract employer interest. Let your adventure begin!",
+    "articles": "Articles",
+    "events": "Events",
+    "contact": "Contact us",
+    "dashboard": "Dashboard",
+    "username": "Username",
+    "password": "Password",
+    "rememberme": "Remember-me",
+    "logout": "Log out"
+}

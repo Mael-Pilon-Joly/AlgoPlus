@@ -1,0 +1,137 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url(/assets/Montserrat_Alternates/MontserratAlternates-Bold.ttf) format("truetype");
+    font-weight: 300;
+}
+
+a {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #edf0f1;
+    text-decoration: none;
+}
+
+logo {
+    cursor: pointer;
+}
+
+.container-fluid {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: #24252A;
+    display: flex;
+    vertical-align: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container-fluid .child-container {
+    display: flex;
+    margin: auto 0;
+    vertical-align: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container-fluid .child-container .link {
+    margin: 10px;
+}
+
+.container-fluid .child-container .language {
+    margin: 10px;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+body {
+    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+}
+
+
+/* Toggle Styles */
+
+#viewport {
+    overflow: auto;
+    height: 100%;
+    padding-left: 250px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#content {
+    width: 90%;
+    position: relative;
+    margin-right: 0;
+}
+
+
+/* Sidebar Styles */
+
+#sidebar {
+    z-index: 1000;
+    position: absolute;
+    left: 250px;
+    width: 225px;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #37474F;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#sidebar header {
+    background-color: #263238;
+    font-size: 20px;
+    line-height: 52px;
+    text-align: center;
+}
+
+#sidebar li {
+    font-size: 20px;
+    width: 100%;
+    border-bottom: 1px solid #455A64;
+    line-height: 52px;
+    display: block;
+    margin: 10px;
+    display: table-cell;
+}
+
+#sidebar header a {
+    color: #fff;
+    display: block;
+    text-decoration: none;
+}
+
+#sidebar header a:hover {
+    color: #fff;
+}
+
+#sidebar .nav {
+    display: flex;
+}
+
+#sidebar .nav a {
+    background: none;
+    display: block;
+    color: #CFD8DC;
+    font-size: 14px;
+    padding: 16px 24px;
+    text-decoration: none;
+}
+
+#sidebar .nav a:hover {
+    background: none;
+    color: #ECEFF1;
+}
+
+#sidebar .nav a i {
+    margin-right: 16px;
+}

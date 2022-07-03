@@ -1,0 +1,16 @@
+{
+    "home": "Accueil",
+    "login": "Connexion",
+    "signup": "Créer un compte",
+    "website_mission_section1": "Notre mission est simple: Aider tous les enthousiastes d'informatiques de tous les différents niveaux à améliorer leurs fondations théoriques et pratiques. En s'exerçant à résoudre des exercises réalistes sur le site web AlgoPlus, vous pratiquerez votre raisonnement logique, vos connaissances d'algorithmes et de structure de données, tout en tentant de produire du code le plus optimal possible. Le tout dans le language de programmation de votre choix!",
+    "website_mission_section2": "Notre site web permet aussi aux utilisateurs de partager des articles, des exercices et des vidéos avec les autres utilisateurs de façon gratuite, ou en demandant une contribution. Faites-vous connaître et travailler à grandir votre réseau de contacts dans le milieu en participant de façon active dans les différentes sections du site. Les utilisateurs engagés seront recompensés par des points au classement.",
+    "website_mission_section3": "Personnalisez votre profil, ajouter un CV et partager les exercices que vous avez résolus pour attirer l'intérêt des employeurs. Que votre aventure commence!",
+    "articles": "Articles",
+    "events": "Événements",
+    "contact": "Nous rejoindre",
+    "dashboard": "Tableau de bord",
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+    "rememberme": "Se souvenir de moi",
+    "logout": "Se déconnecter"
+}

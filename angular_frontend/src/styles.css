@@ -1,0 +1,27 @@
+body {
+    background-image: linear-gradient(315deg, #233329 0%, #63d471 74%);
+    background-size: cover;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    row-gap: 10px;
+    height: 100vh;
+}
+
+.wrapper .grid1 {
+    opacity: 0.6;
+    grid-column-start: 8;
+    grid-column-end: 10;
+    grid-row-start: 1;
+    grid-row-end: 10;
+    background-image: url(assets/sidebarleft.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    margin: 0;
+}

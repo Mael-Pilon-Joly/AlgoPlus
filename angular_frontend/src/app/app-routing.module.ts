@@ -1,0 +1,35 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { EmailconfirmationComponent } from './auth/emailconfirmation/emailconfirmation.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { AdminboardComponent } from './board/adminboard/adminboard.component';
+import { UnauthorizedComponent } from './board/unauthorized/unauthorized.component';
+import { UserboardComponent } from './board/userboard/userboard.component';
+import { HomeComponent } from './general/home/home.component';
+import { FailedresetpasswordComponent } from './passwordrecovery/failedresetpassword/failedresetpassword.component';
+import { PasswordrequestComponent } from './passwordrecovery/passwordrequest/passwordrequest.component';
+import { ResetpasswordComponent } from './passwordrecovery/resetpassword/resetpassword.component';
+
+const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'adminboard', component: AdminboardComponent },
+  { path: 'userboard', component: UserboardComponent},
+  { path: 'unauthorized', component: UnauthorizedComponent },
+  { path: 'pendingconfirmation', component: EmailconfirmationComponent },
+  { path: 'passwordrequest', component: PasswordrequestComponent },
+  { path: 'emailconfirmationsuccess', component: EmailconfirmationComponent },
+  { path: 'updatepassword/:token', component: ResetpasswordComponent },
+  { path: 'failedpasswordresetvalidation', component: FailedresetpasswordComponent},
+
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
