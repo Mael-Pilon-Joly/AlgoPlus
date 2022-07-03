@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { User } from '../../models/user.model';
 import { RequestResponseUser } from '../../models/requestresponselogin.model';
+import { Roles } from '../../models/roles.model';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,19 @@ export class LoginComponent implements OnInit {
     rememberme: false,
   }
 
-  constructor(private services: ApiService, private router: Router) { }
+  user: User = {
+    id: 0,
+    username:"",
+    roles:[]
+  }
+
+  requestResponse: RequestResponseUser = {
+    user: this.user
+  }
+
+  constructor(private services: ApiService, private router: Router) { 
+  }
+
   emit(value: any) {
     this.profile$.next(value);
   }
@@ -28,17 +41,31 @@ export class LoginComponent implements OnInit {
   }
 
   
-  login(): void {
+  async login(): Promise<void> {
     const data = {
       username: this.userDTO.username,
       password: this.userDTO.password,
     };
 
-    this.services.login(data)
+    
+    if (this.requestResponse.user) {
+    await  this.services.login(data).then( res=> {
+    console.log(res);
+    const result : Roles[] = res.user!.roles!;
+    if (result.filter(e => e.name === 'ROLE_USER').length > 0) {
     this.router.navigate(['/userboard']);
-  }
+    }
+
+    if (result.filter(e => e.name === 'ROLE_ADMIN').length > 0) {
+      this.router.navigate(['/adminboard']);
+    }
+  })
+}
+}
 
   ngOnInit(): void {
+    this.services.getUser.subscribe(user => this.requestResponse = user);
+
   }
 
 }

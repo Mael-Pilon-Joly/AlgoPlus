@@ -4,6 +4,7 @@ import { faMailBulk } from '@fortawesome/free-solid-svg-icons';
 import { faClipboardList } from '@fortawesome/free-solid-svg-icons';
 import { ApiService } from '../../services/apiservices.service';
 import { Router } from '@angular/router';
+import { RequestResponseUser } from '../../models/requestresponselogin.model';
 
 @Component({
   selector: 'app-navbar',
@@ -22,6 +23,7 @@ export class NavbarComponent implements OnInit {
   events!: string;
   contact!: string;
   isLoggedIn!: boolean;
+  user!: RequestResponseUser;
 
   constructor(public translate: TranslateService, private services: ApiService, private router: Router) {
     translate.addLangs(['en', 'fr']);
@@ -40,7 +42,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.services.getLogged.subscribe(logged => this.isLoggedIn = logged);
-
+    this.services.getUser.subscribe(user => this.user = user);
   }
 
 

@@ -14,6 +14,7 @@ const loggedInUrl = 'http://localhost:8080/api/loggedin';
 
 export class ApiService {
   @Output() getLogged: EventEmitter<any> = new EventEmitter();
+  @Output() getUser: EventEmitter<any> = new EventEmitter();
 
   [x: string]: any;
   isLoggedIn = false;
@@ -29,19 +30,24 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  login(data: any): RequestResponseUser {
-    this.http.post(baseUrl + "/signin", data, {
+  async login(data: any): Promise<RequestResponseUser> {
+    return new Promise ((resolve,reject) =>  this.http.post(baseUrl + "/signin", data, {
       withCredentials: true
-    }).subscribe(data => {
+    }).subscribe(async data => {
       this.isLoggedIn = true;
       this.getLogged.emit(this.isLoggedIn);
-      this.getProfil()
+      await this.getProfil().then(res=> {
+          console.log("success accessing res.data")
+          this.requestResponse = res;
+          console.log(this.requestResponse)
+          this.getUser.emit(this.requestResponse);
+          resolve(res);
+      })
     },
       error => {
         console.log(error);
-        return null;
-      });
-    return this.requestResponse;
+        reject({error: error});
+      }));
   }
 
   logout(): void {
@@ -56,25 +62,19 @@ export class ApiService {
       });
   }
 
-  getProfil(): void {
-    this.http.get(loggedInUrl + "/profil", {
+  async getProfil(): Promise<RequestResponseUser> {
+   return new Promise ((resolve,reject) => this.http.get(loggedInUrl + "/profil", {
       withCredentials: true
     }).subscribe(response => {
       console.log(response);
-      var res = response;
-      if (this.requestResponse.user) {
-        console.log("success accessing res.data")
-        this.requestResponse = res;
-
-      } else {
-        console.log("error getting requestResponseInitialState")
-      }
-
+      this.requestResponse = response;
       console.log(this.requestResponse)
+      resolve(response);
     },
       error => {
         console.log(error);
-      });
+        reject({error: error});
+      }));
   }
 }
 

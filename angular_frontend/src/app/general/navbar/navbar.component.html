@@ -38,7 +38,7 @@
             <ul class="nav">
 
                 <li>
-                    <a href="#">
+                    <a *ngIf="this.isLoggedIn" href="#">
                         <fa-icon [icon]="faClipboardList"></fa-icon>
                         &nbsp; {{ 'dashboard' | translate }}
                     </a>
