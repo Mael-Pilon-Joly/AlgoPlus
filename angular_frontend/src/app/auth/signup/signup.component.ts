@@ -19,26 +19,67 @@ export class SignupComponent implements OnInit {
   errorEmailTaken: boolean = false;
   errorErrorFormat: boolean = false;
   errorPasswordDontMatch: boolean = false;
+  emptyUserName: boolean = false;
+  emptyEmail: boolean = false;
+  emptyPassword: boolean = false;
+  emptyConfirmPassword: boolean= false;
+  username: string = "";
+  email: string = "";
+  password: string = "";
+  confirmpassword: string = "";
 
+  async signUp(username: string, email: string, password: string, confirmpassword: string){
+    this.errorSignUp= false;
+    this.errorEmailFormat = false;
+    this.errorUsernameTaken = false;
+    this.errorEmailTaken = false;
+    this.errorErrorFormat = false;
+    this.emptyUserName = false;
+    this.emptyEmail = false;
+    this.emptyPassword= false;
+    this.emptyConfirmPassword = false;
+    this.errorPasswordDontMatch = false;
+    if (password!=confirmpassword && password != "" && confirmpassword!="") {
+      this.errorPasswordDontMatch = true;
+    } else if(username=="" || password=="" || email=="" || confirmpassword=="") {
+        if(username=="") {
+          this.emptyUserName = true;
+        }
 
-  signUp(username: string, email: string,role: string, password: string ){
+        if(email=="") {
+          this.emptyEmail = true;
+        }
 
-    var res = this.service.signUp(username, email, "", password)
-    if(res.response.data.httpsStatus.includes("INTERNAL_SERVER_ERROR")){
+        if(password=="") {
+          this.emptyPassword= true;
+        }
+
+        if(confirmpassword=="") {
+          this.emptyConfirmPassword = true;
+        }
+    } else {
+ 
+    await this.service.signUp(username, email, [], password).then( res=> {
+    console.log(res)
+  }).catch (res=> {
+    console.log(res)
+    if(res.error.httpsStatus?.includes("INTERNAL_SERVER_ERROR")){
      this.errorSignUp = true;
     }
-    if(res.response.data.httpsStatus.includes("NOT_ACCEPTABLE")){
+    if(res.error.httpsStatus?.includes("NOT_ACCEPTABLE")){
       this.errorEmailFormat = true;
     }
-    if(res.response.data.httpsStatus.includes("LOCKED")){
+    if(res.error.httpsStatus?.includes("LOCKED")){
       this.errorUsernameTaken = true; 
     }
-    if(res.response.data.httpsStatus.includes("CONFLICT")){
+    if(res.error.httpsStatus?.includes("CONFLICT")){
       this.errorEmailTaken = true; 
     }
-    if(res.response.data.httpsStatus.includes("REQUESTED_RANGE_NOT_SATISFIABLE")){
+    if(res.error.httpsStatus?.includes("REQUESTED_RANGE_NOT_SATISFIABLE")){
       this.errorErrorFormat = true;
     } 
+   } )
   }
 
+}
 }

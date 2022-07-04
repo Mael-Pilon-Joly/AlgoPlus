@@ -13,5 +13,17 @@
     "password": "Password",
     "rememberme": "Remember-me",
     "logout": "Log out",
-    "errorlogin": "Login error. Check that you typed the username or the password correctly."
+    "errorlogin": "Login error. Check that you typed the username or the password correctly.",
+    "confirmpassword": "Confirm your password",
+    "email": "Email",
+    "errorSignUp": "There was an error in the signup process.",
+    "erroremailformat": "Wrong email format.",
+    "errorusernametaken": "This username is already taken.",
+    "erroremailtaken": "This email is already taken",
+    "errorerrorformat": "The username should be between 3 and 20 characters and the password should be between 6 and 40 characters.",
+    "errorpassworddontmatch": "The password validation step has failed. Make sure both passwords are the same",
+    "emptyusername": "Please enter a username",
+    "emptyemail": "Please enter a email",
+    "emptypassword": "Please enter a password",
+    "emptyconfirmpassword": "Please confirm your password"
 }

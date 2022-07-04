@@ -130,7 +130,8 @@ public class AuthController {
         register = false;
       } else {
         // Token is not expired
-        if (confirmationToken.get().getExpiresAt().compareTo(LocalDateTime.now()) > 0) {
+        Optional<User> user = userRepository.findByUsername(signUpRequest.getUsername());
+        if (confirmationToken.get().getExpiresAt().compareTo(LocalDateTime.now()) > 0 || user.get().isEnabled() ) {
           register = false;
           response.add(HttpStatus.LOCKED);
         } else {
@@ -149,7 +150,11 @@ public class AuthController {
         register = false;
       } else {
         // Token is not expired
-        if (confirmationToken.get().getExpiresAt().compareTo(LocalDateTime.now()) > 0) {
+        Optional<User> user = userRepository.findByEmail(signUpRequest.getEmail());
+        if (user.get().isEnabled()) {
+          register = false;
+          response.add(HttpStatus.CONFLICT);
+        } else if (confirmationToken.get().getExpiresAt().compareTo(LocalDateTime.now()) > 0 ) {
           register = false;
           response.add(HttpStatus.LOCKED);
         } else {
@@ -242,11 +247,11 @@ public class AuthController {
                       HttpServletResponse httpServletResponse) {
 
     if(!registrationService.confirmToken(token)) {
-      httpServletResponse.setHeader("Location", "http://localhost:3000/invalidToken");
+      httpServletResponse.setHeader("Location", "http://localhost:4200/invalidToken");
       httpServletResponse.setStatus(302);
      }
 
-    httpServletResponse.setHeader("Location", "http://localhost:3000/emailConfirmed");
+    httpServletResponse.setHeader("Location", "http://localhost:4200/emailConfirmed");
     httpServletResponse.setStatus(302);
   }
 

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { RequestResponseUser } from '../models/requestresponselogin.model';
 import { User } from '../models/user.model';
 import { faLeaf } from '@fortawesome/free-solid-svg-icons';
+import { SignUpResponse } from '../models/signupresponse.model';
 
 const baseUrl = 'http://localhost:8080/api/auth';
 const loggedInUrl = 'http://localhost:8080/api/loggedin';
@@ -27,6 +28,7 @@ export class ApiService {
   requestResponse: RequestResponseUser = {
     user: this.user
   }
+
 
   constructor(private http: HttpClient) { }
 
@@ -77,13 +79,17 @@ export class ApiService {
       }));
   }
 
-  signUp(username: string, email: string,role: string, password: string): any {
-    this.http.post(baseUrl + "/signup", {username, email, password, role}).subscribe(
-      response => {
-        return response
+  async signUp(username: string, email: string,role: string[], password: string): Promise<SignUpResponse> {
+    return new Promise ((resolve,reject) => this.http.post(baseUrl + "/signup", {username, email, password, role},  {
+      withCredentials: true
+    }).subscribe(
+      (response:any) => {
+        console.log("response"+response)
+        resolve(response);
       }, error => {
-        return error
-      }
+        console.log("error"+JSON.stringify(error.error))
+        reject({error: error.error});
+      })
     )
   }
 }

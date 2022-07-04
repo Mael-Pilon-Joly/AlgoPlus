@@ -13,6 +13,17 @@
     "password": "Mot de passe",
     "rememberme": "Se souvenir de moi",
     "logout": "Se déconnecter",
-    "errorlogin": "Erreur de connection. Vérifiez que vous avez entrez correctement le nom d'utilisateur et le mot de passe."
-
+    "errorlogin": "Erreur de connection. Vérifiez que vous avez entrez correctement le nom d'utilisateur et le mot de passe.",
+    "confirmpassword": "Confirmez votre mot de passe",
+    "email": "Adresse de courriel électronique",
+    "errorSignUp": "Il y a eu une erreur dans le processur de connexion.",
+    "erroremailformat": "Mauvais format de courriel électronique.",
+    "errorusernametaken": "Ce nom d'utilisateur est déjà utilisé.",
+    "erroremailtaken": "Cette adresse de courriel électronique est déjà prise.",
+    "errorerrorformat": "Le nom d'utilisateur devrait être en 3 et 20 caractères et le mot de passes devrait être en 6 et 40 caractères.",
+    "errorpassworddontmatch": "The password confirmation has failed. Make sure both passwords are the same",
+    "emptyusername": "Veuillez s'il vous plaît entrez un nom d'utilisateur",
+    "emptyemail": "Veuillez s'il vous plaît entrez une adresse de courriel électronique",
+    "emptypassword": "Veuillez s'il vous plaît entrez un mot de passe",
+    "emptyconfirmpassword": "Veuillez s'il vous plaît confirmer votre mot de passe"
 }
