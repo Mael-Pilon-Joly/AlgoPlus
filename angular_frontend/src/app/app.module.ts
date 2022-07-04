@@ -26,6 +26,9 @@ import { faClipboardList } from '@fortawesome/free-solid-svg-icons';
 import { faMailBulk } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { PendingconfirmationComponent } from './auth/pendingconfirmation/pendingconfirmation.component';
+import { InvalidtokenComponent } from './auth/invalidtoken/invalidtoken.component';
+import { SidebarComponent } from './general/sidebar/sidebar.component';
 
 
 
@@ -62,7 +65,10 @@ export class CustomInterceptor implements HttpInterceptor {
     AdminboardComponent,
     UserboardComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    PendingconfirmationComponent,
+    InvalidtokenComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

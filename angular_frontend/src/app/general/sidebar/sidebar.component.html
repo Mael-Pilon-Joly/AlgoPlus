@@ -1,0 +1,37 @@
+<div id="viewport">
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <header>
+            <a href="#">AlgoPlus</a>
+        </header>
+        <ul class="nav">
+
+            <li>
+                <a *ngIf="this.isLoggedIn" href="#">
+                    <fa-icon [icon]="faClipboardList"></fa-icon>
+                    &nbsp; {{ 'dashboard' | translate }}
+                </a>
+
+            </li>
+
+            <li>
+                <a href="#">
+                    <img src="../../../assets/newspaperwhite.png" height=20px weight=20px> &nbsp; {{ 'articles' | translate }}
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="../../../assets/white-calender.png" height=20px weight=20px> &nbsp; {{ 'events' | translate }}
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <fa-icon [icon]="faMailBulk"></fa-icon>
+                    &nbsp; {{ 'contact' | translate }}
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>

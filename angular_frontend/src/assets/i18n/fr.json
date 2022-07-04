@@ -25,5 +25,12 @@
     "emptyusername": "Veuillez s'il vous plaît entrez un nom d'utilisateur",
     "emptyemail": "Veuillez s'il vous plaît entrez une adresse de courriel électronique",
     "emptypassword": "Veuillez s'il vous plaît entrez un mot de passe",
-    "emptyconfirmpassword": "Veuillez s'il vous plaît confirmer votre mot de passe"
+    "emptyconfirmpassword": "Veuillez s'il vous plaît confirmer votre mot de passe",
+    "pendingconfirmation": "Un email de confirmation vient de vous être envoyez. Veuillez s'il vous plaît confirmer votre courriel en cliquant sur le lien à l'intérieur du courriel. Le lien n'est valide que pour les 15 prochaines minutes. Si vous ne voyez pas le courriel dans votre boîte de réception, vérifier vos courriels indésirables.",
+    "emailconfirmed": "Merci d'avoir valider votre courriel électronique. Vous êtes maintenant libre d'utiliser et de contribuer à AlgoPlus.  Veuillez s'il vous plaît lire les règles du site web avant de commencer votre aventure. Bonne chance!",
+    "invalidtoken": "Ce lien est invalide. Veuillez s'il vous plaît vous enregistez à nouveau pour recevoir un autre email de confirmation.",
+    "errorpendingconfirmation": "L'adresse de courriel électronique de ce compte n'a pas encore été activée. Veuillez s'il vous plaît cliquez sur le lien reçu dans votre boîte de courriel ou dans vos courriels indésirables, ou bien crée un compte à nouveau si celui-ci a expérié."
+
+
+
 }

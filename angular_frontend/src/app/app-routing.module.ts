@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EmailconfirmationComponent } from './auth/emailconfirmation/emailconfirmation.component';
+import { InvalidtokenComponent } from './auth/invalidtoken/invalidtoken.component';
 import { LoginComponent } from './auth/login/login.component';
+import { PendingconfirmationComponent } from './auth/pendingconfirmation/pendingconfirmation.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AdminboardComponent } from './board/adminboard/adminboard.component';
 import { UnauthorizedComponent } from './board/unauthorized/unauthorized.component';
@@ -20,9 +22,10 @@ const routes: Routes = [
   { path: 'adminboard', component: AdminboardComponent },
   { path: 'userboard', component: UserboardComponent},
   { path: 'unauthorized', component: UnauthorizedComponent },
-  { path: 'pendingconfirmation', component: EmailconfirmationComponent },
+  { path: 'pendingconfirmation', component: PendingconfirmationComponent },
   { path: 'passwordrequest', component: PasswordrequestComponent },
-  { path: 'emailconfirmationsuccess', component: EmailconfirmationComponent },
+  { path: 'emailconfirmed', component: EmailconfirmationComponent },
+  { path: 'invalidtoken', component: InvalidtokenComponent },
   { path: 'updatepassword/:token', component: ResetpasswordComponent },
   { path: 'failedpasswordresetvalidation', component: FailedresetpasswordComponent},
 

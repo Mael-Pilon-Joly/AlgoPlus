@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   errorLogin: boolean = false;
+  errorPendingConfirmation: boolean = false;
 
   constructor(private services: ApiService, private router: Router) { 
   }
@@ -62,7 +63,16 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/adminboard']);
     }
   }).catch ( error => {
+    this.errorLogin = false;
+    this.errorPendingConfirmation = false;
+    console.log(JSON.stringify(error.error))
+    this.errorLogin = false;
+    this.errorPendingConfirmation = false;
+    if (error.error.status == 412) {
+      this.errorPendingConfirmation = true;
+    } else {
     this.errorLogin = true;
+    }
   })
 }
 }

@@ -25,5 +25,9 @@
     "emptyusername": "Please enter a username",
     "emptyemail": "Please enter a email",
     "emptypassword": "Please enter a password",
-    "emptyconfirmpassword": "Please confirm your password"
+    "emptyconfirmpassword": "Please confirm your password",
+    "pendingconfirmation": "A confirmation email has just been sent to you. Please click on the link inside to confirm your email. The link will stop being valid in 15 minutes. If you don't see the email in your inbox, check your SPAM folder.",
+    "emailconfirmed": "Thank you for validating your email. You are now free to use and contribute to AlgoPlus. Please read the website rules before starting your adventure. Good luck!",
+    "invalidtoken": "This link is invalid or has expired. Please try to register again to receive another confirmation email.",
+    "errorpendingconfirmation": "This account email hasn't been verified. Please click on the link you received in your inbox or folder to confirm your account or register again if it has expired."
 }

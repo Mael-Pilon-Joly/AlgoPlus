@@ -54,7 +54,7 @@ public class EmailService implements EmailSender {
             TransactionalEmailsApi api = new TransactionalEmailsApi();
             SendSmtpEmailSender sender = new SendSmtpEmailSender();
             sender.setEmail("mael.pilon-joly@hotmail.com");
-            sender.setName("File Sharing App");
+            sender.setName("AlgoPlus");
             List<SendSmtpEmailTo> toList = new ArrayList<SendSmtpEmailTo>();
             SendSmtpEmailTo to = new SendSmtpEmailTo();
             to.setEmail(dest);

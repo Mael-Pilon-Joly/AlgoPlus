@@ -5,6 +5,11 @@ body {
     margin: 0;
 }
 
+:host /deep/ app-root+*:not(nav) {
+    width: 85vw;
+    float: right;
+}
+
 .wrapper {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
@@ -24,4 +29,20 @@ body {
     background-size: cover;
     min-height: 100vh;
     margin: 0;
+}
+
+.container1 {
+    width: 100%;
+    overflow: hidden;
+    /* add this to contain floated children */
+}
+
+.container1 .al-left {
+    float: left;
+    max-width: 15vw;
+}
+
+.container1 .al-right {
+    float: right;
+    max-width: 85vw;
 }

@@ -9,6 +9,9 @@
         <div className="alert alert-danger" *ngIf="this.errorLogin" style="text-align: center; vertical-align: middle;background-color:darksalmon; border-color:red; color:red">
             {{'errorlogin' | translate}}
         </div>
+        <div className="alert alert-danger" *ngIf="this.errorPendingConfirmation" style="text-align: center; vertical-align: middle;background-color:darksalmon; border-color:red; color:red">
+            {{'errorpendingconfirmation' | translate}}
+        </div>
         <div class="form-group ">
             <label for="username">{{ 'username' | translate }}</label>
             <input [(ngModel)]="userDTO.username" name="username" type="text" class="form-control" id="username" aria-describedby="username" placeholder="...">

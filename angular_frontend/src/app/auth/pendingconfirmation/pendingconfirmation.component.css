@@ -27,7 +27,7 @@ p {
     grid-column-start: 4;
     grid-column-end: 8;
     grid-row-start: 1;
-    grid-row-end: 8;
+    grid-row-end: 5;
     background-color: rgb(175, 214, 175);
     border-radius: 5%;
     box-shadow: inset -10px -10px 15px rgba(255, 255, 255, 0.5), inset 10px 10px 15px rgba(70, 70, 70, 0.12);

@@ -247,11 +247,11 @@ public class AuthController {
                       HttpServletResponse httpServletResponse) {
 
     if(!registrationService.confirmToken(token)) {
-      httpServletResponse.setHeader("Location", "http://localhost:4200/invalidToken");
+      httpServletResponse.setHeader("Location", "http://localhost:4200/invalidtoken");
       httpServletResponse.setStatus(302);
      }
 
-    httpServletResponse.setHeader("Location", "http://localhost:4200/emailConfirmed");
+    httpServletResponse.setHeader("Location", "http://localhost:4200/emailconfirmed");
     httpServletResponse.setStatus(302);
   }
 

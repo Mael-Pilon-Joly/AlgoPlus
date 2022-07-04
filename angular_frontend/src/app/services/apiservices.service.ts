@@ -79,7 +79,7 @@ export class ApiService {
       }));
   }
 
-  async signUp(username: string, email: string,role: string[], password: string): Promise<SignUpResponse> {
+  async signUp(username: string, email: string,role: any, password: string): Promise<SignUpResponse> {
     return new Promise ((resolve,reject) => this.http.post(baseUrl + "/signup", {username, email, password, role},  {
       withCredentials: true
     }).subscribe(
@@ -92,5 +92,6 @@ export class ApiService {
       })
     )
   }
+
 }
 

@@ -1,0 +1,9 @@
+:host /deep/ app-sidebar+*:not(nav) {
+    max-width: 10vw;
+    float: left;
+}
+
+:host /deep/ router-outlet+*:not(nav) {
+    width: 90vw;
+    float: right;
+}

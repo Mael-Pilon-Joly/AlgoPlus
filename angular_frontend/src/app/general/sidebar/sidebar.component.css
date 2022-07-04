@@ -1,0 +1,80 @@
+/* Toggle Styles */
+
+:host #viewport {
+    flex-grow: 1;
+    height: 100%;
+    max-width: 10vw;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#content {
+    width: 90%;
+    position: relative;
+    margin-right: 0;
+}
+
+
+/* Sidebar Styles */
+
+#sidebar {
+    max-width: 21vw;
+    height: 100%;
+    position: absolute;
+    background: #37474F;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#sidebar header {
+    background-color: #263238;
+    font-size: 20px;
+    line-height: 52px;
+    text-align: center;
+}
+
+#sidebar li {
+    font-size: 20px;
+    width: 100%;
+    border-bottom: 1px solid #455A64;
+    line-height: 52px;
+    display: block;
+    margin: 10px;
+    display: table-cell;
+}
+
+#sidebar header a {
+    color: #fff;
+    display: block;
+    text-decoration: none;
+}
+
+#sidebar header a:hover {
+    color: #fff;
+}
+
+#sidebar .nav {
+    display: flex;
+}
+
+#sidebar .nav a {
+    background: none;
+    display: block;
+    color: #CFD8DC;
+    font-size: 14px;
+    padding: 16px 24px;
+    text-decoration: none;
+}
+
+#sidebar .nav a:hover {
+    background: none;
+    color: #ECEFF1;
+}
+
+#sidebar .nav a i {
+    margin-right: 16px;
+}

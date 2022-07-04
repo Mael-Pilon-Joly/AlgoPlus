@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/apiservices.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -8,7 +9,7 @@ import { ApiService } from '../../services/apiservices.service';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private service: ApiService) { }
+  constructor(private service: ApiService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -59,8 +60,8 @@ export class SignupComponent implements OnInit {
         }
     } else {
  
-    await this.service.signUp(username, email, [], password).then( res=> {
-    console.log(res)
+    await this.service.signUp(username, email, null, password).then( res=> {
+      this.router.navigate(['/pendingconfirmation']);
   }).catch (res=> {
     console.log(res)
     if(res.error.httpsStatus?.includes("INTERNAL_SERVER_ERROR")){
