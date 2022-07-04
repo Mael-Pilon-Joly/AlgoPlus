@@ -12,5 +12,7 @@
     "username": "Nom d'utilisateur",
     "password": "Mot de passe",
     "rememberme": "Se souvenir de moi",
-    "logout": "Se déconnecter"
+    "logout": "Se déconnecter",
+    "errorlogin": "Erreur de connection. Vérifiez que vous avez entrez correctement le nom d'utilisateur et le mot de passe."
+
 }

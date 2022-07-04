@@ -55,11 +55,11 @@ public class User  {
   private Set<Role> roles = new HashSet<>();
 
   @OneToOne(cascade = {CascadeType.ALL})
-  @JoinColumn(name = "id")
+  @JoinColumn(name = "avatar_id", referencedColumnName = "id")
   private FileDB avatar;
 
   @OneToOne(cascade = {CascadeType.ALL})
-  @JoinColumn(name = "id")
+  @JoinColumn(name = "cv_id", referencedColumnName = "id")
   private FileDB CV;
 
   @ManyToMany(fetch = FetchType.LAZY)

@@ -63,7 +63,7 @@ export class ApiService {
   }
 
   async getProfil(): Promise<RequestResponseUser> {
-   return new Promise ((resolve,reject) => this.http.get(loggedInUrl + "/profil", {
+   return new Promise ((resolve,reject) => this.http.get("http://localhost:8080/api/loggedin/profil", {
       withCredentials: true
     }).subscribe(response => {
       console.log(response);
@@ -75,6 +75,16 @@ export class ApiService {
         console.log(error);
         reject({error: error});
       }));
+  }
+
+  signUp(username: string, email: string,role: string, password: string): any {
+    this.http.post(baseUrl + "/signup", {username, email, password, role}).subscribe(
+      response => {
+        return response
+      }, error => {
+        return error
+      }
+    )
   }
 }
 

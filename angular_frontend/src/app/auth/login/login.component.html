@@ -1,11 +1,14 @@
 <div class="wrapper">
     <div class="grid1">
     </div>
-    <div class="grid2">Item2</div>
-    <div class="grid3">Item3</div>
-    <div class="grid4">Item4</div>
+    <div class="grid2"></div>
+    <div class="grid3"></div>
+    <div class="grid4"></div>
 
     <form class="form-grid">
+        <div className="alert alert-danger" *ngIf="this.errorLogin" style="text-align: center; vertical-align: middle;background-color:darksalmon; border-color:red; color:red">
+            {{'errorlogin' | translate}}
+        </div>
         <div class="form-group ">
             <label for="username">{{ 'username' | translate }}</label>
             <input [(ngModel)]="userDTO.username" name="username" type="text" class="form-control" id="username" aria-describedby="username" placeholder="...">

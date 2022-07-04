@@ -30,6 +30,8 @@ export class LoginComponent implements OnInit {
     user: this.user
   }
 
+  errorLogin: boolean = false;
+
   constructor(private services: ApiService, private router: Router) { 
   }
 
@@ -59,6 +61,8 @@ export class LoginComponent implements OnInit {
     if (result.filter(e => e.name === 'ROLE_ADMIN').length > 0) {
       this.router.navigate(['/adminboard']);
     }
+  }).catch ( error => {
+    this.errorLogin = true;
   })
 }
 }

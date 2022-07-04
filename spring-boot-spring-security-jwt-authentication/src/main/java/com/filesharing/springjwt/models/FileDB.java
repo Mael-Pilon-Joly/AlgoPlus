@@ -7,12 +7,19 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "files")
 public class FileDB {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String type;
     @Lob
     private byte[] data;
+
+    @OneToOne(mappedBy = "avatar")
+    private User user_avatar;
+
+    @OneToOne(mappedBy = "CV")
+    private User user_cv;
+
     public FileDB() {
     }
 

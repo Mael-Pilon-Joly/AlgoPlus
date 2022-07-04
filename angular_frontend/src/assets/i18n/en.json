@@ -12,5 +12,6 @@
     "username": "Username",
     "password": "Password",
     "rememberme": "Remember-me",
-    "logout": "Log out"
+    "logout": "Log out",
+    "errorlogin": "Login error. Check that you typed the username or the password correctly."
 }

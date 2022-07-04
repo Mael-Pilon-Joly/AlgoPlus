@@ -25,6 +25,8 @@ import {
 import { faClipboardList } from '@fortawesome/free-solid-svg-icons';
 import { faMailBulk } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -75,7 +77,7 @@ export class CustomInterceptor implements HttpInterceptor {
       }
     }),
     FontAwesomeModule,
-   
+    PdfViewerModule,
     
   ],
   providers: [
@@ -84,7 +86,7 @@ export class CustomInterceptor implements HttpInterceptor {
       useClass: CustomInterceptor ,
       multi: true
     }
-  ],
+  ], 
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { 

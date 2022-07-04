@@ -5,6 +5,8 @@ export class User {
         id?: any;
         username?: string;
         email?: string;
+        avatar?: any;
+        cv?: any;
         roles?: Roles[];
         enabled?: boolean;
         locked?: boolean;

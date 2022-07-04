@@ -1,0 +1,35 @@
+.grid {
+    padding-left: 38px;
+    font-family: "Satisfy-Regular";
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    row-gap: 10px;
+    height: 100vh;
+}
+
+.grid .header {
+    display: grid;
+    padding: 5px;
+    grid-column-start: 3;
+    grid-column-end: 9;
+    grid-row-start: 1;
+    grid-row-end: 10;
+    background-color: rgb(207, 209, 207);
+    grid-template-columns: subgrid;
+    grid-template-rows: repeat(3, 80px);
+}
+
+.grid .header .profil {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 4;
+}
+
+.grid .header .cv {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 4;
+}
