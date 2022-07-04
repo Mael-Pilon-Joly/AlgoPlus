@@ -100,23 +100,4 @@ public class UserController {
         }
     }
 
-    @PutMapping("/updateprofile")
-    public RequestResponse updateProfil(@RequestParam("file") MultipartFile file, @RequestParam("user") String username,
-                                        String typeOfRequest) throws IOException {
-        RequestResponse requestResponse = new RequestResponse();
-        List<HttpStatus> status = new ArrayList<>();
-        Optional<User> user = userRepository.findByUsername(username);
-     if(user.isPresent()) {
-         if (typeOfRequest.equals("avatar")) {
-             userService.updateAvatar(file, user.get());
-         } else if (typeOfRequest.equals("cv")) {
-             userService.updateCV(file, user.get());
-         } else {
-             // to do: update articles || exercises
-         }
-     }
-        status.add(HttpStatus.OK);
-    requestResponse.setHttpsStatus(status);
-    return requestResponse;
-    }
 }

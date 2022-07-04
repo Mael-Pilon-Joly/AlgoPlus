@@ -9,6 +9,7 @@ import com.filesharing.springjwt.payload.response.LoginResponse;
 import com.filesharing.springjwt.payload.response.RequestResponse;
 import com.filesharing.springjwt.registration.email.EmailSender;
 import com.filesharing.springjwt.registration.token.PasswordResetToken;
+import com.filesharing.springjwt.repository.FileDBRepository;
 import com.filesharing.springjwt.repository.PasswordTokenRepository;
 import com.filesharing.springjwt.repository.UserRepository;
 import com.filesharing.springjwt.utils.CookieUtil;
@@ -56,6 +57,12 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private EmailSender emailSender;
+
+    @Autowired
+    FileStorageDBService fileStorageDBService;
+
+    @Autowired
+    FileDBRepository fileDBRepository;
 
     @Override
     public ResponseEntity<LoginResponse> login(LoginRequest loginRequest, String accessToken, String refreshToken) {
@@ -208,16 +215,17 @@ public class UserServiceImpl implements UserService {
     }
 
     public User updateAvatar(MultipartFile file, User user) throws IOException {
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        FileDB FileDB = new FileDB(fileName, file.getContentType(), file.getBytes());
-        user.setAvatar(FileDB);
+        FileDB temp = fileStorageDBService.store(file);
+        FileDB avatar = fileDBRepository.getById(temp.getId());
+        user.setAvatar(avatar);
+
         return userRepository.save(user);
     }
 
     public User updateCV(MultipartFile file, User user) throws IOException {
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        FileDB FileDB = new FileDB(fileName, file.getContentType(), file.getBytes());
-        user.setCV(FileDB);
+        FileDB temp = fileStorageDBService.store(file);
+        FileDB cv = fileDBRepository.getById(temp.getId());
+        user.setCV(cv);
         return userRepository.save(user);
     }
 
