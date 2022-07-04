@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.awt.image.BufferedImage;
 import java.security.AuthProvider;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -53,6 +54,45 @@ public class User  {
         inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles = new HashSet<>();
 
+  @OneToOne
+  @JoinColumn(name = "id")
+  private FileDB avatar;
+
+  @OneToOne
+  @JoinColumn(name = "id")
+  private FileDB CV;
+
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(  name = "user_articles",
+          joinColumns = @JoinColumn(name = "user_id"),
+          inverseJoinColumns = @JoinColumn(name = "article_id"))
+  private Set<Article> articles = new HashSet<>();
+
+  public Set<Article> getArticles() {
+    return articles;
+  }
+
+  public void setArticles(Set<Article> articles) {
+    this.articles = articles;
+  }
+
+  public FileDB getCV() {
+    return CV;
+  }
+
+  public void setCV(FileDB CV) {
+    this.CV = CV;
+  }
+
+
+
+  public FileDB getAvatar() {
+    return avatar;
+  }
+
+  public void setAvatar(FileDB avatar) {
+    this.avatar = avatar;
+  }
 
   public User() {
   }
@@ -137,4 +177,6 @@ public class User  {
   public void setToken(String token) {
     this.token = token;
   }
+
+
 }

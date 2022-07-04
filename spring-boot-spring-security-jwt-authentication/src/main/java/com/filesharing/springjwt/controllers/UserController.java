@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +24,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.util.*;
 
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -97,5 +98,25 @@ public class UserController {
                 return requestResponse;
             }
         }
+    }
+
+    @PutMapping("/updateprofile")
+    public RequestResponse updateProfil(@RequestParam("file") MultipartFile file, @RequestParam("user") String username,
+                                        String typeOfRequest) throws IOException {
+        RequestResponse requestResponse = new RequestResponse();
+        List<HttpStatus> status = new ArrayList<>();
+        Optional<User> user = userRepository.findByUsername(username);
+     if(user.isPresent()) {
+         if (typeOfRequest.equals("avatar")) {
+             userService.updateAvatar(file, user.get());
+         } else if (typeOfRequest.equals("cv")) {
+             userService.updateCV(file, user.get());
+         } else {
+             // to do: update articles || exercises
+         }
+     }
+        status.add(HttpStatus.OK);
+    requestResponse.setHttpsStatus(status);
+    return requestResponse;
     }
 }

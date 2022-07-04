@@ -2,6 +2,7 @@ package com.filesharing.springjwt.services;
 
 import com.filesharing.springjwt.dto.Token;
 import com.filesharing.springjwt.dto.TokenProvider;
+import com.filesharing.springjwt.models.FileDB;
 import com.filesharing.springjwt.models.User;
 import com.filesharing.springjwt.payload.request.LoginRequest;
 import com.filesharing.springjwt.payload.response.LoginResponse;
@@ -21,8 +22,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -202,4 +206,19 @@ public class UserServiceImpl implements UserService {
 
 
     }
+
+    public User updateAvatar(MultipartFile file, User user) throws IOException {
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        FileDB FileDB = new FileDB(fileName, file.getContentType(), file.getBytes());
+        user.setAvatar(FileDB);
+        return userRepository.save(user);
+    }
+
+    public User updateCV(MultipartFile file, User user) throws IOException {
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        FileDB FileDB = new FileDB(fileName, file.getContentType(), file.getBytes());
+        user.setCV(FileDB);
+        return userRepository.save(user);
+    }
+
 }

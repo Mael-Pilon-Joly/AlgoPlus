@@ -11,7 +11,6 @@ import com.filesharing.springjwt.models.Role;
 import com.filesharing.springjwt.models.User;
 import com.filesharing.springjwt.payload.request.LoginRequest;
 import com.filesharing.springjwt.payload.request.SignupRequest;
-import com.filesharing.springjwt.payload.response.ConfirmationTokenResponse;
 import com.filesharing.springjwt.payload.response.LoginResponse;
 import com.filesharing.springjwt.payload.response.RequestResponse;
 import com.filesharing.springjwt.registration.email.EmailSender;
@@ -22,7 +21,6 @@ import com.filesharing.springjwt.registration.token.ConfirmationTokenService;
 import com.filesharing.springjwt.repository.RoleRepository;
 import com.filesharing.springjwt.repository.UserRepository;
 import com.filesharing.springjwt.security.jwt.JwtUtils;
-import com.filesharing.springjwt.services.FileStorageService;
 import com.filesharing.springjwt.services.UserDetailsServiceImpl;
 import com.filesharing.springjwt.services.UserService;
 import com.filesharing.springjwt.utils.SecurityCipher;
@@ -59,9 +57,6 @@ public class AuthController {
 
   @Autowired
   UserService userService;
-
-  @Autowired
-  FileStorageService storageService;
 
   @Autowired
   JwtUtils jwtUtils;
@@ -246,9 +241,7 @@ public class AuthController {
                       @RequestParam("username") String username,
                       HttpServletResponse httpServletResponse) {
 
-    if(registrationService.confirmToken(token)) {
-      storageService.init(username);
-    } else {
+    if(!registrationService.confirmToken(token)) {
       httpServletResponse.setHeader("Location", "http://localhost:3000/invalidToken");
       httpServletResponse.setStatus(302);
      }
