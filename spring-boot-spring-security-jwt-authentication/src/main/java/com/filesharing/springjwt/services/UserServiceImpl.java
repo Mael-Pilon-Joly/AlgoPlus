@@ -174,7 +174,7 @@ public class UserServiceImpl implements UserService {
 
     public void createPasswordResetTokenForUser(User user, String token) {
         PasswordResetToken myToken = new PasswordResetToken(token, user);
-        Date now = Date.from(LocalDateTime.now().plusMinutes(60).atZone(ZoneId.systemDefault()).toInstant());
+        Date now = Date.from(LocalDateTime.now().plusMinutes(15).atZone(ZoneId.systemDefault()).toInstant());
         myToken.setExpiryDate(now);
         passwordTokenRepository.save(myToken);
     }
@@ -185,7 +185,7 @@ public class UserServiceImpl implements UserService {
         requestResponse.setUser(user);
 
         try {
-            String email = "<div> <p1> Hi " + user.getUsername() + ", you have requested a password reset from File Sharing App.</p1> <p2> Please click this link to get reset your password, or ignore this message if you haven't made this request: </p2> <a href='http://localhost:8080/api/user/validatepassword?token=" + token + "'>Reset your password</a></div>";
+            String email = "<div> <p1> Hi " + user.getUsername() + ", you have requested a password reset from AlgoPlus.</p1> <p2> Please click this link to reset your password, or ignore this message if you haven't made this request: </p2> <a href='http://localhost:8080/api/user/validatepassword?token=" + token + "'>Reset your password</a></div>";
             emailSender.send(dest, email, "Reset your password");
             status.add(HttpStatus.OK);
             requestResponse.setHttpsStatus(status);

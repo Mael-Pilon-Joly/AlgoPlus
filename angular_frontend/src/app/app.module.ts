@@ -5,8 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient, HttpRequest, HttpInterceptor, HttpHandler, HttpEvent, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ConfirmationsuccessComponent } from './passwordrecovery/confirmationsuccess/confirmationsuccess.component';
-import { FailedresetpasswordComponent } from './passwordrecovery/failedresetpassword/failedresetpassword.component';
 import { PasswordrequestComponent } from './passwordrecovery/passwordrequest/passwordrequest.component';
 import { ResetpasswordComponent } from './passwordrecovery/resetpassword/resetpassword.component';
 import { EmailconfirmationComponent } from './auth/emailconfirmation/emailconfirmation.component';
@@ -29,6 +27,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { PendingconfirmationComponent } from './auth/pendingconfirmation/pendingconfirmation.component';
 import { InvalidtokenComponent } from './auth/invalidtoken/invalidtoken.component';
 import { SidebarComponent } from './general/sidebar/sidebar.component';
+import { FailedresetpasswordComponent } from './passwordrecovery/failedresetpassword/failedresetpassword.component';
 
 
 
@@ -55,8 +54,6 @@ export class CustomInterceptor implements HttpInterceptor {
 @NgModule({
   declarations: [
     AppComponent,
-    ConfirmationsuccessComponent,
-    FailedresetpasswordComponent,
     PasswordrequestComponent,
     ResetpasswordComponent,
     EmailconfirmationComponent,
@@ -68,7 +65,8 @@ export class CustomInterceptor implements HttpInterceptor {
     HomeComponent,
     PendingconfirmationComponent,
     InvalidtokenComponent,
-    SidebarComponent
+    SidebarComponent,
+    FailedresetpasswordComponent
   ],
   imports: [
     BrowserModule,

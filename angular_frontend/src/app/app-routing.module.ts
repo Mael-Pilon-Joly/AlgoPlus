@@ -9,9 +9,9 @@ import { AdminboardComponent } from './board/adminboard/adminboard.component';
 import { UnauthorizedComponent } from './board/unauthorized/unauthorized.component';
 import { UserboardComponent } from './board/userboard/userboard.component';
 import { HomeComponent } from './general/home/home.component';
-import { FailedresetpasswordComponent } from './passwordrecovery/failedresetpassword/failedresetpassword.component';
 import { PasswordrequestComponent } from './passwordrecovery/passwordrequest/passwordrequest.component';
 import { ResetpasswordComponent } from './passwordrecovery/resetpassword/resetpassword.component';
+import { FailedresetpasswordComponent } from './passwordrecovery/failedresetpassword/failedresetpassword.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -26,9 +26,8 @@ const routes: Routes = [
   { path: 'passwordrequest', component: PasswordrequestComponent },
   { path: 'emailconfirmed', component: EmailconfirmationComponent },
   { path: 'invalidtoken', component: InvalidtokenComponent },
-  { path: 'updatepassword/:token', component: ResetpasswordComponent },
-  { path: 'failedpasswordresetvalidation', component: FailedresetpasswordComponent},
-
+  { path: 'failedpasswordresetvalidation', component:  FailedresetpasswordComponent },
+  { path: 'updatepassword', component: ResetpasswordComponent }
 ];
 
 @NgModule({

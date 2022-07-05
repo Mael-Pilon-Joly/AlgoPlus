@@ -13,6 +13,7 @@
     "password": "Password",
     "rememberme": "Remember-me",
     "logout": "Log out",
+    "submit": "Submit",
     "errorlogin": "Login error. Check that you typed the username or the password correctly.",
     "confirmpassword": "Confirm your password",
     "email": "Email",
@@ -29,5 +30,14 @@
     "pendingconfirmation": "A confirmation email has just been sent to you. Please click on the link inside to confirm your email. The link will stop being valid in 15 minutes. If you don't see the email in your inbox, check your SPAM folder.",
     "emailconfirmed": "Thank you for validating your email. You are now free to use and contribute to AlgoPlus. Please read the website rules before starting your adventure. Good luck!",
     "invalidtoken": "This link is invalid or has expired. Please try to register again to receive another confirmation email.",
-    "errorpendingconfirmation": "This account email hasn't been verified. Please click on the link you received in your inbox or folder to confirm your account or register again if it has expired."
+    "forgotpassword": "Forgot your password?",
+    "errorpendingconfirmation": "This account email hasn't been verified. Please click on the link you received in your inbox or folder to confirm your account or register again if it has expired.",
+    "errorpasswordrequest": "There was an error in the process of the password request. Please try again",
+    "nonexistantemail": "There is no account on this website linked to this email",
+    "emailformaterror": "Please enter a valid email",
+    "passwordrequestsuccess": "A email containing a confirmation link has been sent to you to reset your password. The link will be invalid in 15 minutes. Please check your SPAM folder if you don't see the email in your mailbox. ",
+    "expiredlinkpassword": "This link has expired. Please ask again for a password reinitialization if you need to.",
+    "changesuccess": "Your password has been succesfully updated. You will be redirected to the login page soon..",
+    "errorchange": "There was an error in the process of the password change. Please try again",
+    "errorpasswordformat": "The password should be between 6 and 40 characters."
 }

@@ -15,6 +15,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,6 +29,7 @@ import java.util.*;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
+@Validated
 @RequestMapping("/api/user")
 public class UserController {
 
@@ -42,9 +46,21 @@ public class UserController {
     PasswordEncoder encoder;
 
     @PostMapping("/resetpassword")
-    public ResponseEntity<RequestResponse> resetPassword( @Valid @RequestBody ResetPasswordRequest resetRequest) {
+    public ResponseEntity<RequestResponse> resetPassword( @Valid @RequestBody ResetPasswordRequest resetRequest, BindingResult bindingResult) {
         RequestResponse requestResponse = new RequestResponse();
         List<HttpStatus> status = new ArrayList<>();
+        if (bindingResult.hasErrors()) {
+            for (FieldError fe : bindingResult.getFieldErrors()) {
+                switch (fe.getField()) {
+                    case "email":
+                        status.add(HttpStatus.NOT_ACCEPTABLE);
+                        break;
+                }
+            }
+            requestResponse.setUser(null);
+            requestResponse.setHttpsStatus(status);
+            return new ResponseEntity<>(requestResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         Optional<User> user = userRepository.findByEmail(resetRequest.getEmail());
         if (user.isEmpty()) {
             status.add(HttpStatus.BAD_REQUEST);
@@ -65,37 +81,48 @@ public class UserController {
 
         boolean result = userService.validatePasswordResetToken( token);
         if (result == false) {
-            response.sendRedirect("http://localhost:3000/failedpasswordresetvalidation");
+            response.sendRedirect("http://localhost:4200/failedpasswordresetvalidation");
         } else {
-            response.sendRedirect("http://localhost:3000/updatepassword?token=" + token);
+            response.sendRedirect("http://localhost:4200/updatepassword?token=" + token);
         }
     }
 
     @PostMapping("/savepassword")
-    public RequestResponse savePassword(@Valid @RequestBody PasswordDto passwordDto) {
+    public ResponseEntity<RequestResponse> savePassword(@Valid @RequestBody PasswordDto passwordDto, BindingResult bindingResult) {
 
         boolean validatePasswordResetToken = userService.validatePasswordResetToken(passwordDto.getToken());
         RequestResponse requestResponse = new RequestResponse();
         List<HttpStatus> status = new ArrayList<>();
-
+        if (bindingResult.hasErrors()) {
+            for (FieldError fe : bindingResult.getFieldErrors()) {
+                switch (fe.getField()) {
+                    case "password":
+                        status.add(HttpStatus.BAD_REQUEST);
+                        break;
+                }
+            }
+            requestResponse.setUser(null);
+            requestResponse.setHttpsStatus(status);
+            return new ResponseEntity<>(requestResponse, HttpStatus.BAD_REQUEST);
+        }
         if (!validatePasswordResetToken) {
             status.add(HttpStatus.NOT_ACCEPTABLE);
-            return requestResponse;
+            return new ResponseEntity<>(requestResponse, HttpStatus.NOT_ACCEPTABLE);
         } else {
             Optional<PasswordResetToken> passwordResetToken = passwordTokenRepository.findByToken(passwordDto.getToken());
             if (passwordResetToken.isEmpty()){
                 status.add(HttpStatus.INTERNAL_SERVER_ERROR);
-                return requestResponse;
+                return new ResponseEntity<>(requestResponse, HttpStatus.INTERNAL_SERVER_ERROR);
             }
             try {
                 User user = passwordResetToken.get().getUser();
                 user.setPassword(encoder.encode(passwordDto.getPassword()));
                 userRepository.save(user);
                 status.add(HttpStatus.OK);
-                return requestResponse;
+                return new ResponseEntity<>(requestResponse, HttpStatus.OK);
             } catch (Exception e) {
                 status.add(HttpStatus.INTERNAL_SERVER_ERROR);
-                return requestResponse;
+                return new ResponseEntity<>(requestResponse, HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
     }

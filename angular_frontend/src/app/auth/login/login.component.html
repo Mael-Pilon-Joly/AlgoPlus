@@ -24,8 +24,11 @@
             <label for="rememberme">{{ 'rememberme' | translate }} &nbsp;</label>
             <input type="checkbox" [checked]="userDTO.rememberme" (change)="userDTO.rememberme= !userDTO.rememberme" />
         </div>
+        <div class="link ">
+            <a mat-button routerLinkActive="active " routerLink="/passwordrequest">{{ 'forgotpassword' | translate }}</a>
+        </div>
         <div class="col text-center">
-            <button type="submit" (click)="login()" class="btn btn-primary btn-success">Submit</button>
+            <button type="submit" (click)="login()" class="btn btn-primary btn-success">{{ 'submit' | translate }}</button>
         </div>
     </form>
 

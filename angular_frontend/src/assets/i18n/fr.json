@@ -13,6 +13,7 @@
     "password": "Mot de passe",
     "rememberme": "Se souvenir de moi",
     "logout": "Se déconnecter",
+    "submit": "Soumettre",
     "errorlogin": "Erreur de connection. Vérifiez que vous avez entrez correctement le nom d'utilisateur et le mot de passe.",
     "confirmpassword": "Confirmez votre mot de passe",
     "email": "Adresse de courriel électronique",
@@ -21,16 +22,21 @@
     "errorusernametaken": "Ce nom d'utilisateur est déjà utilisé.",
     "erroremailtaken": "Cette adresse de courriel électronique est déjà prise.",
     "errorerrorformat": "Le nom d'utilisateur devrait être en 3 et 20 caractères et le mot de passes devrait être en 6 et 40 caractères.",
-    "errorpassworddontmatch": "The password confirmation has failed. Make sure both passwords are the same",
+    "errorpassworddontmatch": "La confirmation de mot de passe a échouée. Assurez-vous que les mots de passes sont compatibles",
     "emptyusername": "Veuillez s'il vous plaît entrez un nom d'utilisateur",
     "emptyemail": "Veuillez s'il vous plaît entrez une adresse de courriel électronique",
     "emptypassword": "Veuillez s'il vous plaît entrez un mot de passe",
     "emptyconfirmpassword": "Veuillez s'il vous plaît confirmer votre mot de passe",
-    "pendingconfirmation": "Un email de confirmation vient de vous être envoyez. Veuillez s'il vous plaît confirmer votre courriel en cliquant sur le lien à l'intérieur du courriel. Le lien n'est valide que pour les 15 prochaines minutes. Si vous ne voyez pas le courriel dans votre boîte de réception, vérifier vos courriels indésirables.",
+    "pendingconfirmation": "Un email de confirmation vient de vous être envoyez. Veuillez s'il vous plaît confirmer votre courriel en cliquant sur le lien à l'intérieur du courriel. Le lien n'est valide que pour les 15 prochaines minutes. Si vous ne voyez pas le courriel dans votre boîte de réception, vérifiez vos courriels indésirables.",
     "emailconfirmed": "Merci d'avoir valider votre courriel électronique. Vous êtes maintenant libre d'utiliser et de contribuer à AlgoPlus.  Veuillez s'il vous plaît lire les règles du site web avant de commencer votre aventure. Bonne chance!",
     "invalidtoken": "Ce lien est invalide. Veuillez s'il vous plaît vous enregistez à nouveau pour recevoir un autre email de confirmation.",
-    "errorpendingconfirmation": "L'adresse de courriel électronique de ce compte n'a pas encore été activée. Veuillez s'il vous plaît cliquez sur le lien reçu dans votre boîte de courriel ou dans vos courriels indésirables, ou bien crée un compte à nouveau si celui-ci a expérié."
-
-
+    "forgotpassword": "Vous avez oublié votre mot de passe?",
+    "errorpendingconfirmation": "L'adresse de courriel électronique de ce compte n'a pas encore été activée. Veuillez s'il vous plaît cliquez sur le lien reçu dans votre boîte de courriel ou dans vos courriels indésirables, ou bien crée un compte à nouveau si celui-ci a expérié.",
+    "errorpasswordrequest": "Il y a eu une erreur dans le processus de demande de récupération de mot de passe. Veuillez s'il vous plaît réessayez à nouveau. ",
+    "nonexistantemail": "Il n'y a pas de compte sur ce site web rattaché à cette adresse de courriel électronique",
+    "emailformaterror": "Veuillez s'il vous plaît entrez une adresse de courriel valide",
+    "passwordrequestsuccess": "Un courriel électronique vous a été envoyez contenant un lien pour réinitialiser votre mot de passe. Le lien sera échoué dans 15 minutes.Si vous ne voyez pas le courriel dans votre boîte de réception, vérifiez vos courriels indésirables. ",
+    "expiredlinkpassword": "Ce lien est expiré. Veuillez s'il vous plaît refaire la demande pour une réinitialisation de mot de passe au besoin.",
+    "errorpasswordformat": "Le mot de passe devrait être entre 6 et 40 caractères."
 
 }

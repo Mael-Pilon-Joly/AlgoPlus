@@ -8,6 +8,7 @@ import { SignUpResponse } from '../models/signupresponse.model';
 
 const baseUrl = 'http://localhost:8080/api/auth';
 const loggedInUrl = 'http://localhost:8080/api/loggedin';
+const userUrl = 'http://localhost:8080/api/user'
 
 @Injectable({
   providedIn: 'root'
@@ -81,6 +82,34 @@ export class ApiService {
 
   async signUp(username: string, email: string,role: any, password: string): Promise<SignUpResponse> {
     return new Promise ((resolve,reject) => this.http.post(baseUrl + "/signup", {username, email, password, role},  {
+      withCredentials: true
+    }).subscribe(
+      (response:any) => {
+        console.log("response"+response)
+        resolve(response);
+      }, error => {
+        console.log("error"+JSON.stringify(error.error))
+        reject({error: error.error});
+      })
+    )
+  }
+
+  async passwordRequest(email: string): Promise<SignUpResponse> {
+    return new Promise ((resolve,reject) => this.http.post(userUrl + "/resetpassword", {email},  {
+      withCredentials: true
+    }).subscribe(
+      (response:any) => {
+        console.log("response"+response)
+        resolve(response);
+      }, error => {
+        console.log("error"+JSON.stringify(error.error))
+        reject({error: error.error});
+      })
+    )
+  }
+
+  async updatePassword(password:string, token: any): Promise<SignUpResponse> {
+    return new Promise ((resolve,reject) => this.http.post(userUrl + "/savepassword", {password, token},  {
       withCredentials: true
     }).subscribe(
       (response:any) => {
