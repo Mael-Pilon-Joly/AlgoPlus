@@ -13,18 +13,22 @@ public class LoginResponse {
     private List<String> roles;
     private SuccessFailure status;
     private String message;
+    private String sessionToken;
+    private String refreshToken;
 
     public enum SuccessFailure {
         SUCCESS, FAILURE
     }
 
-    public LoginResponse(Long id, String username, String email, List<String> roles, SuccessFailure status, String message) {
+    public LoginResponse(Long id, String username, String email, List<String> roles,  String sessionToken, String refreshToken, SuccessFailure status, String message) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.roles = roles;
         this.status = status;
         this.message = message;
+        this.sessionToken = sessionToken;
+        this.refreshToken = refreshToken;
     }
 
     public LoginResponse(SuccessFailure status, String message) {
@@ -78,5 +82,21 @@ public class LoginResponse {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getSessionToken() {
+        return sessionToken;
+    }
+
+    public void setSessionToken(String sessionToken) {
+        this.sessionToken = sessionToken;
+    }
+
+    public String getRefreshToken() {
+        return refreshToken;
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
     }
 }

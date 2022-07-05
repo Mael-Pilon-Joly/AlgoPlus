@@ -28,6 +28,7 @@ import { PendingconfirmationComponent } from './auth/pendingconfirmation/pending
 import { InvalidtokenComponent } from './auth/invalidtoken/invalidtoken.component';
 import { SidebarComponent } from './general/sidebar/sidebar.component';
 import { FailedresetpasswordComponent } from './passwordrecovery/failedresetpassword/failedresetpassword.component';
+import { AuthInterceptor } from './AuthInterceptor';
 
 
 
@@ -89,7 +90,8 @@ export class CustomInterceptor implements HttpInterceptor {
       provide: HTTP_INTERCEPTORS,
       useClass: CustomInterceptor ,
       multi: true
-    }
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ], 
   bootstrap:    [ AppComponent ]
 })

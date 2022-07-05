@@ -13,6 +13,7 @@ import com.filesharing.springjwt.repository.FileDBRepository;
 import com.filesharing.springjwt.repository.PasswordTokenRepository;
 import com.filesharing.springjwt.repository.UserRepository;
 import com.filesharing.springjwt.utils.CookieUtil;
+import com.filesharing.springjwt.utils.SecurityCipher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -78,7 +79,7 @@ public class UserServiceImpl implements UserService {
 
         if (!user.get().isEnabled()) {
             return new ResponseEntity<>(
-                    new LoginResponse(null, null, null, null, LoginResponse.SuccessFailure.FAILURE, "Email account not verified yet"),
+                    new LoginResponse(null, null, null, null, null, null, LoginResponse.SuccessFailure.FAILURE, "Email account not verified yet"),
                     HttpStatus.PRECONDITION_FAILED);
         }
 
@@ -93,6 +94,16 @@ public class UserServiceImpl implements UserService {
         HttpHeaders responseHeaders = new HttpHeaders();
         Token newAccessToken;
         Token newRefreshToken;
+
+        if (!loginRequest.isRememberme()) {
+            newAccessToken = tokenProvider.generateJwtToken(userDetails.getUsername());
+            newRefreshToken = tokenProvider.generateRefreshJwtToken(userDetails.getUsername());
+            return ResponseEntity.ok().headers(responseHeaders).body(new LoginResponse(
+                    userDetails.getId(),
+                    userDetails.getUsername(),
+                    userDetails.getEmail(),
+                    roles, SecurityCipher.encrypt(newAccessToken.getTokenValue()), SecurityCipher.encrypt(newRefreshToken.getTokenValue()), LoginResponse.SuccessFailure.SUCCESS, "Successful Auth. Tokens are created in cookie."));
+        }
 
 
         if (!accessTokenValid && !refreshTokenValid) {
@@ -118,7 +129,7 @@ public class UserServiceImpl implements UserService {
                 userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
-                roles, LoginResponse.SuccessFailure.SUCCESS, "Successful Auth. Tokens are created in cookie."));
+                roles, null, null, LoginResponse.SuccessFailure.SUCCESS, "Successful Auth. Tokens are created in cookie."));
     }
 
     @Override

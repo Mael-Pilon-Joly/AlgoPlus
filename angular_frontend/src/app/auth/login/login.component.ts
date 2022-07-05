@@ -53,7 +53,13 @@ export class LoginComponent implements OnInit {
     
     if (this.requestResponse.user) {
     await  this.services.login(data).then( res=> {
-    console.log(res);
+    console.log(this.userDTO.rememberme);
+    localStorage.setItem('loggedin', 'true');
+    if (this.userDTO.rememberme == true) {
+      localStorage.setItem('rememberme', 'true');
+    } else {
+      localStorage.setItem('rememberme', 'false');
+    }
     const result : Roles[] = res.user!.roles!;
     if (result.filter(e => e.name === 'ROLE_USER').length > 0) {
     this.router.navigate(['/userboard']);

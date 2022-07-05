@@ -4,12 +4,18 @@ import com.filesharing.springjwt.models.User;
 import com.filesharing.springjwt.payload.response.LoginResponse;
 import com.filesharing.springjwt.payload.response.RequestResponse;
 import com.filesharing.springjwt.repository.UserRepository;
+import com.filesharing.springjwt.security.jwt.AuthTokenFilter;
+import com.filesharing.springjwt.security.jwt.JwtUtils;
 import com.filesharing.springjwt.services.UserService;
 import com.filesharing.springjwt.utils.SecurityCipher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,7 +23,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+@ControllerAdvice
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/api/loggedin")
@@ -30,8 +36,13 @@ public class LoggedInController {
     UserRepository userRepository;
 
 
+
     @GetMapping("/profil")
-    public ResponseEntity<RequestResponse> getUserProfil(@CookieValue(name = "accessToken", required=false) String accessToken) {
+    public ResponseEntity<RequestResponse> getUserProfil(@RequestHeader(name="Authorization", required = false) String token, @CookieValue(name = "accessToken",required=false) String accessToken) {
+        if (accessToken == null) {
+            accessToken = token.substring(7);
+
+        }
         String decryptedAccessToken = SecurityCipher.decrypt(accessToken);
         return userService.getUserProfil(decryptedAccessToken);
     }

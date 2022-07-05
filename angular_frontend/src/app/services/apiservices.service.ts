@@ -5,6 +5,7 @@ import { RequestResponseUser } from '../models/requestresponselogin.model';
 import { User } from '../models/user.model';
 import { faLeaf } from '@fortawesome/free-solid-svg-icons';
 import { SignUpResponse } from '../models/signupresponse.model';
+import { LoginResponse } from '../models/loginresponse.model';
 
 const baseUrl = 'http://localhost:8080/api/auth';
 const loggedInUrl = 'http://localhost:8080/api/loggedin';
@@ -34,11 +35,16 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   async login(data: any): Promise<RequestResponseUser> {
-    return new Promise ((resolve,reject) =>  this.http.post(baseUrl + "/signin", data, {
+    
+    return new Promise ((resolve,reject) =>  this.http.post<LoginResponse>(baseUrl + "/signin", data, {
       withCredentials: true
     }).subscribe(async data => {
       this.isLoggedIn = true;
       this.getLogged.emit(this.isLoggedIn);
+      console.log(JSON.stringify(data))
+      if (data.sessionToken) {
+      sessionStorage.setItem('token', data.sessionToken)
+      }
       await this.getProfil().then(res=> {
           console.log("success accessing res.data")
           this.requestResponse = res;

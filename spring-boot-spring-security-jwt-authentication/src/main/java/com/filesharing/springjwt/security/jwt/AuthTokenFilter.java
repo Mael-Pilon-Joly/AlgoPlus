@@ -86,8 +86,11 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     } catch (Exception e) {
       logger.error("Cannot set user authentication: {}", e);
     }
-
-    filterChain.doFilter(request, response);
+    try {
+      filterChain.doFilter(request, response);
+    } catch (Exception e) {
+      System.out.println(e.getStackTrace());
+    }
   }
 
   private String getJwtFromRequest(HttpServletRequest request) {
@@ -95,8 +98,9 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
       String accessToken = bearerToken.substring(7);
       if (accessToken == null) return null;
+      String decryptedToken = SecurityCipher.decrypt(accessToken);
+      return decryptedToken;
 
-      return SecurityCipher.decrypt(accessToken);
     }
     return null;
   }
@@ -107,7 +111,6 @@ public class AuthTokenFilter extends OncePerRequestFilter {
       if (accessTokenCookieName.equals(cookie.getName())) {
         String accessToken = cookie.getValue();
         if (accessToken == null) return null;
-
         return SecurityCipher.decrypt(accessToken);
       }
     }
@@ -126,8 +129,10 @@ public class AuthTokenFilter extends OncePerRequestFilter {
   }
 
   private String getJwtToken(HttpServletRequest request, boolean fromCookie) {
-    if (fromCookie) return getJwtFromCookie(request);
-
-    return getJwtFromRequest(request);
+    String token = getJwtFromRequest(request);
+    if (token != null) {
+      return token;
+    }
+    return getJwtFromCookie(request);
   }
 }
