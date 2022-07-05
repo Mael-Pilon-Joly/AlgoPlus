@@ -39,7 +39,7 @@ public class LoggedInController {
 
     @GetMapping("/profil")
     public ResponseEntity<RequestResponse> getUserProfil(@RequestHeader(name="Authorization", required = false) String token, @CookieValue(name = "accessToken",required=false) String accessToken) {
-        if (accessToken == null) {
+        if (token.length()>15) {
             accessToken = token.substring(7);
 
         }

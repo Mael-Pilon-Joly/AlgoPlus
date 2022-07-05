@@ -48,11 +48,12 @@ export class LoginComponent implements OnInit {
     const data = {
       username: this.userDTO.username,
       password: this.userDTO.password,
+      rememberme: this.userDTO.rememberme
     };
 
     
     if (this.requestResponse.user) {
-    await  this.services.login(data).then( res=> {
+    await  this.services.login(data, this.userDTO.rememberme).then( res=> {
     console.log(this.userDTO.rememberme);
     localStorage.setItem('loggedin', 'true');
     if (this.userDTO.rememberme == true) {

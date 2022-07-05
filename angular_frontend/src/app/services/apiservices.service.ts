@@ -34,7 +34,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  async login(data: any): Promise<RequestResponseUser> {
+  async login(data: any, rememberme:boolean): Promise<RequestResponseUser> {
     
     return new Promise ((resolve,reject) =>  this.http.post<LoginResponse>(baseUrl + "/signin", data, {
       withCredentials: true
@@ -42,7 +42,8 @@ export class ApiService {
       this.isLoggedIn = true;
       this.getLogged.emit(this.isLoggedIn);
       console.log(JSON.stringify(data))
-      if (data.sessionToken) {
+      console.log("login, rememberme", rememberme)
+      if (data.sessionToken && !rememberme) {
       sessionStorage.setItem('token', data.sessionToken)
       }
       await this.getProfil().then(res=> {
@@ -64,6 +65,7 @@ export class ApiService {
       withCredentials: true
     }).subscribe(data => {
       this.isLoggedIn = false;
+      sessionStorage.setItem('token', "")
       this.getLogged.emit(this.isLoggedIn);
     },
       error => {
@@ -75,6 +77,8 @@ export class ApiService {
    return new Promise ((resolve,reject) => this.http.get("http://localhost:8080/api/loggedin/profil", {
       withCredentials: true
     }).subscribe(response => {
+      this.isLoggedIn = true;
+      this.getLogged.emit(this.isLoggedIn);
       console.log(response);
       this.requestResponse = response;
       console.log(this.requestResponse)
