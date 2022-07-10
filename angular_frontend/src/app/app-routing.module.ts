@@ -12,6 +12,7 @@ import { HomeComponent } from './general/home/home.component';
 import { PasswordrequestComponent } from './passwordrecovery/passwordrequest/passwordrequest.component';
 import { ResetpasswordComponent } from './passwordrecovery/resetpassword/resetpassword.component';
 import { FailedresetpasswordComponent } from './passwordrecovery/failedresetpassword/failedresetpassword.component';
+import { UpdateprofileComponent } from './board/updateprofile/updateprofile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -27,7 +28,8 @@ const routes: Routes = [
   { path: 'emailconfirmed', component: EmailconfirmationComponent },
   { path: 'invalidtoken', component: InvalidtokenComponent },
   { path: 'failedpasswordresetvalidation', component:  FailedresetpasswordComponent },
-  { path: 'updatepassword', component: ResetpasswordComponent }
+  { path: 'updatepassword', component: ResetpasswordComponent },
+  { path: 'updateprofile', component: UpdateprofileComponent }
 ];
 
 @NgModule({

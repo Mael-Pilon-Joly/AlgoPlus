@@ -1,6 +1,6 @@
 import { Injectable, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { MatIconModule } from '@angular/material/icon'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
@@ -29,6 +29,8 @@ import { InvalidtokenComponent } from './auth/invalidtoken/invalidtoken.componen
 import { SidebarComponent } from './general/sidebar/sidebar.component';
 import { FailedresetpasswordComponent } from './passwordrecovery/failedresetpassword/failedresetpassword.component';
 import { AuthInterceptor } from './AuthInterceptor';
+import { UpdateprofileComponent } from './board/updateprofile/updateprofile.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 
@@ -67,7 +69,8 @@ export class CustomInterceptor implements HttpInterceptor {
     PendingconfirmationComponent,
     InvalidtokenComponent,
     SidebarComponent,
-    FailedresetpasswordComponent
+    FailedresetpasswordComponent,
+    UpdateprofileComponent
   ],
   imports: [
     BrowserModule,
@@ -83,6 +86,8 @@ export class CustomInterceptor implements HttpInterceptor {
     }),
     FontAwesomeModule,
     PdfViewerModule,
+    MatIconModule,
+    MatProgressBarModule
     
   ],
   providers: [

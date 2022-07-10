@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RequestResponseUser } from '../models/requestresponselogin.model';
 import { User } from '../models/user.model';
@@ -132,5 +132,25 @@ export class ApiService {
     )
   }
 
-}
+   updateProfile(file: File, username:string, type: string): Observable<HttpEvent<any>> {
+      const formData: FormData = new FormData();
+      formData.append('file', file);
+      formData.append('username', username);
+      formData.append('typeofrequest', type);
+      console.log(JSON.stringify(formData))
+      const req = new HttpRequest('PUT', `${loggedInUrl}/updateprofile`, formData, {
+        reportProgress: true,
+        responseType: 'json',
+        withCredentials: true
+      });
+      return this.http.request(req);
+    }
+  }
+  
+  
+ 
+
+  
+
+
 

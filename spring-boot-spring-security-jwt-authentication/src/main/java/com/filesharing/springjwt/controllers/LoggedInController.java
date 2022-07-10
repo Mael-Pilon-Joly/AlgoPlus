@@ -1,5 +1,6 @@
 package com.filesharing.springjwt.controllers;
 
+import com.filesharing.springjwt.dto.TokenProvider;
 import com.filesharing.springjwt.models.User;
 import com.filesharing.springjwt.payload.response.LoginResponse;
 import com.filesharing.springjwt.payload.response.RequestResponse;
@@ -23,7 +24,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-@ControllerAdvice
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/api/loggedin")
@@ -35,11 +35,12 @@ public class LoggedInController {
     @Autowired
     UserRepository userRepository;
 
-
+    @Autowired
+    private TokenProvider tokenProvider;
 
     @GetMapping("/profil")
-    public ResponseEntity<RequestResponse> getUserProfil(@RequestHeader(name="Authorization", required = false) String token, @CookieValue(name = "accessToken",required=false) String accessToken) {
-        if (token.length()>15) {
+    public ResponseEntity<RequestResponse> getUserProfil(@RequestHeader(name = "Authorization", required = false) String token, @CookieValue(name = "accessToken", required = false) String accessToken) {
+        if (token!= null && token.length() > 15) {
             accessToken = token.substring(7);
 
         }
@@ -47,7 +48,7 @@ public class LoggedInController {
         return userService.getUserProfil(decryptedAccessToken);
     }
 
-    @PostMapping(value = "/refresh", produces = MediaType.APPLICATION_JSON_VALUE )
+    @PostMapping(value = "/refresh", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LoginResponse> refreshToken(@CookieValue(name = "accessToken") String accessToken,
                                                       @CookieValue(name = "refreshToken") String refreshToken) {
         String decryptedAccessToken = SecurityCipher.decrypt(accessToken);
@@ -56,24 +57,26 @@ public class LoggedInController {
     }
 
     @PutMapping("/updateprofile")
-    public RequestResponse updateProfil(@RequestParam("file") MultipartFile file, @RequestParam("user") String username,
+    public ResponseEntity<RequestResponse> updateProfil(@RequestParam("file") MultipartFile file, @RequestParam("username") String username,
                                         @RequestParam("typeofrequest") String typeOfRequest) throws IOException {
-        RequestResponse requestResponse = new RequestResponse();
-        List<HttpStatus> status = new ArrayList<>();
-        Optional<User> user = userRepository.findByUsername(username);
-        if(user.isPresent()) {
-            if (typeOfRequest.equals("avatar")) {
-                userService.updateAvatar(file, user.get());
-                userRepository.save(user.get());
-            } else if (typeOfRequest.equals("cv")) {
-                userService.updateCV(file, user.get());
-                userRepository.save(user.get());
-            } else {
-                // to do: update articles || exercises
+
+            RequestResponse requestResponse = new RequestResponse();
+            List<HttpStatus> status = new ArrayList<>();
+            Optional<User> user = userRepository.findByUsername(username);
+            if (user.isPresent()) {
+                if (typeOfRequest.equals("avatar")) {
+                    userService.updateAvatar(file, user.get());
+                    userRepository.save(user.get());
+                } else if (typeOfRequest.equals("cv")) {
+                    userService.updateCV(file, user.get());
+                    userRepository.save(user.get());
+                } else {
+                    // to do: update articles || exercises
+                }
             }
-        }
-        status.add(HttpStatus.OK);
-        requestResponse.setHttpsStatus(status);
-        return requestResponse;
+            status.add(HttpStatus.OK);
+            requestResponse.setHttpsStatus(status);
+        return new ResponseEntity<>(requestResponse, HttpStatus.OK);
+
     }
-}
+    }

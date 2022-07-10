@@ -37,6 +37,9 @@
     "emailformaterror": "Veuillez s'il vous plaît entrez une adresse de courriel valide",
     "passwordrequestsuccess": "Un courriel électronique vous a été envoyez contenant un lien pour réinitialiser votre mot de passe. Le lien sera échoué dans 15 minutes.Si vous ne voyez pas le courriel dans votre boîte de réception, vérifiez vos courriels indésirables. ",
     "expiredlinkpassword": "Ce lien est expiré. Veuillez s'il vous plaît refaire la demande pour une réinitialisation de mot de passe au besoin.",
-    "errorpasswordformat": "Le mot de passe devrait être entre 6 et 40 caractères."
+    "errorpasswordformat": "Le mot de passe devrait être entre 6 et 40 caractères.",
+    "updateprofile": "Modifier votre profil.",
+    "uploadavatar": "Modifier votre image de profil",
+    "uploadcv": "Modifier votre CV"
 
 }

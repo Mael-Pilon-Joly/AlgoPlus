@@ -1,1 +1,32 @@
-<p>userboard works!</p>
+<div class="grid">
+    <div class="header">
+        <div class="profil">
+            <div class="avatar">
+                <img [src]=this.avatarUrl onerror="this.src='../../../assets/avatar.png';" style="border-radius: 50%;" height="100px" width="100px">
+            </div>
+            <div class="name">
+                <h3> {{requestResponse.user?.username}}</h3>
+                <p> {{requestResponse.user?.email}}</p>
+                <div class="link ">
+                    <a mat-button routerLinkActive="active " routerLink="/updateprofile">{{ 'updateprofile' | translate }}</a>
+                </div>
+            </div>
+            <div>
+                <button style=" position:relative; margin:0px; padding:0px;" (click)="showCV = !showCV">CV</button>
+            </div>
+        </div>
+        <div class="cv">
+            <div>
+                <div id="divToRender" *ngIf="showCV">
+                    <pdf-viewer [src]=this.cvUrl [render-text]="false" [external-link-target]="'blank'" [original-size]="false" style="width: 400px; height: 500px"></pdf-viewer>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="achievements">
+
+    </div>
+    <div class="uploads">
+
+    </div>
+</div>

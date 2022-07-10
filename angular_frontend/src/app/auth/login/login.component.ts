@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
     await  this.services.login(data, this.userDTO.rememberme).then( res=> {
     console.log(this.userDTO.rememberme);
     localStorage.setItem('loggedin', 'true');
+    localStorage.setItem('username', this.userDTO.username);
     if (this.userDTO.rememberme == true) {
       localStorage.setItem('rememberme', 'true');
     } else {

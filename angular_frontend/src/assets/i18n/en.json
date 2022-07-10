@@ -39,5 +39,10 @@
     "expiredlinkpassword": "This link has expired. Please ask again for a password reinitialization if you need to.",
     "changesuccess": "Your password has been succesfully updated. You will be redirected to the login page soon..",
     "errorchange": "There was an error in the process of the password change. Please try again",
-    "errorpasswordformat": "The password should be between 6 and 40 characters."
+    "errorpasswordformat": "The password should be between 6 and 40 characters.",
+    "updateprofile": "Update your profile.",
+    "updateavatar": "Update your avatar",
+    "updatecv": "Update your CV",
+    "uploadavatar": "Upload a new avatar",
+    "uploadcv": "Upload a new CV"
 }

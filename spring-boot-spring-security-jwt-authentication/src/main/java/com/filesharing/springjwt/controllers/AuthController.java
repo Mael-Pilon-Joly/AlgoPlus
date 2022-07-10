@@ -3,6 +3,8 @@ package com.filesharing.springjwt.controllers;
 import java.time.LocalDateTime;
 import java.util.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -85,12 +87,16 @@ public class AuthController {
 
 
   @PostMapping(value = "/signin", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<LoginResponse> login(
+  public ResponseEntity<LoginResponse> login( HttpServletRequest req,
+                                              HttpServletResponse resp,
           @CookieValue(name = "accessToken", required = false) String accessToken,
           @CookieValue(name = "refreshToken", required = false) String refreshToken,
           @Valid @RequestBody LoginRequest loginRequest
   ) {
 
+    eraseCookie(req, resp);
+    accessToken = null;
+    refreshToken = null;
     String decryptedAccessToken = SecurityCipher.decrypt(accessToken);
     String decryptedRefreshToken = SecurityCipher.decrypt(refreshToken);
     return userService.login(loginRequest, decryptedAccessToken, decryptedRefreshToken);
@@ -255,5 +261,14 @@ public class AuthController {
     httpServletResponse.setStatus(302);
   }
 
-
+  private void eraseCookie(HttpServletRequest req, HttpServletResponse resp) {
+    Cookie[] cookies = req.getCookies();
+    if (cookies != null)
+      for (Cookie cookie : cookies) {
+        cookie.setValue("");
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+        resp.addCookie(cookie);
+      }
+  }
 }

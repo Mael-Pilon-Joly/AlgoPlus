@@ -28,6 +28,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -105,25 +108,12 @@ public class UserServiceImpl implements UserService {
                     roles, SecurityCipher.encrypt(newAccessToken.getTokenValue()), SecurityCipher.encrypt(newRefreshToken.getTokenValue()), LoginResponse.SuccessFailure.SUCCESS, "Successful Auth. Tokens are created in cookie."));
         }
 
-
-        if (!accessTokenValid && !refreshTokenValid) {
             newAccessToken = tokenProvider.generateJwtToken(userDetails.getUsername());
             newRefreshToken = tokenProvider.generateRefreshJwtToken(userDetails.getUsername());
             addAccessTokenCookie(responseHeaders, newAccessToken);
             addRefreshTokenCookie(responseHeaders, newRefreshToken);
-        }
 
-        if (!accessTokenValid && refreshTokenValid) {
-            newAccessToken = tokenProvider.generateJwtToken(userDetails.getUsername());
-            addAccessTokenCookie(responseHeaders, newAccessToken);
-        }
 
-        if (accessTokenValid && refreshTokenValid) {
-            newAccessToken = tokenProvider.generateJwtToken(userDetails.getUsername());
-            newRefreshToken = tokenProvider.generateRefreshJwtToken(userDetails.getUsername());
-            addAccessTokenCookie(responseHeaders, newAccessToken);
-            addRefreshTokenCookie(responseHeaders, newRefreshToken);
-        }
 
         return ResponseEntity.ok().headers(responseHeaders).body(new LoginResponse(
                 userDetails.getId(),
