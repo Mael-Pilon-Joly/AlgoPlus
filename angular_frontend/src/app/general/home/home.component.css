@@ -23,7 +23,7 @@
 }
 
 .wrapper .background1 {
-    grid-column-start: 2;
+    grid-column-start: 1;
     grid-column-end: 9;
     grid-row-start: 1;
     grid-row-end: 10;
@@ -32,6 +32,7 @@
 
 .wrapper .first_image {
     margin-left: 5px;
+    padding: 5px;
     grid-column-start: 2;
     border-radius: 50%;
     grid-column-end: 6;
@@ -85,6 +86,16 @@
     font-size: 1.1vw;
     padding: 20px;
     grid-column-start: 6;
+    grid-column-end: 9;
+    grid-row-start: 8;
+    grid-row-end: 10;
+    background-color: rgb(249, 252, 249);
+}
+
+.wrapper .background3 {
+    font-size: 1.1vw;
+    padding: 20px;
+    grid-column-start: 1;
     grid-column-end: 9;
     grid-row-start: 8;
     grid-row-end: 10;

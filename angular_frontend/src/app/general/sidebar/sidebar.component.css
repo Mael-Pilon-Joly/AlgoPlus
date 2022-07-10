@@ -3,7 +3,7 @@
 :host #viewport {
     flex-grow: 1;
     height: 100%;
-    max-width: 10vw;
+    max-width: 9vw;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -20,7 +20,7 @@
 /* Sidebar Styles */
 
 #sidebar {
-    max-width: 21vw;
+    max-width: 17vw;
     height: 100%;
     position: absolute;
     background: #37474F;
