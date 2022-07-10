@@ -6,6 +6,10 @@
               <input type="file" (change)="selectFile($event)" />
             </label>
     </div>
+    <div class="imagebox1">
+        <img class="image1" style="width:250px; height:125px;" src="../../../assets/jpg.png" />
+        <img class="image2" style="width:250px; height:125px;" src="../../../assets/png.png" />
+    </div>
     <div class="button">
         <button class="btn btn-success btn-sm" [disabled]="!selectedFiles" (click)="upload('avatar')">
                 {{ 'uploadavatar' | translate }}
@@ -20,7 +24,7 @@
             </div>
         </div>
 
-        <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
+        <div *ngIf="message" class="alert alert-secondary" role="alert"> {{ 'uploadfailure' | translate }}</div>
     </div>
 
 
@@ -28,6 +32,10 @@
         <label class="btn btn-default p-0">
               <input type="file" (change)="selectFile($event)" />
             </label>
+    </div>
+    <div class="imagebox2">
+        <img class="image3" style="width:250px; height:125px;" src="../../../assets/doc.png" />
+        <img class="image4" style="width:275px; height:150px;" src="../../../assets/pdf.png" />
     </div>
     <div class="button2">
         <button class="btn btn-success btn-sm" [disabled]="!selectedFiles" (click)="upload('cv')">
@@ -41,6 +49,6 @@
             {{ progress }}%
         </div>
 
-        <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
+        <div *ngIf="message" class="alert alert-secondary" role="alert"> {{ 'uploadfailure' | translate }}</div>
     </div>
 </div>

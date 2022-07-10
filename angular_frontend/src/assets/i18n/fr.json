@@ -40,6 +40,7 @@
     "errorpasswordformat": "Le mot de passe devrait être entre 6 et 40 caractères.",
     "updateprofile": "Modifier votre profil.",
     "uploadavatar": "Modifier votre image de profil",
-    "uploadcv": "Modifier votre CV"
+    "uploadcv": "Modifier votre CV",
+    "uploadfailure": "Échec de téléchargement du fichier!"
 
 }

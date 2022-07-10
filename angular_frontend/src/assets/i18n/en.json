@@ -44,5 +44,6 @@
     "updateavatar": "Update your avatar",
     "updatecv": "Update your CV",
     "uploadavatar": "Upload a new avatar",
-    "uploadcv": "Upload a new CV"
+    "uploadcv": "Upload a new CV",
+    "uploadfailure": "Could not load the file"
 }

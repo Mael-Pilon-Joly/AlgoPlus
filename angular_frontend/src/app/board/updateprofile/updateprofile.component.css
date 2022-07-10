@@ -20,6 +20,22 @@
     grid-row-end: 3;
 }
 
+.grid .imagebox1 {
+    display: flex;
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 3;
+    grid-row-end: 5;
+}
+
+.grid .imagebox2 {
+    display: flex;
+    grid-column-start: 6;
+    grid-column-end: 10;
+    grid-row-start: 3;
+    grid-row-end: 5;
+}
+
 .grid .button {
     grid-column-start: 3;
     grid-column-end: 6;
