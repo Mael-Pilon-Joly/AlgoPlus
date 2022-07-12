@@ -5,6 +5,7 @@ import com.filesharing.springjwt.dto.TokenProvider;
 import com.filesharing.springjwt.models.FileDB;
 import com.filesharing.springjwt.models.User;
 import com.filesharing.springjwt.payload.request.LoginRequest;
+import com.filesharing.springjwt.payload.response.ArticleResponse;
 import com.filesharing.springjwt.payload.response.LoginResponse;
 import com.filesharing.springjwt.payload.response.RequestResponse;
 import com.filesharing.springjwt.registration.email.EmailSender;
@@ -166,6 +167,28 @@ public class UserServiceImpl implements UserService {
                 requestResponse.setHttpsStatus(httpStatus);
                 return new ResponseEntity<>(requestResponse, HttpStatus.OK);
             }
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
+    public ResponseEntity<ArticleResponse> getUserArticles(String accessToken) {
+        Boolean tokenValid = tokenProvider.validateJwtToken(accessToken);
+        ArticleResponse articleResponse = new ArticleResponse();
+
+        if (!tokenValid) {
+            return new ResponseEntity<>(articleResponse, HttpStatus.BAD_REQUEST);
+        }
+
+        String currentUserUsername = tokenProvider.getUserNameFromJwtToken(accessToken);
+        Optional<User> user = userRepository.findByUsername(currentUserUsername);
+        try {
+            if (user.isPresent()){
+                articleResponse.setArticle(user.get().getArticles());
+                return new ResponseEntity<>(articleResponse, HttpStatus.OK);
+           }
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

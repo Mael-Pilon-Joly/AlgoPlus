@@ -34,7 +34,8 @@ label {
 
 .wrapper .grid1 {
     opacity: 0.6;
-    grid-column-start: 1;
+    margin-left: -22px !important;
+    grid-column-start: 2;
     grid-column-end: 4;
     grid-row-start: 1;
     grid-row-end: 10;

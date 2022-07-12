@@ -66,13 +66,27 @@ public class User  {
   @JoinTable(  name = "user_articles",
           joinColumns = @JoinColumn(name = "user_id"),
           inverseJoinColumns = @JoinColumn(name = "article_id"))
-  private Set<Article> articles = new HashSet<>();
+  private List<Article> articles = new ArrayList<>();
 
-  public Set<Article> getArticles() {
+  @OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
+          CascadeType.REFRESH })
+  private List<Article> article;
+
+  private int points;
+
+  public int getPoints() {
+    return points;
+  }
+
+  public void setPoints(int points) {
+    this.points = points;
+  }
+
+  public List<Article> getArticles() {
     return articles;
   }
 
-  public void setArticles(Set<Article> articles) {
+  public void setArticles(ArrayList<Article> articles) {
     this.articles = articles;
   }
 
@@ -95,12 +109,14 @@ public class User  {
   }
 
   public User() {
+    this.points = 0;
   }
 
   public User(String username, String email, String password) {
     this.username = username;
     this.email = email;
     this.password = password;
+    this.points = 0;
   }
 
 
@@ -111,6 +127,7 @@ public class User  {
     this.email = email;
     this.password = password;
     this.roles = roles;
+    this.points = 0;
   }
 
 

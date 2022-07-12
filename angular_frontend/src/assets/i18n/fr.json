@@ -41,6 +41,14 @@
     "updateprofile": "Modifier votre profil.",
     "uploadavatar": "Modifier votre image de profil",
     "uploadcv": "Modifier votre CV",
-    "uploadfailure": "Échec de téléchargement du fichier!"
+    "uploadfailure": "Échec de téléchargement du fichier!",
+    "articlebylanguages": "Articles par languages",
+    "writearticle": "Écrire un article",
+    "otherlanguages": "Autre langages",
+    "title": "Titre",
+    "contentofarticle": "Rédigez votre article",
+    "sendarticle": "Publiez votre article",
+    "imagearticle": "Télécharger une image pour votre article",
+    "languagechoice": "Choisissez le langage de programmation qui est abordé dans votre article"
 
 }

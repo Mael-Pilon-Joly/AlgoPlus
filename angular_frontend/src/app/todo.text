@@ -1,0 +1,4 @@
+- keep user logged in on refresh.
+- keep navbar ok on refresh and going back.
+- enlever les token dans les methodes puisqu'ils sont déjà vérifier par spring security.
+- securisé les routes.

@@ -1,0 +1,31 @@
+<body>
+    <div class="wrapper">
+        <form class="form">
+            <div class="form-group">
+                <label for="Title">{{'title' | translate}}</label>
+                <input [(ngModel)]="this.article.title" type="text" class="form-control" id="title" aria-describedby="Title of article" placeholder="...">
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">{{'imagearticle' | translate}}</label>
+                <input [(ngModel)]="this.image" class="form-control" type="file" id="image" name="image">
+            </div>
+
+
+            <div class="dropdown">
+                {{'languagechoice' | translate}}
+                <br>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-target="dropdown-menu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    {{this.article.language}}
+                </button>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <li *ngFor="let v of items; let i = index" (click)="selectChangeHandler($event, v.val )">
+                        <a class="dropdown-item">{{ v.val }}</a>
+                </div>
+            </div>
+            <label for="Content">{{'contentofarticle' | translate}}</label><textarea [(ngModel)]="article.content" class="form-control text-left" id="form4Example3" rows="4" id="w3review" name="w3review" rows="4" cols="50">
+            </textarea>
+            <button type="submit" class="btn btn-primary">{{'sendarticle' | translate}}</button>
+        </form>
+    </div>
+</body>

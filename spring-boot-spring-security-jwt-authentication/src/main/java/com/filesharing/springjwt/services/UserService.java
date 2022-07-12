@@ -4,6 +4,7 @@ import com.filesharing.springjwt.dto.UserDto;
 import com.filesharing.springjwt.models.FileDB;
 import com.filesharing.springjwt.models.User;
 import com.filesharing.springjwt.payload.request.LoginRequest;
+import com.filesharing.springjwt.payload.response.ArticleResponse;
 import com.filesharing.springjwt.payload.response.LoginResponse;
 import com.filesharing.springjwt.payload.response.RequestResponse;
 import org.springframework.data.jpa.repository.Modifying;
@@ -38,6 +39,8 @@ public interface UserService {
     public User updateAvatar(MultipartFile file, User user) throws IOException;
 
     public User updateCV(MultipartFile file, User user) throws IOException;
+
+    public ResponseEntity<ArticleResponse> getUserArticles(String accessToken);
 }
 
 

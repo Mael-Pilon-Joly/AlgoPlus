@@ -4,6 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { ApiService } from '../../services/apiservices.service';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { catchError, finalize } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-updateprofile',
@@ -19,7 +20,7 @@ export class UpdateprofileComponent implements OnInit {
   fileInfos?: Observable<any>;
 
 
-  constructor(private services: ApiService, private http: HttpClient) { }
+  constructor(private services: ApiService, private http: HttpClient, private router: Router) { }
   selectFile(event: any): void {
     this.selectedFiles = event.target.files;
   }
@@ -37,6 +38,7 @@ export class UpdateprofileComponent implements OnInit {
             } else if (event instanceof HttpResponse) {
               this.message = event.body.message;
             }
+                      
           },
           error: (err: any) => {
             console.log(err);
@@ -52,9 +54,13 @@ export class UpdateprofileComponent implements OnInit {
       }
       this.selectedFiles = undefined;
     }
+    
+
   }
 
- 
+  goback() {
+  this.router.navigate(['/userboard']);
+ }
 
 
   ngOnInit(): void {

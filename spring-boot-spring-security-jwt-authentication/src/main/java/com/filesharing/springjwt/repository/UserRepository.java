@@ -2,6 +2,7 @@ package com.filesharing.springjwt.repository;
 
 import java.util.Optional;
 
+import com.filesharing.springjwt.models.Article;
 import com.filesharing.springjwt.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

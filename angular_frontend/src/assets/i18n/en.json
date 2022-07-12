@@ -45,5 +45,13 @@
     "updatecv": "Update your CV",
     "uploadavatar": "Upload a new avatar",
     "uploadcv": "Upload a new CV",
-    "uploadfailure": "Could not load the file"
+    "uploadfailure": "Could not load the file",
+    "articlebylanguages": "Articles by languages",
+    "writearticle": "Write an article",
+    "otherlanguages": "Other languages",
+    "title": "Title",
+    "contentofarticle": "Write your article",
+    "sendarticle": "Publish your article",
+    "imagearticle": "Upload an article image",
+    "languagechoice": "Choose the programming language that your article is about"
 }

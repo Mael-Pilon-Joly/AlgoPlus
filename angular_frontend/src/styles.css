@@ -29,6 +29,7 @@ body {
     background-size: cover;
     min-height: 100vh;
     margin: 0;
+    z-index: 1;
 }
 
 .container1 {

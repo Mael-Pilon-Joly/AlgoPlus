@@ -2,6 +2,7 @@ package com.filesharing.springjwt.controllers;
 
 import com.filesharing.springjwt.dto.TokenProvider;
 import com.filesharing.springjwt.models.User;
+import com.filesharing.springjwt.payload.response.ArticleResponse;
 import com.filesharing.springjwt.payload.response.LoginResponse;
 import com.filesharing.springjwt.payload.response.RequestResponse;
 import com.filesharing.springjwt.repository.UserRepository;
@@ -47,6 +48,17 @@ public class LoggedInController {
         String decryptedAccessToken = SecurityCipher.decrypt(accessToken);
         return userService.getUserProfil(decryptedAccessToken);
     }
+
+    @GetMapping("/articles")
+    public ResponseEntity<ArticleResponse> getUserArticles(@RequestHeader(name = "Authorization", required = false) String token, @CookieValue(name = "accessToken", required = false) String accessToken) {
+        if (token!= null && token.length() > 15) {
+            accessToken = token.substring(7);
+
+        }
+        String decryptedAccessToken = SecurityCipher.decrypt(accessToken);
+        return userService.getUserArticles(decryptedAccessToken);
+    }
+
 
     @PostMapping(value = "/refresh", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LoginResponse> refreshToken(@CookieValue(name = "accessToken") String accessToken,

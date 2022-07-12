@@ -13,6 +13,8 @@ import { PasswordrequestComponent } from './passwordrecovery/passwordrequest/pas
 import { ResetpasswordComponent } from './passwordrecovery/resetpassword/resetpassword.component';
 import { FailedresetpasswordComponent } from './passwordrecovery/failedresetpassword/failedresetpassword.component';
 import { UpdateprofileComponent } from './board/updateprofile/updateprofile.component';
+import { HomearticlesComponent } from './article/homearticles/homearticles.component';
+import { WritearticleComponent } from './article/writearticle/writearticle.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -29,7 +31,10 @@ const routes: Routes = [
   { path: 'invalidtoken', component: InvalidtokenComponent },
   { path: 'failedpasswordresetvalidation', component:  FailedresetpasswordComponent },
   { path: 'updatepassword', component: ResetpasswordComponent },
-  { path: 'updateprofile', component: UpdateprofileComponent }
+  { path: 'updateprofile', component: UpdateprofileComponent },
+  { path: 'homearticles', component: HomearticlesComponent},
+  { path: 'writearticle', component: WritearticleComponent}
+
 ];
 
 @NgModule({

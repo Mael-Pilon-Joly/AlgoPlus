@@ -31,6 +31,8 @@ import { FailedresetpasswordComponent } from './passwordrecovery/failedresetpass
 import { AuthInterceptor } from './AuthInterceptor';
 import { UpdateprofileComponent } from './board/updateprofile/updateprofile.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { HomearticlesComponent } from './article/homearticles/homearticles.component';
+import { WritearticleComponent } from './article/writearticle/writearticle.component';
 
 
 
@@ -70,7 +72,9 @@ export class CustomInterceptor implements HttpInterceptor {
     InvalidtokenComponent,
     SidebarComponent,
     FailedresetpasswordComponent,
-    UpdateprofileComponent
+    UpdateprofileComponent,
+    HomearticlesComponent,
+    WritearticleComponent
   ],
   imports: [
     BrowserModule,
