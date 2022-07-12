@@ -3,6 +3,7 @@ package com.filesharing.springjwt.controllers;
 import com.filesharing.springjwt.models.Article;
 import com.filesharing.springjwt.models.FileDB;
 import com.filesharing.springjwt.models.User;
+import com.filesharing.springjwt.payload.request.ArticleRequest;
 import com.filesharing.springjwt.payload.response.ArticleResponse;
 import com.filesharing.springjwt.payload.response.RequestResponse;
 import com.filesharing.springjwt.repository.ArticleRepository;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -55,7 +57,7 @@ public class ArticleController {
     @PostMapping("/article")
     public ResponseEntity<ArticleResponse> createArticle(@RequestHeader(name = "Authorization", required = false) String token,
                                                          @CookieValue(name = "accessToken", required = false) String accessToken,
-                                                         @RequestBody Article article, @RequestParam FileDB image) {
+                                                         @RequestBody ArticleRequest article, @RequestParam MultipartFile image) {
         try {
             if (token!= null && token.length() > 15) {
                 accessToken = token.substring(7);
@@ -74,8 +76,8 @@ public class ArticleController {
     @PutMapping("/article")
     public ResponseEntity<ArticleResponse> updateArticle(@RequestHeader(name = "Authorization", required = false) String token,
                                                          @CookieValue(name = "accessToken", required = false) String accessToken,
-                                                         @RequestBody Article article, @RequestParam FileDB image) {
-        Optional<User> user = userRepository.findByUsername(article.getUser().getUsername());
+                                                         @RequestBody ArticleRequest article, @RequestParam MultipartFile image) {
+        Optional<User> user = userRepository.findByUsername(article.getUsername());
         try {
             if (token!= null && token.length() > 15) {
                 accessToken = token.substring(7);
@@ -92,8 +94,9 @@ public class ArticleController {
     }
 
     @DeleteMapping("/article")
-    public ResponseEntity<ArticleResponse> deleteArticle(@RequestHeader(name = "Authorization", required = false) String token, @CookieValue(name = "accessToken", required = false) String accessToken, @RequestBody Article article) {
-        Optional<User> user = userRepository.findByUsername(article.getUser().getUsername());
+    public ResponseEntity<ArticleResponse> deleteArticle(@RequestHeader(name = "Authorization", required = false) String token, @CookieValue(name = "accessToken", required = false) String accessToken,
+                                                         @RequestBody ArticleRequest article) {
+        Optional<User> user = userRepository.findByUsername(article.getUsername());
         try {
             if (token!= null && token.length() > 15) {
                 accessToken = token.substring(7);

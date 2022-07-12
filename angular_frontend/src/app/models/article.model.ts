@@ -1,7 +1,7 @@
 import { User } from "./user.model";
 
 export class Article {
-    user: User | undefined;
+    username!: string;
     title!: string;
     content!: string;
     language!: string

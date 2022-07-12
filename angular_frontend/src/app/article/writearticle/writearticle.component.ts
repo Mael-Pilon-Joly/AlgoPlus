@@ -42,7 +42,7 @@ export class WritearticleComponent implements OnInit {
   }
 
   article: Article = {
-    user: this.user,
+    username: "",
     title: "",
     content: "",
     language: ''
@@ -59,7 +59,7 @@ export class WritearticleComponent implements OnInit {
  async sendArticle(): Promise<void> {
    
         this.user = this.requestResponse.user!;
-        this.article.user = this.user;
+        this.article.username = this.user.username!;
         if (this.image == undefined) {
           let content = "";
           let data = new Blob([content], { type: 'application/doc' });
