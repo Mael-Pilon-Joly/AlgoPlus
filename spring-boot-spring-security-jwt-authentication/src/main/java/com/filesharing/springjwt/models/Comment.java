@@ -13,7 +13,7 @@ public class Comment {
     @Lob
     private String content;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "tutorial_id", nullable = false)
+    @JoinColumn(name = "article_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Article article;

@@ -40,7 +40,7 @@ public class ArticleService {
 
     public List<Article> createArticle(ArticleRequest request, MultipartFile image, String token) throws IOException {
         String username = jwtUtils.getUserNameFromJwtToken(token);
-        if(username!=null && jwtUtils.validateJwtToken(token) && username==request.getUsername()) {
+        if(username!=null && jwtUtils.validateJwtToken(token) && username.equals(request.getUsername())) {
             FileDB temp = fileStorageDBService.store(image);
             FileDB article_image = fileDBRepository.getById(temp.getId());
             Article article = new Article();
@@ -49,6 +49,7 @@ public class ArticleService {
             article.setTitle(request.getTitle());
             article.setPublished(new Date());
             article.setImage(article_image);
+            article.setContent(request.getContent());
             article.setLanguage(ELanguage.valueOf(request.getLanguage().toUpperCase()));
             articleRepository.save(article);
             List<Article> articles = new ArrayList<>();
@@ -61,7 +62,7 @@ public class ArticleService {
 
     public List<Article> updateArticle(ArticleRequest request, MultipartFile image, String token) throws IOException {
         String username = jwtUtils.getUserNameFromJwtToken(token);
-        if(username!=null && jwtUtils.validateJwtToken(token) && username==request.getUsername()) {
+        if(username!=null && jwtUtils.validateJwtToken(token) && username.equals(request.getUsername())) {
             FileDB temp = fileStorageDBService.store(image);
             FileDB article_image = fileDBRepository.getById(temp.getId());
             Optional<Article>  article_opt = articleRepository.findById(request.getId());
@@ -81,13 +82,12 @@ public class ArticleService {
         }
     }
 
-    public List<Article> deleteArticle(ArticleRequest article, String token) {
+    public List<Article> deleteArticle(Article article, String token) {
         String username = jwtUtils.getUserNameFromJwtToken(token);
-        if(username!=null && jwtUtils.validateJwtToken(token) && username==article.getUsername()) {
-            Optional<Article>  article_opt = articleRepository.findById(article.getId());
-            articleRepository.delete(article_opt.get());
+        if(username.equals("admin") || (username!=null && jwtUtils.validateJwtToken(token) && username.equals(article.getUser().getUsername()))) {
+            articleRepository.delete(article);
             List<Article> articles = new ArrayList<>();
-            articles.add(article_opt.get());
+            articles.add(article);
             return articles;
         } else {
             return null;

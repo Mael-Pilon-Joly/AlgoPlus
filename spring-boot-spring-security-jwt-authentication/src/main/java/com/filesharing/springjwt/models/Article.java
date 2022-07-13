@@ -12,6 +12,7 @@ import java.util.Date;
 @Table(name = "article")
 public class Article {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -27,6 +28,8 @@ public class Article {
     private Date lastEdited;
 
     @NotBlank
+    @Lob
+    @Column( length = 100000 )
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

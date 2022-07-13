@@ -13,6 +13,8 @@ import com.filesharing.springjwt.utils.SecurityCipher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -57,7 +59,11 @@ public class ArticleController {
     @PostMapping("/article")
     public ResponseEntity<ArticleResponse> createArticle(@RequestHeader(name = "Authorization", required = false) String token,
                                                          @CookieValue(name = "accessToken", required = false) String accessToken,
-                                                         @RequestBody ArticleRequest article, @RequestParam MultipartFile image) {
+                                                         @RequestParam("username") String username,@RequestParam("title") String title, @RequestParam("content") String content,
+                                                         @RequestParam("language") String language, @RequestBody MultipartFile image) {
+
+        ArticleRequest article = new ArticleRequest( username, image, language, content, title);
+
         try {
             if (token!= null && token.length() > 15) {
                 accessToken = token.substring(7);
@@ -76,13 +82,14 @@ public class ArticleController {
     @PutMapping("/article")
     public ResponseEntity<ArticleResponse> updateArticle(@RequestHeader(name = "Authorization", required = false) String token,
                                                          @CookieValue(name = "accessToken", required = false) String accessToken,
-                                                         @RequestBody ArticleRequest article, @RequestParam MultipartFile image) {
-        Optional<User> user = userRepository.findByUsername(article.getUsername());
+                                                         @RequestParam Long id, @RequestParam String username,@RequestParam String title, @RequestParam String content,
+                                                         @RequestParam String language, @RequestParam MultipartFile image) {
         try {
             if (token!= null && token.length() > 15) {
                 accessToken = token.substring(7);
             }
             String decryptedAccessToken = SecurityCipher.decrypt(accessToken);
+            ArticleRequest article = new ArticleRequest( username, image, language, content, title);
             List<Article> articles = articleService.updateArticle(article, image, decryptedAccessToken);
             if (articles == null) {
                 return new ResponseEntity<>(new ArticleResponse(), HttpStatus.UNAUTHORIZED);
@@ -94,15 +101,16 @@ public class ArticleController {
     }
 
     @DeleteMapping("/article")
-    public ResponseEntity<ArticleResponse> deleteArticle(@RequestHeader(name = "Authorization", required = false) String token, @CookieValue(name = "accessToken", required = false) String accessToken,
-                                                         @RequestBody ArticleRequest article) {
-        Optional<User> user = userRepository.findByUsername(article.getUsername());
+    public ResponseEntity<ArticleResponse> deleteArticle(@RequestHeader(name = "Authorization", required = false) String token,
+                                                         @CookieValue(name = "accessToken", required = false) String accessToken,
+                                                         @RequestParam Long id) {
+        Optional<Article> article = articleRepostitory.findById(id);
         try {
             if (token!= null && token.length() > 15) {
                 accessToken = token.substring(7);
             }
             String decryptedAccessToken = SecurityCipher.decrypt(accessToken);
-            List<Article> articles = articleService.deleteArticle(article, decryptedAccessToken);
+            List<Article> articles = articleService.deleteArticle(article.get(), decryptedAccessToken);
             if (articles == null) {
                 return new ResponseEntity<>(new ArticleResponse(), HttpStatus.UNAUTHORIZED);
             }

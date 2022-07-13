@@ -3,12 +3,16 @@ package com.filesharing.springjwt.security.jwt;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.filesharing.springjwt.dto.Token;
 import com.filesharing.springjwt.dto.TokenProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.*;
@@ -32,11 +36,23 @@ public class JwtUtils implements TokenProvider {
 
   @Override
   public Token generateJwtToken(String username) {
+    List<GrantedAuthority> grantedAuthorities;
+    if (username.equals("admin")) {
+      grantedAuthorities = AuthorityUtils
+              .commaSeparatedStringToAuthorityList("ROLE_ADMIN");
+    } else {
+      grantedAuthorities = AuthorityUtils
+              .commaSeparatedStringToAuthorityList("ROLE_USER");
+    }
     Date now = new Date();
     Long duration = now.getTime() + jwtExpirationMsec;
     Date expiryDate = new Date(duration);
     String token = Jwts.builder()
             .setSubject(username)
+            .claim("authorities",
+                    grantedAuthorities.stream()
+                            .map(GrantedAuthority::getAuthority)
+                            .collect(Collectors.toList()))
             .setIssuedAt(now)
             .setExpiration(expiryDate)
             .signWith(SignatureAlgorithm.HS512, tokenSecret)
@@ -46,11 +62,23 @@ public class JwtUtils implements TokenProvider {
 
   @Override
   public Token generateRefreshJwtToken(String username) {
+    List<GrantedAuthority> grantedAuthorities;
+    if (username.equals("admin")) {
+      grantedAuthorities = AuthorityUtils
+              .commaSeparatedStringToAuthorityList("ROLE_ADMIN");
+    } else {
+      grantedAuthorities = AuthorityUtils
+              .commaSeparatedStringToAuthorityList("ROLE_USER");
+    }
     Date now = new Date();
     Long duration = now.getTime() + refreshTokenExpirationMsec;
     Date expiryDate = new Date(duration);
     String token = Jwts.builder()
             .setSubject(username)
+            .claim("authorities",
+                    grantedAuthorities.stream()
+                            .map(GrantedAuthority::getAuthority)
+                            .collect(Collectors.toList()))
             .setIssuedAt(now)
             .setExpiration(expiryDate)
             .signWith(SignatureAlgorithm.HS512, tokenSecret)

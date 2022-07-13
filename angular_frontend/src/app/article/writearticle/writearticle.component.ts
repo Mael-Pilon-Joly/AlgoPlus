@@ -16,6 +16,7 @@ import { ArticleserviceService } from 'src/app/services/articleservice.service';
 export class WritearticleComponent implements OnInit {
   items = [
     {id:0, val:"Angular"},
+    {id:10,val:"React"},
     {id:1, val:"Javascript"},
     {id:2, val:"Java"},
     {id:3, val:"Python"},
@@ -56,6 +57,19 @@ export class WritearticleComponent implements OnInit {
     user: this.user
   }
 
+  updateTitle(event:any) {
+    console.log(event)
+    this.user.username = this.requestResponse.user?.username;
+  }
+
+  fileChange(event:any) {
+    let fileList: FileList = event.target.files;
+    if(fileList.length > 0) {
+        this.image = fileList[0];
+    }
+  }
+
+
  async sendArticle(): Promise<void> {
    
         this.user = this.requestResponse.user!;
@@ -67,7 +81,7 @@ export class WritearticleComponent implements OnInit {
           arrayOfBlob.push(data);
           this.image = new File(arrayOfBlob, "emptyimage.png");
         }
-        await this.services.createArticle(this.article, this.image).then((res: any)=> {
+        await this.services.createArticle(this.article, this.image ).then((res: any)=> {
           console.log(res);
         }).catch ( (error: { error: any; }) => {
           console.log(JSON.stringify(error.error))
@@ -90,6 +104,7 @@ export class WritearticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProfile();
+    console.log(this.requestResponse)
     this.apiservices.getUser.subscribe(user => { 
       this.requestResponse = user
     });

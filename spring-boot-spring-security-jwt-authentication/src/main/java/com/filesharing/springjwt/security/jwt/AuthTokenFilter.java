@@ -2,7 +2,9 @@ package com.filesharing.springjwt.security.jwt;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -57,6 +59,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
     return skipFilterUrls.stream().anyMatch(url -> new AntPathRequestMatcher(url).matches(request));
   }
+
 
 
   @Override

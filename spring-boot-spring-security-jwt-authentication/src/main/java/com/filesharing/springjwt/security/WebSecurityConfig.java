@@ -18,6 +18,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -84,11 +85,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .authorizeRequests()
       .antMatchers("/api/auth/**").permitAll()
-      .antMatchers("api/loggedin/**").hasAnyAuthority()
+      .antMatchers("/api/loggedin/**").hasAnyRole("ADMIN", "USER")
       .antMatchers(HttpMethod.GET, "/api/article/**").permitAll()
-      .antMatchers(HttpMethod.POST, "/api/article/**").hasAnyAuthority()
-      .antMatchers(HttpMethod.PUT, "/api/article/**").hasAnyAuthority()
-      .antMatchers(HttpMethod.DELETE, "/api/article/**").hasAnyAuthority()
+      .antMatchers(HttpMethod.POST, "/api/article/**").hasAnyRole("ADMIN", "USER")
+      .antMatchers(HttpMethod.PUT, "/api/article/**").hasAnyRole("ADMIN", "USER")
+      .antMatchers(HttpMethod.DELETE, "/api/article/**").hasAnyRole("ADMIN", "USER")
       .antMatchers("/api/admin/**").hasRole("ADMIN")
       .anyRequest().authenticated()
             .and()
@@ -99,4 +100,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
   }
+
 }

@@ -1,55 +1,20 @@
 <div class="wrapper">
     <div class="grid1">
-        <div class="writearticle" (click)="writeArticle()">
+        <div  class="writearticle" (click)="writeArticle()">
             <h4 style="margin-left: 10px; margin-bottom: -10px;"> {{'writearticle' | translate }}</h4>
             <img src="../../../assets/writingmachine.png" style="padding-left: 15px; opacity: 1 !important; height:150px; width:150px;" />
         </div>
     </div>
     <div class="articles">
-        <ul>
-            <li>
-                <a href="#">
-                    <h2>Title #1</h2>
-                    <p>Text Content #1</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <h2>Title #2</h2>
-                    <p>Text Content #2</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <h2>Title #2</h2>
-                    <p>Text Content #2</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <h2>Title #2</h2>
-                    <p>Text Content #2</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <h2>Title #2</h2>
-                    <p>Text Content #2</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <h2>Title #2</h2>
-                    <p>Text Content #2</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <h2>Title #2</h2>
-                    <p>Text Content #2</p>
-                </a>
-            </li>
-        </ul>
+            <ul  *ngFor="let a of articles$.article">
+                <li>
+                    <a href="#"> 
+                        <h2>{{a.title}}</h2>
+                        <p> {{a.content.substring(0, 50)}} ..</p>
+                        <p> {{a.published.toString().substring(0,10)}}</p>
+                    </a>
+                </li>
+            </ul>
     </div>
     <div class="languages">
         <h3> {{ 'articlebylanguages' | translate }} </h3>
