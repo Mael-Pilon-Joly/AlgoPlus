@@ -1,9 +1,17 @@
-:host /deep/ app-sidebar+*:not(nav) {
-    max-width: 10vw;
-    float: left;
+app-navbar {
+ height:100%;
 }
 
-:host /deep/ router-outlet+*:not(nav) {
-    width: 90vw;
-    float: right;
+app-sidebar {
+min-width:100%;
+min-height:1000px;
+}
+
+.navbar{
+    max-height: 100px;
+}
+
+.row {
+    padding: 0px;
+    margin-bottom: -10px;
 }

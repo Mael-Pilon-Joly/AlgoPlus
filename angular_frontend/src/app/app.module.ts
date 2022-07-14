@@ -34,6 +34,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { HomearticlesComponent } from './article/homearticles/homearticles.component';
 import { WritearticleComponent } from './article/writearticle/writearticle.component';
 import { ReadarticleComponent } from './article/readarticle/readarticle.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 

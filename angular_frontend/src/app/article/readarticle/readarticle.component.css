@@ -5,23 +5,26 @@
     grid-template-rows: repeat(10, 1fr);
 }
 
+
 .wrapper .image {
-    grid-column-start: 3;
+    padding-top: 25px;
+    grid-column-start: 2;
     grid-column-end: 8;
     grid-row-start: 1;
     grid-row-end:3;
 }
 
 .wrapper .title {
-    grid-column-start: 3;
+    margin-top:30px;
+    grid-column-start: 2;
     grid-column-end: 8;
-    grid-row-start: 5;
-    grid-row-end:6;
+    grid-row-start: 3;
+    grid-row-end:5;
 }
 
 .wrapper .content {
-    grid-column-start: 3;
+    grid-column-start: 2;
     grid-column-end: 9;
-    grid-row-start: 6;
+    grid-row-start: 5;
     grid-row-end:10;
 }

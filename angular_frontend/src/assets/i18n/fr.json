@@ -49,6 +49,8 @@
     "contentofarticle": "Rédigez votre article",
     "sendarticle": "Publiez votre article",
     "imagearticle": "Télécharger une image pour votre article",
-    "languagechoice": "Choisissez le langage de programmation qui est abordé dans votre article"
+    "languagechoice": "Choisissez le langage de programmation qui est abordé dans votre article",
+    "author": "Auteur:",
+    "published": "Publié le:"
 
 }

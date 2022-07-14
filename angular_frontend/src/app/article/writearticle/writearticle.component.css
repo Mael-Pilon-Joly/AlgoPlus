@@ -2,14 +2,15 @@
     font-family: initial !important;
     display: grid;
     font-family: "Reenie-Beanie";
-    grid-column-start: 3;
-    grid-column-end: 9;
-    grid-row-start: 1;
-    grid-row-end: 10;
     background: linear-gradient(rgba(255, 255, 255, 0.863), rgba(255, 255, 255, 0.76)), url("../../../assets/blogbackground.jpeg");
     background-size: cover;
+    min-width:100%;
 }
 
+.wrapper {
+    float:left;
+    min-width: 85%;
+}
 .wrapper::before {
     background-image: url('https://placekitten.com/1200/800');
     opacity: 0.25;

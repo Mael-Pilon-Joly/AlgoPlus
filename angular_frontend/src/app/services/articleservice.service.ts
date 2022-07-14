@@ -1,4 +1,4 @@
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Article } from '../models/article.model';
@@ -15,14 +15,19 @@ export class ArticleserviceService {
   constructor(private http: HttpClient) { }
 
   async createArticle(article: Article, image:File): Promise<any> {
+    const params = new HttpParams()
+   .set('username', article.username)
+   .set('title', article.title)
+   .set('content', article.content)
+   .set('language', article.language);
     console.log(article, image)
     const formData: FormData = new FormData();
-      formData.append('username', article.username);
-      formData.append('title', article.title);
-      formData.append('content', article.content);
-      formData.append('language', article.language);
       formData.append('image',image);
-    return new Promise ((resolve,reject) => this.http.post( baseUrl + "/article", {formData},  {
+      let username = article.username;
+      let title = article.title;
+      let content = article.content;
+      let language = article.language;
+    return new Promise ((resolve,reject) => this.http.post( baseUrl + "/article", {params, formData} ,  {
       withCredentials: true
     }).subscribe(
       (response:any) => {

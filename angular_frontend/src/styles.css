@@ -2,23 +2,35 @@ body {
     background-image: linear-gradient(315deg, #233329 0%, #63d471 74%);
     background-size: cover;
     min-height: 100vh;
-    margin: 0;
+    min-width: 100vh;
 }
 
-:host /deep/ app-root+*:not(nav) {
-    width: 85vw;
-    float: right;
+app-navbar {
+    max-height: 100px;
+}
+
+.navbar{
+    max-height: 100px;
+}
+
+app-sidebar {
+    min-height:100%;
+    min-width: 304px;
 }
 
 .wrapper {
     display: grid;
+    margin-left:250px;
+    width:65%;
+    float: right;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
     row-gap: 10px;
-    height: 100vh;
+    height: 1020px;
 }
 
 .wrapper .grid1 {
+    height: 1000px;
     opacity: 0.6;
     grid-column-start: 8;
     grid-column-end: 10;
@@ -30,20 +42,4 @@ body {
     min-height: 100vh;
     margin: 0;
     z-index: 1;
-}
-
-.container1 {
-    width: 100%;
-    overflow: hidden;
-    /* add this to contain floated children */
-}
-
-.container1 .al-left {
-    float: left;
-    max-width: 15vw;
-}
-
-.container1 .al-right {
-    float: right;
-    max-width: 85vw;
 }

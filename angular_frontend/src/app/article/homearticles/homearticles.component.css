@@ -12,6 +12,8 @@
 
 .wrapper {
     font-family: "Satisfy-Regular";
+    float:left;
+    min-width: 85%;
 }
 
 li {
@@ -68,7 +70,6 @@ h3 {
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 10;
-    margin-left:100px;
 }
 
 body {

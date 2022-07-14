@@ -53,5 +53,7 @@
     "contentofarticle": "Write your article",
     "sendarticle": "Publish your article",
     "imagearticle": "Upload an article image",
-    "languagechoice": "Choose the programming language that your article is about"
+    "languagechoice": "Choose the programming language that your article is about",
+    "author": "Author:",
+    "published": "Published:"
 }
