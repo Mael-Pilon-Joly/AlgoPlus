@@ -1,7 +1,6 @@
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AllCompleteArticle } from '../models/allArticlesResponse.model';
 import { Article } from '../models/article.model';
 import { CompleteArticle } from '../models/completearticle.model';
 
@@ -36,7 +35,7 @@ export class ArticleserviceService {
     )
   }
 
-  getArticles(): Observable<AllCompleteArticle> {
-    return this.http.get<AllCompleteArticle>(baseUrl +"/articles", {withCredentials:true})
+  getArticles(): Observable<CompleteArticle[]> {
+    return this.http.get<CompleteArticle[]>(baseUrl +"/articles", {withCredentials:true})
   }
 }

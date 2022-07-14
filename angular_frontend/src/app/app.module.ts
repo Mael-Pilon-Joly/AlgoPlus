@@ -33,6 +33,7 @@ import { UpdateprofileComponent } from './board/updateprofile/updateprofile.comp
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { HomearticlesComponent } from './article/homearticles/homearticles.component';
 import { WritearticleComponent } from './article/writearticle/writearticle.component';
+import { ReadarticleComponent } from './article/readarticle/readarticle.component';
 
 
 
@@ -74,7 +75,8 @@ export class CustomInterceptor implements HttpInterceptor {
     FailedresetpasswordComponent,
     UpdateprofileComponent,
     HomearticlesComponent,
-    WritearticleComponent
+    WritearticleComponent,
+    ReadarticleComponent
   ],
   imports: [
     BrowserModule,

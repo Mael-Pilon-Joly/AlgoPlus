@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AllCompleteArticle } from 'src/app/models/allArticlesResponse.model';
 import { CompleteArticle } from 'src/app/models/completearticle.model';
 import { ArticleserviceService } from 'src/app/services/articleservice.service';
 
@@ -12,7 +11,7 @@ import { ArticleserviceService } from 'src/app/services/articleservice.service';
 })
 export class HomearticlesComponent implements OnInit {
   
-  articles$: AllCompleteArticle = new AllCompleteArticle;
+  articles$: CompleteArticle[] = [];
 
   constructor(private router: Router, private articleService: ArticleserviceService) { }
 
@@ -22,9 +21,10 @@ export class HomearticlesComponent implements OnInit {
 
   ngOnInit(): void {
    this.articleService.getArticles().subscribe((list) => {
-    this.articles$ = list as AllCompleteArticle;
-    this.articles$.article = this.articles$.article.slice(-7)
-    console.log(this.articles$.article)
+    this.articles$ = list as CompleteArticle[];
+    console.log("articles:"+ JSON.stringify(this.articles$))
+    this.articles$ = this.articles$.slice(-7)
+  
   })
   }
 

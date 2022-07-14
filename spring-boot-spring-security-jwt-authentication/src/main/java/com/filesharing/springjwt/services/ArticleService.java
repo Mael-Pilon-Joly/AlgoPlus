@@ -38,7 +38,7 @@ public class ArticleService {
     @Autowired
     UserRepository userRepository;
 
-    public List<Article> createArticle(ArticleRequest request, MultipartFile image, String token) throws IOException {
+    public Article createArticle(ArticleRequest request, MultipartFile image, String token) throws IOException {
         String username = jwtUtils.getUserNameFromJwtToken(token);
         if(username!=null && jwtUtils.validateJwtToken(token) && username.equals(request.getUsername())) {
             FileDB temp = fileStorageDBService.store(image);
@@ -52,9 +52,7 @@ public class ArticleService {
             article.setContent(request.getContent());
             article.setLanguage(ELanguage.valueOf(request.getLanguage().toUpperCase()));
             articleRepository.save(article);
-            List<Article> articles = new ArrayList<>();
-            articles.add(article);
-            return articles;
+            return article;
         } else {
             return null;
         }

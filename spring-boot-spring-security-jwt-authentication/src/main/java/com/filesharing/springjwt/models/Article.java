@@ -1,5 +1,6 @@
 package com.filesharing.springjwt.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -19,8 +20,8 @@ public class Article {
     @NotBlank
     private String title;
 
-    @OneToOne
-    @JoinColumn(name = "id")
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "image_id", referencedColumnName = "id")
     private FileDB image;
 
     private Date published;
@@ -32,10 +33,10 @@ public class Article {
     @Column( length = 100000 )
     private String content;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private User user;
 
     @NotBlank
@@ -120,5 +121,7 @@ public class Article {
     public void setLastEdited(Date lastEdited) {
         this.lastEdited = lastEdited;
     }
+
+
 }
 

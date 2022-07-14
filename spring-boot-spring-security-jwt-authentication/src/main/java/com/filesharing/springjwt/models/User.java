@@ -1,5 +1,6 @@
 package com.filesharing.springjwt.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,7 +18,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "users", 
+@Table(name = "user",
     uniqueConstraints = { 
       @UniqueConstraint(columnNames = "username"),
       @UniqueConstraint(columnNames = "email") 
@@ -62,15 +63,8 @@ public class User  {
   @JoinColumn(name = "cv_id", referencedColumnName = "id")
   private FileDB CV;
 
-  @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(  name = "user_articles",
-          joinColumns = @JoinColumn(name = "user_id"),
-          inverseJoinColumns = @JoinColumn(name = "article_id"))
-  private List<Article> articles = new ArrayList<>();
-
-  @OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
-          CascadeType.REFRESH })
-  private List<Article> article;
+  @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
+  private List<Article> articles;
 
   private int points;
 

@@ -6,15 +6,17 @@
         </div>
     </div>
     <div class="articles">
-            <ul  *ngFor="let a of articles$.article">
+           <div *ngIf="this.articles$">
+            <ul  *ngFor="let a of articles$">
                 <li>
-                    <a href="#"> 
+                    <a routerLinkActive="active " routerLink="/readarticle" [state]="{ data: a}"> 
                         <h2>{{a.title}}</h2>
                         <p> {{a.content.substring(0, 50)}} ..</p>
                         <p> {{a.published.toString().substring(0,10)}}</p>
                     </a>
                 </li>
             </ul>
+        </div>
     </div>
     <div class="languages">
         <h3> {{ 'articlebylanguages' | translate }} </h3>

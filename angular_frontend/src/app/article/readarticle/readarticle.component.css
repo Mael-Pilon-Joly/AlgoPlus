@@ -1,0 +1,27 @@
+.wrapper {
+    display: grid;
+    background: white !important;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+}
+
+.wrapper .image {
+    grid-column-start: 3;
+    grid-column-end: 8;
+    grid-row-start: 1;
+    grid-row-end:3;
+}
+
+.wrapper .title {
+    grid-column-start: 3;
+    grid-column-end: 8;
+    grid-row-start: 5;
+    grid-row-end:6;
+}
+
+.wrapper .content {
+    grid-column-start: 3;
+    grid-column-end: 9;
+    grid-row-start: 6;
+    grid-row-end:10;
+}
