@@ -19,12 +19,14 @@ export class HomearticlesComponent implements OnInit {
     this.router.navigate(['/writearticle']);
   }
 
+  byLanguage(language: string){
+    this.router.navigate(['/articlesbylanguage'],  { state: { language: language } });
+  }
+
   ngOnInit(): void {
    this.articleService.getArticles().subscribe((list) => {
     this.articles$ = list as CompleteArticle[];
     console.log("articles:"+ JSON.stringify(this.articles$))
-    this.articles$ = this.articles$.slice(-7)
-  
   })
   }
 

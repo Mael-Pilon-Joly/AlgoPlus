@@ -7,8 +7,8 @@
     </div>
     <div class="articles">
            <div *ngIf="this.articles$">
-            <ul  *ngFor="let a of articles$">
-                <li>
+            <ul  >
+                <li *ngFor="let a of articles$">
                     <a routerLinkActive="active " routerLink="/readarticle" [state]="{ data: a}"> 
                         <h2>{{a.title}}</h2>
                         <p> {{a.content.substring(0, 50)}} ..</p>
@@ -21,77 +21,101 @@
     <div class="languages">
         <h3> {{ 'articlebylanguages' | translate }} </h3>
         <li>
-            <div style="display:flex; ">
+            <a routerLinkActive="active " routerLink="/articlesbylanguage" [state]="{ data: 'react'}"> 
+            <div style="display:flex; " >
                 <img src="../../../assets/language/react.png" style=" height:50px; width:50px;" />
                 <p style="color:aqua; font-size: 20px; margin-left: 10px; margin-top:8px; ">React</p>
             </div>
+            </a>
         </li>
         <li>
+            <a routerLinkActive="active " routerLink="/articlesbylanguage" [state]="{ data: 'angular'}"> 
             <img src="../../../assets/language/angular.png" style="margin:10px; height:50px; width:100px;" />
+            </a>
         </li>
         <li>
+            <a routerLinkActive="active " routerLink="/articlesbylanguage" [state]="{ data: 'javascript'}"> 
             <div style="display:flex;">
                 <img src="../../../assets/language/javascript.png" style="height:50px; width:50px;" />
                 <p style="color:rgb(243, 230, 46); font-size: 20px; margin-left: 10px; margin-top:8px; ">Javascript</p>
             </div>
+            </a>
         </li>
         <li>
-            <div style="display:flex;">
+            <a routerLinkActive="active " routerLink="/articlesbylanguage" [state]="{ data: 'python'}"> 
+            <div style="display:flex;" >
                 <img src="../../../assets/language/python.png" style="margin-left: -8px; margin-top: 10px; height:50px; width:75px;" />
                 <p style="color:lightblue ; font-size: 20px; margin-left: 10px; margin-top:18px; ">Python</p>
             </div>
+            </a>
         </li>
 
         <li>
-            <div style="display:flex;">
+            <a routerLinkActive="active " routerLink="/articlesbylanguage" [state]="{ data: 'java'}"> 
+            <div style="display:flex;" >
                 <img src="../../../assets/language/java.png" style="margin-top: 10px; height:50px; width:50px;" />
                 <p style="color:white ; font-size: 20px; margin-left: 10px; margin-top:25px; ">Java</p>
             </div>
+            </a>
         </li>
 
         <li>
+            <a routerLinkActive="active " routerLink="/articlesbylanguage" [state]="{ data: 'csharp'}"> 
             <div style="display:flex;">
                 <img src="../../../assets/language/csharp.png" style="margin-top: 10px; height:50px; width:50px;" />
                 <p style="color:rgb(167, 4, 167) ; font-size: 20px; margin-left: 10px; margin-top:20px; ">C sharp</p>
             </div>
+            </a>
         </li>
 
         <li>
-            <div style="display:flex;">
+            <a routerLinkActive="active " routerLink="/articlesbylanguage" [state]="{ data: 'cplusplus'}"> 
+            <div style="display:flex;" >
                 <img src="../../../assets/language/cplusplus.png" style="margin-top: 10px; height:50px; width:50px;" />
                 <p style="color:rgb(107, 97, 238) ; font-size: 20px; margin-left: 10px; margin-top:20px; ">C plusplus</p>
             </div>
+            </a>
         </li>
 
         <li>
-            <div style="display:flex;">
+            <a routerLinkActive="active " routerLink="/articlesbylanguage" [state]="{ data: 'c'}"> 
+            <div style="display:flex;" >
                 <img src="../../../assets/language/c.png" style="margin-top: 10px; height:50px; width:50px;" />
                 <p style="color:rgb(188, 186, 211) ; font-size: 20px; margin-left: 10px; margin-top:20px; ">C</p>
             </div>
+            </a>
         </li>
 
         <li>
-            <div style="display:flex;">
+            <a routerLinkActive="active " routerLink="/articlesbylanguage" [state]="{ data: 'html_css'}"> 
+            <div style="display:flex;" (click)="byLanguage('HTML_CSS')">
                 <img src="../../../assets/language/html_css.png" style="margin-left: -10px; margin-top: 10px; height:50px; width:75px;" />
                 <p style="color:rgb(238, 137, 42) ; font-size: 20px; margin-left: 10px; margin-top:20px; ">HTML /</p>
                 <p style="color:rgb(64, 135, 241) ; font-size: 20px; margin-left: 10px; margin-top:20px; ">CSS</p>
             </div>
+            </a>
         </li>
 
         <li>
-            <img src="../../../assets/language/sql.png" style="margin-top: 10px; height:50px; width:75px;" />
+            <a routerLinkActive="active " routerLink="/articlesbylanguage" [state]="{ data: 'sql'}"> 
+            <img src="../../../assets/language/sql.png" (click)="byLanguage('SQL')"style="margin-top: 10px; height:50px; width:75px;" />
+            </a>
         </li>
         <li>
-            <div style="display:flex;">
+            <a routerLinkActive="active " routerLink="/articlesbylanguage" [state]="{ data: 'php'}"> 
+            <div style="display:flex;" (click)="byLanguage('PHP')">
                 <img src="../../../assets/language/php.svg" style="margin-top: 10px; height:50px; width:50px;" />
                 <p style="color:rgb(107, 97, 238) ; font-size: 20px; margin-left: 10px; margin-top:20px; ">PHP</p>
             </div>
+            </a>
         </li>
         <li>
-            <div style="display:flex;">
+            <a routerLinkActive="active " routerLink="/articlesbylanguage" [state]="{ data: 'other_autre'}"> 
+            <div style="display:flex;" (click)="byLanguage('OTHER_AUTRE')">
                 <img src="../../../assets/language/random.png" style="margin-left: -20px; margin-top: 10px; height:50px; width:75px;" />
                 <p style="color:rgb(192, 195, 199) ; font-size: 20px;  margin-top:20px; ">{{'otherlanguages' | translate}}</p>
             </div>
+            </a>
         </li>
     </div>
 </div>

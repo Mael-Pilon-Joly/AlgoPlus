@@ -1,4 +1,4 @@
-import { HttpClient, HttpEvent, HttpParams, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Article } from '../models/article.model';
@@ -35,6 +35,11 @@ export class ArticleserviceService {
         reject({error: error.error});
       })
     )
+  }
+
+  getArticlesByLanguage(language: string): Observable<any>{
+    console.log(language)
+    return this.http.get<any>(baseUrl +`/articlesbylanguage?language=${language}`)
   }
 
   getArticles(): Observable<CompleteArticle[]> {

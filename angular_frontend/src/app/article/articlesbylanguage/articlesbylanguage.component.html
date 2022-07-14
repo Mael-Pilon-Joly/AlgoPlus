@@ -1,0 +1,23 @@
+<div class="wrapper">
+<div class="articles">
+    <div *ngIf="this.articles$">
+     <ul  >
+         <li *ngFor="let a of articles$">
+             <a routerLinkActive="active " routerLink="/readarticle" [state]="{ data: a}"> 
+                <div class="article">
+                    <div class="image">
+                        <img [src]="convertDataToImage(a.image)" style="height: 175px; width:175px;">
+                    </div>
+                    <div class="description">
+                 <h3>{{a.title}}</h3>
+                 <p> {{a.content.substring(0, 200)}} ..</p>
+                 <p> {{a.published.toString().substring(0,10)}}</p>
+                 <p> {{'author'| translate}} {{a.username}}</p>
+                    </div>
+                </div>
+             </a>
+         </li>
+     </ul>
+ </div>
+</div>
+</div>

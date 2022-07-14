@@ -3,6 +3,8 @@
     background: white !important;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
+    float:left;
+    min-width: 85%;
 }
 
 

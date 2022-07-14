@@ -16,6 +16,7 @@ import { UpdateprofileComponent } from './board/updateprofile/updateprofile.comp
 import { HomearticlesComponent } from './article/homearticles/homearticles.component';
 import { WritearticleComponent } from './article/writearticle/writearticle.component';
 import { ReadarticleComponent } from './article/readarticle/readarticle.component';
+import { ArticlesbylanguageComponent } from './article/articlesbylanguage/articlesbylanguage.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -35,7 +36,8 @@ const routes: Routes = [
   { path: 'updateprofile', component: UpdateprofileComponent },
   { path: 'homearticles', component: HomearticlesComponent},
   { path: 'writearticle', component: WritearticleComponent},
-  { path: 'readarticle', component: ReadarticleComponent}
+  { path: 'readarticle', component: ReadarticleComponent},
+  { path: 'articlesbylanguage', component: ArticlesbylanguageComponent}
 
 ];
 

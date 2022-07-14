@@ -2,6 +2,7 @@ package com.filesharing.springjwt.controllers;
 
 import com.filesharing.springjwt.dto.ArticleDTO;
 import com.filesharing.springjwt.models.Article;
+import com.filesharing.springjwt.models.ELanguage;
 import com.filesharing.springjwt.models.FileDB;
 import com.filesharing.springjwt.models.User;
 import com.filesharing.springjwt.payload.request.ArticleRequest;
@@ -77,13 +78,49 @@ public class ArticleController {
         }
     }
 
-    @GetMapping("/articles/{language}")
-    public ResponseEntity<ArticleResponse> getAllArticlesByLanguage(@RequestParam String language) {
+    @GetMapping("/articlesbylanguage")
+    public ResponseEntity<List<ArticleDTO>> getAllArticlesByLanguage(@RequestParam String language) {
         try {
-            Optional<List<Article>> articles = articleRepostitory.findByLanguage(language);
-            return new ResponseEntity<>(new ArticleResponse(articles.get()), HttpStatus.OK);
+            ELanguage elanguage = ELanguage.valueOf(language.toUpperCase());
+            int elanguage_value = elanguage.getValue();
+            Optional<List<Article>> articles = articleRepostitory.findByLanguage(elanguage_value);
+            List<Long> idUsers = articleRepostitory.findUsersIdByLanguage(elanguage_value);
+
+            for (int i=0; i<articles.get().size() && i<7 ; i++) {
+                UserRepository.UserProjection up = userRepository.findByNativeQuery(idUsers.get(i));
+                User user = new User();
+                user.setId(up.getId());
+                user.setUsername(up.getUsername());
+                user.setEmail(up.getEmail());
+                user.setAvatar(up.getAvatar_Id());
+                user.setCV(up.getCV_Id());
+                user.setPoints(up.getPoints());
+                articles.get().get(i).setUser(user);
+            }
+
+            List<ArticleDTO> articleDTOS = new ArrayList<>();
+            ArticleDTO articleDTO = new ArticleDTO();
+
+            for (int i=0; i<articles.get().size() && i<7 ; i++) {
+                articleDTO.setId(articles.get().get(i).getId());
+                articleDTO.setUsernameId(articles.get().get(i).getUser().getId());
+                articleDTO.setUsername(articles.get().get(i).getUser().getUsername());
+                articleDTO.setPublished(articles.get().get(i).getPublished());
+                articleDTO.setLastEdited(articles.get().get(i).getLastEdited());
+                articleDTO.setTitle(articles.get().get(i).getTitle());
+                articleDTO.setContent(articles.get().get(i).getContent());
+                articleDTO.setImage(articles.get().get(i).getImage());
+                articleDTO.setLanguage(articles.get().get(i).getLanguage());
+                ArticleDTO copyArticleDTO = new ArticleDTO(articleDTO);
+                articleDTOS.add(copyArticleDTO);
+            }
+
+
+            return new ResponseEntity<>(articleDTOS, HttpStatus.OK);
+
+
         } catch (Exception e) {
-            return new ResponseEntity<>(new ArticleResponse(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

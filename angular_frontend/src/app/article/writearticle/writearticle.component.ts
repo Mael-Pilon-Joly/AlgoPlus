@@ -83,6 +83,7 @@ export class WritearticleComponent implements OnInit {
         }
         await this.services.createArticle(this.article, this.image ).then((res: any)=> {
           console.log(res);
+          this.router.navigate(['/homearticles']);
         }).catch ( (error: { error: any; }) => {
           console.log(JSON.stringify(error.error))
         })
