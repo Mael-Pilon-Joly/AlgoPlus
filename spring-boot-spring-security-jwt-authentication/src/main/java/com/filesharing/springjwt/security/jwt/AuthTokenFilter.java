@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.filesharing.springjwt.dto.TokenProvider;
 import com.filesharing.springjwt.services.UserDetailsServiceImpl;
 import com.filesharing.springjwt.utils.SecurityCipher;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

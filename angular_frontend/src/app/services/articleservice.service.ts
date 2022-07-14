@@ -16,18 +16,15 @@ export class ArticleserviceService {
 
   async createArticle(article: Article, image:File): Promise<any> {
     const params = new HttpParams()
-   .set('username', article.username)
-   .set('title', article.title)
-   .set('content', article.content)
-   .set('language', article.language);
     console.log(article, image)
     const formData: FormData = new FormData();
       formData.append('image',image);
-      let username = article.username;
-      let title = article.title;
-      let content = article.content;
-      let language = article.language;
-    return new Promise ((resolve,reject) => this.http.post( baseUrl + "/article", {params, formData} ,  {
+      formData.append('username', article.username)
+      formData.append('title', article.title)
+      formData.append('content', article.content)
+      formData.append('language', article.language);
+      console.log(JSON.stringify(formData))
+    return new Promise ((resolve,reject) => this.http.post( baseUrl + "/article", formData ,  {
       withCredentials: true
     }).subscribe(
       (response:any) => {
