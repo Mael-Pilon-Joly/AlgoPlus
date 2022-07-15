@@ -9,6 +9,7 @@ import com.filesharing.springjwt.payload.request.ArticleRequest;
 import com.filesharing.springjwt.payload.response.ArticleResponse;
 import com.filesharing.springjwt.payload.response.RequestResponse;
 import com.filesharing.springjwt.repository.ArticleRepository;
+import com.filesharing.springjwt.repository.FileDBRepository;
 import com.filesharing.springjwt.repository.UserRepository;
 import com.filesharing.springjwt.services.ArticleService;
 import com.filesharing.springjwt.utils.SecurityCipher;
@@ -36,13 +37,14 @@ public class ArticleController {
     @Autowired
     ArticleService articleService;
 
+    @Autowired
+    FileDBRepository fileDBRepository;
+
     @GetMapping("/articles")
     public ResponseEntity<List<ArticleDTO>> getAllArticles() {
         try {
             List<Article> articles = articleRepostitory.findAll();
             List<Long> ids = articleRepostitory.findUsersId();
-            Collections.reverse(articles);
-            Collections.reverse(ids);
 
             for (int i=0; i<articles.size() && i<7 ; i++) {
               UserRepository.UserProjection up = userRepository.findByNativeQuery(ids.get(i));
@@ -50,8 +52,6 @@ public class ArticleController {
               user.setId(up.getId());
               user.setUsername(up.getUsername());
               user.setEmail(up.getEmail());
-              user.setAvatar(up.getAvatar_Id());
-              user.setCV(up.getCV_Id());
               user.setPoints(up.getPoints());
               articles.get(i).setUser(user);
             }
@@ -92,8 +92,6 @@ public class ArticleController {
                 user.setId(up.getId());
                 user.setUsername(up.getUsername());
                 user.setEmail(up.getEmail());
-                user.setAvatar(up.getAvatar_Id());
-                user.setCV(up.getCV_Id());
                 user.setPoints(up.getPoints());
                 articles.get().get(i).setUser(user);
             }

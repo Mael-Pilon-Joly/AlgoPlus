@@ -8,6 +8,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "article")
@@ -26,6 +27,9 @@ public class Article {
 
     private Date published;
 
+    @OneToMany(mappedBy = "article" , cascade = CascadeType.ALL)
+    private List<Comment> comments;
+
     private Date lastEdited;
 
     @NotBlank
@@ -34,8 +38,8 @@ public class Article {
     private String content;
 
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "user_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
@@ -55,6 +59,14 @@ public class Article {
         this.content = content;
         this.user = user;
         this.language = language;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     public Long getId() {

@@ -20,11 +20,11 @@ import org.springframework.transaction.annotation.Transactional;
 public interface UserRepository extends JpaRepository<User, Long> {
   Optional<User> findByUsername(String username);
 
-  @Query(value = "select * from User where id = :id", nativeQuery = true)
-  Optional<User> findById(@Param("id")Long id);
-
   @Query(value = "SELECT id, username, email, avatar_id, cv_id, points  FROM User WHERE id = :id", nativeQuery = true)
   UserProjection findByNativeQuery(@Param("id")Long id);
+
+  @Query(value = "select user_id from comments where id=:id order by published desc", nativeQuery = true)
+  Long findUserByCommentId(@Param("id")Long commentId);
 
   Boolean existsByUsername(String username);
 
@@ -36,8 +36,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     String getUsername();
     String getEmail();
     Long getId();
-    FileDB getAvatar_Id();
-    FileDB getCV_Id();
+    Long getAvatar_Id();
+    Long getCV_Id();
     List<Article> getArticles();
     int getPoints();
   }

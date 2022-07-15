@@ -56,6 +56,7 @@
     "errorcontent":"Vous devez composer un article d'au moins 100 caractères.",
     "errorlanguage":"Vous devez choisir un langage de programmation pour votre article",
     "errorimage":"Vous devez fournir une image pour votre article",
-    "errorgeneral":"Une erreur est survenue lors de la publication de votre article. S'il vous plaît, veuillez réessayer plus tard."
+    "errorgeneral":"Une erreur est survenue lors de la publication de votre article. S'il vous plaît, veuillez réessayer plus tard.",
+    "comments": "Commentaires:"
 
 }

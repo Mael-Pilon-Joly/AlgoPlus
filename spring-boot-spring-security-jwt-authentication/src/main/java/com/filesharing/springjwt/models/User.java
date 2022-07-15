@@ -66,6 +66,9 @@ public class User  {
   @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
   private List<Article> articles;
 
+  @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
+  private List<Comment> comments;
+
   private int points;
 
   public int getPoints() {
