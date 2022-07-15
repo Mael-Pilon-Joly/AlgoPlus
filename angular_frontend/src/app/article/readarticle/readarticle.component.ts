@@ -15,7 +15,11 @@ export class ReadarticleComponent implements OnInit {
   article = history.state.data;
   image: SafeUrl | undefined;
   comments$: CommentModel[] = [];
-
+  commentcontent= "";
+  
+  convertDataToImage(user_avatar: any) {
+    this.fileservices.convertBlobToImage(user_avatar.data)
+  }
   ngOnInit(): void {
     console.log(this.article)
     if(this.article.image) {

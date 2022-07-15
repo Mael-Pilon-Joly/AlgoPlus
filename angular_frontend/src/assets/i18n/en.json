@@ -61,5 +61,7 @@
     "errorlanguage":"You need to chose a language category for your article",
     "errorimage":"You need to provide an image for your article",
     "errorgeneral":"There was an error in the process of publishing your article. Please try again.",
-    "comments": "Comments:"
+    "comments": "Comments:",
+    "addcomment": "Write a commment to the article (You need to be logged in)",
+    "comment": "Comment:"
 }

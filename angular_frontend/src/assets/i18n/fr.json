@@ -57,6 +57,7 @@
     "errorlanguage":"Vous devez choisir un langage de programmation pour votre article",
     "errorimage":"Vous devez fournir une image pour votre article",
     "errorgeneral":"Une erreur est survenue lors de la publication de votre article. S'il vous plaît, veuillez réessayer plus tard.",
-    "comments": "Commentaires:"
-
+    "comments": "Commentaires:",
+    "addcomment": "Ajout un commentaire sur l'article (Vous devez être connecté pour écrire un commentaire) ",
+    "comment": "Commentaire:"
 }

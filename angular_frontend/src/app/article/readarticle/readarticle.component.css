@@ -4,7 +4,9 @@
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
     float:left;
+    position: relative;
     min-width: 85%;
+    overflow: scroll;
 }
 
 
@@ -12,32 +14,26 @@
     padding-top: 25px;
     grid-column-start: 2;
     grid-column-end: 8;
-    grid-row-start: 1;
-    grid-row-end:3;
+
 }
 
 .wrapper .title {
-    margin-top:50px;
+    margin-top:20px;
     grid-column-start: 2;
     grid-column-end: 8;
-    grid-row-start: 3;
-    grid-row-end:5;
+
 }
 
 .wrapper .content {
-    margin-top:50px;
+    margin-top:20px;
     grid-column-start: 2;
     grid-column-end: 9;
-    grid-row-start: 5;
-    grid-row-end:9;
 }
 
 .comments {
     padding-top:10x;
     grid-column-start: 2;
     grid-column-end: 8;
-    grid-row-start: 9;
-    grid-row-end:10;
     background-color: lightblue;
  
 }
@@ -60,3 +56,23 @@
 .article .content p{
  font-size: 10px;
 }
+
+.addcomment {
+    padding-top:10x;
+    grid-column-start: 2;
+    grid-column-end: 8;
+}
+
+.addcomment .headeraddcomment{
+    display: flex;
+}
+
+.addcomment .headeraddcomment .solicitationimageimage{
+    display: inline-block;
+}
+
+.addcomment .headeraddcomment .solicitationimage{
+    display: inline-block;
+    align-self: flex-end;
+}
+
