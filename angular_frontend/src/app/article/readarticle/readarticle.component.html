@@ -9,6 +9,9 @@
 </div>
 <p class="content" style="white-space: pre-line">{{article.content}}</p>
 <div class="addcomment">
+    <div className="alert alert-danger" *ngIf="this.errorCommentLength" style="text-align: center; vertical-align: middle;background-color:darksalmon; border-color:red; color:red">
+        {{'errorcommentlength' | translate}}
+    </div>
    <div class="headeraddcomment">
       <div class="solicitationimage">
         <img src="../../../assets/comment_icon.jpg"  style="height: 50px; width:50px;">
@@ -23,7 +26,7 @@
         </div>
         <textarea [(ngModel)]="commentcontent" class="form-control" aria-label="With textarea"></textarea>
     </div>
-    <button>{{'submit' | translate}}</button>
+    <button (click)="submit()">{{'submit' | translate}}</button>
 </div>
 <div class="comments">
     <h4>{{'comments' | translate}}</h4>
@@ -34,7 +37,9 @@
                 <div class="comment">
                 <div class="leftpart">
                 <div class="image">
-                    <img src="../../../assets/avatar.png" onload="this.onload=null; this.src=convertDataToImage(c.user_avatar)" style="height: 50px; width:50px; border-radius: 50%;">
+                    <ng-container *ngIf="convertDataToImage(c);let image">
+                    <img [src]=image  style="height: 50px; width:50px; border-radius: 50%;">
+                </ng-container>
                 </div>
                 <div class="username">
                  <a routerLinkActive="active " routerLink="/profileotheruser" [state]="{ data: c.username}"> 

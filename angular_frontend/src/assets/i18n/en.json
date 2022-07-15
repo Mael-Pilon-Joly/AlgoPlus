@@ -63,5 +63,6 @@
     "errorgeneral":"There was an error in the process of publishing your article. Please try again.",
     "comments": "Comments:",
     "addcomment": "Write a commment to the article (You need to be logged in)",
-    "comment": "Comment:"
+    "comment": "Comment:",
+    "errorcommentlength": "You need to write a comment of at least 10 characters"
 }

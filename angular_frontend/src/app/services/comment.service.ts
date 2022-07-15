@@ -15,4 +15,8 @@ export class CommentService {
   getAllCommentsForArticle(articleId: number): Observable<CommentModel[]> {
     return this.http.get<CommentModel[]>(baseUrl +`comments/?articleId=${articleId}`, {withCredentials:true})
   }
+
+  postComment(articleId: number, content:string): Observable<CommentModel> {
+    return this.http.post<CommentModel>(baseUrl +`comment?articleId=${articleId}&comment=${content}`, {withCredentials:true})
+  }
 }

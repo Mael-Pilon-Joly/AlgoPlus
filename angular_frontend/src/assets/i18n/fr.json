@@ -58,6 +58,7 @@
     "errorimage":"Vous devez fournir une image pour votre article",
     "errorgeneral":"Une erreur est survenue lors de la publication de votre article. S'il vous plaît, veuillez réessayer plus tard.",
     "comments": "Commentaires:",
-    "addcomment": "Ajout un commentaire sur l'article (Vous devez être connecté pour écrire un commentaire) ",
-    "comment": "Commentaire:"
+    "addcomment": "Ajoutez un commentaire sur l'article (Vous devez être connecté pour écrire un commentaire) ",
+    "comment": "Commentaire:",
+    "errorcommentlength": " Vous devez écrire un commentaire d'au moins 10 caractères"
 }
