@@ -20,12 +20,12 @@ export class WritearticleComponent implements OnInit {
     {id:1, val:"Javascript"},
     {id:2, val:"Java"},
     {id:3, val:"Python"},
-    {id:4, val:"C#"},
-    {id:5, val:"C++"},
+    {id:4, val:"Csharp"},
+    {id:5, val:"Cplusplus"},
     {id:6, val:"C"},
-    {id:7, val:"HTML/CSS"},
+    {id:7, val:"HTML_CSS"},
     {id:8, val:"SQL"},
-    {id:9, val:"Other/Autre"}
+    {id:9, val:"Other_Autre"}
   ]
   
   selectedFiles?: FileList;
@@ -34,6 +34,12 @@ export class WritearticleComponent implements OnInit {
   message = '';
   image?: File | undefined;
   fileInfos?: Observable<any>;
+  errorTitle = false;
+  errorContent = false;
+  errorLanguage = false;
+  errorImage = false;
+  errorGeneral = false;
+
   user: User = {
     id: 0,
     username:"",
@@ -71,23 +77,37 @@ export class WritearticleComponent implements OnInit {
 
 
  async sendArticle(): Promise<void> {
-   
+  this.errorTitle = false;
+  this.errorContent = false;
+  this.errorLanguage = false;
+  this. errorImage = false;
+  this.errorGeneral = false;
+
+       if(this.article.title == "") {
+        this.errorTitle = true;
+       } 
+       if(this.article.content.length < 100) {
+        this.errorContent = true;
+       } 
+       if(this.article.language =="") {
+        this.errorLanguage = true;
+       } 
+       if(this.image == undefined) {
+        this.errorImage = true;
+       } 
+       if (!this.errorTitle && !this.errorContent && !this.errorLanguage && !this.errorImage) {
         this.user = this.requestResponse.user!;
         this.article.username = this.user.username!;
-        if (this.image == undefined) {
-          let content = "";
-          let data = new Blob([content], { type: 'application/doc' });
-          let arrayOfBlob = new Array<Blob>();
-          arrayOfBlob.push(data);
-          this.image = new File(arrayOfBlob, "emptyimage.png");
-        }
-        await this.services.createArticle(this.article, this.image ).then((res: any)=> {
+       
+        await this.services.createArticle(this.article, this.image! ).then((res: any)=> {
           console.log(res);
           this.router.navigate(['/homearticles']);
         }).catch ( (error: { error: any; }) => {
+          this.errorGeneral = true;
           console.log(JSON.stringify(error.error))
         })
       }
+    }
 
   selectChangeHandler (event: any, i:any) {
         console.log(i)

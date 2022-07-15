@@ -1,5 +1,21 @@
 <div class="wrapper">
         <form class="form">
+            <div className="alert alert-danger" *ngIf="this.errorTitle" style="text-align: center; vertical-align: middle;background-color:darksalmon; border-color:red; color:red">
+                {{'errortitle' | translate}}
+            </div>
+            <div className="alert alert-danger" *ngIf="this.errorContent" style="text-align: center; vertical-align: middle;background-color:darksalmon; border-color:red; color:red">
+                {{'errorcontent' | translate}}
+            </div>
+            <div className="alert alert-danger" *ngIf="this.errorImage" style="text-align: center; vertical-align: middle;background-color:darksalmon; border-color:red; color:red">
+                {{'errorimage' | translate}}
+            </div>
+            <div className="alert alert-danger" *ngIf="this.errorLanguage" style="text-align: center; vertical-align: middle;background-color:darksalmon; border-color:red; color:red">
+                {{'errorlanguage' | translate}}
+            </div>
+            <div className="alert alert-danger" *ngIf="this.errorGeneral" style="text-align: center; vertical-align: middle;background-color:darksalmon; border-color:red; color:red">
+                {{'errorgeneral' | translate}}
+            </div>
+
             <div class="form-group">
                 <label  for="Title">{{'title' | translate}}</label>
                 <input  [(ngModel)]="article.title" (change) = "updateTitle($event)" name="title" type="text" class="form-control" id="title" aria-describedby="Title of article" placeholder="...">

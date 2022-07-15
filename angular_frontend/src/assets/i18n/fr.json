@@ -51,6 +51,11 @@
     "imagearticle": "Télécharger une image pour votre article",
     "languagechoice": "Choisissez le langage de programmation qui est abordé dans votre article",
     "author": "Auteur:",
-    "published": "Publié le:"
+    "published": "Publié le:",
+    "errortitle":"Vous devez fournir un titre",
+    "errorcontent":"Vous devez composer un article d'au moins 100 caractères.",
+    "errorlanguage":"Vous devez choisir un langage de programmation pour votre article",
+    "errorimage":"Vous devez fournir une image pour votre article",
+    "errorgeneral":"Une erreur est survenue lors de la publication de votre article. S'il vous plaît, veuillez réessayer plus tard."
 
 }
