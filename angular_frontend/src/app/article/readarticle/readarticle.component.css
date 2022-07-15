@@ -17,7 +17,7 @@
 }
 
 .wrapper .title {
-    margin-top:30px;
+    margin-top:50px;
     grid-column-start: 2;
     grid-column-end: 8;
     grid-row-start: 3;
@@ -25,6 +25,7 @@
 }
 
 .wrapper .content {
+    margin-top:50px;
     grid-column-start: 2;
     grid-column-end: 9;
     grid-row-start: 5;
@@ -33,9 +34,29 @@
 
 .comments {
     padding-top:10x;
-    grid-column-start: 3;
+    grid-column-start: 2;
     grid-column-end: 8;
     grid-row-start: 9;
     grid-row-end:10;
     background-color: lightblue;
+ 
+}
+
+.comment{
+    border-top-style: groove;
+    border-top-color: darkgrey;
+    display: flex;
+}
+.comment .leftpart{
+    display: inline-block;
+}
+
+.article .content{
+    margin-left:10px;
+    align-self: flex-end;
+
+}
+
+.article .content p{
+ font-size: 10px;
 }

@@ -10,5 +10,27 @@
 <p class="content" style="white-space: pre-line">{{article.content}}</p>
 <div class="comments">
     <h4>{{'comments' | translate}}</h4>
+
+        <div *ngIf="this.comments$">
+         <ul  >
+             <li *ngFor="let c of comments$">
+                <div class="comment">
+                <div class="leftpart">
+                <div class="image">
+                    <img src="../../../assets/avatar.png" onload="this.onload=null; this.src=convertDataToImage(c.user_avatar)" style="height: 50px; width:50px; border-radius: 50%;">
+                </div>
+                <div class="username">
+                 <a routerLinkActive="active " routerLink="/profileotheruser" [state]="{ data: c.username}"> 
+                     <h4>{{c.username}}</h4>
+                 </a>
+                </div>
+                </div>
+                 <div class="content">
+                 <p> {{c.content}}</p>
+                </div>
+                </div>
+             </li>
+         </ul>
+ </div>
 </div>
 </div>

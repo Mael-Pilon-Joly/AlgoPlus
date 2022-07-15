@@ -49,6 +49,7 @@ export class WritearticleComponent implements OnInit {
   }
 
   article: Article = {
+    id: 0,
     username: "",
     title: "",
     content: "",
