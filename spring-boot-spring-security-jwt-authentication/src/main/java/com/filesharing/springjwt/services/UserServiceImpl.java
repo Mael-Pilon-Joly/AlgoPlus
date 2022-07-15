@@ -69,6 +69,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     FileDBRepository fileDBRepository;
 
+    @Autowired
+    ArticleService articleService;
+
     @Override
     public ResponseEntity<LoginResponse> login(LoginRequest loginRequest, String accessToken, String refreshToken) {
         Authentication authentication = authenticationManager.authenticate(
@@ -83,7 +86,7 @@ public class UserServiceImpl implements UserService {
 
         if (!user.get().isEnabled()) {
             return new ResponseEntity<>(
-                    new LoginResponse(null, null, null, null, null, null, LoginResponse.SuccessFailure.FAILURE, "Email account not verified yet"),
+                    new LoginResponse(null, null, null, null, null, null, LoginResponse.SuccessFailure.FAILURE, "Email account not verified yet", null),
                     HttpStatus.PRECONDITION_FAILED);
         }
 
@@ -106,7 +109,10 @@ public class UserServiceImpl implements UserService {
                     userDetails.getId(),
                     userDetails.getUsername(),
                     userDetails.getEmail(),
-                    roles, SecurityCipher.encrypt(newAccessToken.getTokenValue()), SecurityCipher.encrypt(newRefreshToken.getTokenValue()), LoginResponse.SuccessFailure.SUCCESS, "Successful Auth. Tokens are created in cookie."));
+                    roles, SecurityCipher.encrypt(newAccessToken.getTokenValue()),
+                    SecurityCipher.encrypt(newRefreshToken.getTokenValue()),
+                    LoginResponse.SuccessFailure.SUCCESS, "Successful Auth. Tokens are created in cookie.",
+                    articleService.findArticlesByUser(newAccessToken.getTokenValue())));
         }
 
             newAccessToken = tokenProvider.generateJwtToken(userDetails.getUsername());
@@ -114,13 +120,12 @@ public class UserServiceImpl implements UserService {
             addAccessTokenCookie(responseHeaders, newAccessToken);
             addRefreshTokenCookie(responseHeaders, newRefreshToken);
 
-
-
         return ResponseEntity.ok().headers(responseHeaders).body(new LoginResponse(
                 userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
-                roles, null, null, LoginResponse.SuccessFailure.SUCCESS, "Successful Auth. Tokens are created in cookie."));
+                roles, null, null, LoginResponse.SuccessFailure.SUCCESS, "Successful Auth. Tokens are created in cookie.",
+                articleService.findArticlesByUser(newAccessToken.getTokenValue())));
     }
 
     @Override

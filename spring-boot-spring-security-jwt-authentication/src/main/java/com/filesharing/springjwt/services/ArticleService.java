@@ -1,5 +1,6 @@
 package com.filesharing.springjwt.services;
 
+import com.filesharing.springjwt.dto.ArticleDTO;
 import com.filesharing.springjwt.models.Article;
 import com.filesharing.springjwt.models.ELanguage;
 import com.filesharing.springjwt.models.FileDB;
@@ -37,6 +38,32 @@ public class ArticleService {
 
     @Autowired
     UserRepository userRepository;
+
+    public List<ArticleDTO> findArticlesByUser(String token) {
+        String username = jwtUtils.getUserNameFromJwtToken(token);
+        Optional<User> user = userRepository.findByUsername(username);
+
+        if(user.isEmpty()){
+            return null;
+        }
+
+        List<Article> articles = user.get().getArticles();
+        List<ArticleDTO> articleDTOS = new ArrayList<>();
+
+        for (int i = 0; i<articles.size() ; i++){
+            ArticleDTO articleDTO = new ArticleDTO();
+            articleDTO.setId(articles.get(i).getId());
+            articleDTO.setUsername(username);
+            articleDTO.setContent(articles.get(i).getContent());
+            articleDTO.setImage(articles.get(i).getImage());
+            articleDTO.setTitle(articles.get(i).getTitle());
+            articleDTO.setPublished(articles.get(i).getPublished());
+            articleDTO.setLastEdited(articles.get(i).getLastEdited());
+            ArticleDTO clone = new ArticleDTO(articleDTO);
+            articleDTOS.add(articleDTO);
+        }
+        return articleDTOS;
+    }
 
     public Article createArticle(ArticleRequest request, MultipartFile image, String token) throws IOException {
         String username = jwtUtils.getUserNameFromJwtToken(token);

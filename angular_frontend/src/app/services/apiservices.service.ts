@@ -6,6 +6,7 @@ import { User } from '../models/user.model';
 import { faLeaf } from '@fortawesome/free-solid-svg-icons';
 import { SignUpResponse } from '../models/signupresponse.model';
 import { LoginResponse } from '../models/loginresponse.model';
+import { Roles } from '../models/roles.model';
 
 const baseUrl = 'http://localhost:8080/api/auth';
 const loggedInUrl = 'http://localhost:8080/api/loggedin';
@@ -18,6 +19,7 @@ const userUrl = 'http://localhost:8080/api/user'
 export class ApiService {
   @Output() getLogged: EventEmitter<any> = new EventEmitter();
   @Output() getUser: EventEmitter<any> = new EventEmitter();
+  @Output() getRoles: EventEmitter<any> = new EventEmitter();
 
   [x: string]: any;
   isLoggedIn = false;
@@ -33,6 +35,16 @@ export class ApiService {
 
 
   constructor(private http: HttpClient) { }
+
+  setValue(roles: Roles[]){
+    console.log("settig user roles globally..." + JSON.stringify(roles))
+    this.user.roles = roles;
+    this.getRoles.emit(this.user.roles)
+   }
+ 
+   getValue(){
+    return  this.user.roles;
+   }
 
   async login(data: any, rememberme:boolean): Promise<RequestResponseUser> {
     

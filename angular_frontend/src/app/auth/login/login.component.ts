@@ -63,6 +63,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('rememberme', 'false');
     }
     const result : Roles[] = res.user!.roles!;
+    this.services.setValue(result);
     if (result.filter(e => e.name === 'ROLE_USER').length > 0) {
     this.router.navigate(['/userboard']);
     }

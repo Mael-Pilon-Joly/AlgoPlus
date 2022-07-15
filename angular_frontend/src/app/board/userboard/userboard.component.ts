@@ -34,12 +34,12 @@ export class UserboardComponent implements OnInit {
     await  this.services.getProfil().then( res=> {
       console.log(res);
       this.requestResponse = res;
-      if (res!.user!.avatar.data != null) {
+      if (res!.user!.avatar != null) {
       var urlAvatar = this.fileservices.convertBlobToImage(res.user?.avatar.data);
       console.log("url avatar" + urlAvatar)
       this.avatarUrl = urlAvatar
       }
-      if (res!.user!.cv.data != null) {
+      if (res!.user!.cv != null) {
       var urlCV = this.fileservices.convertBlobToText(res.user?.cv?.data )
       this.cvUrl = urlCV
       }

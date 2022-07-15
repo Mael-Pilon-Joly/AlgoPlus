@@ -16,7 +16,6 @@ export class ArticleserviceService {
 
   async createArticle(article: Article, image:File): Promise<any> {
     const params = new HttpParams()
-    console.log(article, image)
     const formData: FormData = new FormData();
       formData.append('image',image);
       formData.append('username', article.username)
@@ -28,17 +27,14 @@ export class ArticleserviceService {
       withCredentials: true
     }).subscribe(
       (response:any) => {
-        console.log("response"+response)
         resolve(response);
       }, error => {
-        console.log("error"+JSON.stringify(error.error))
         reject({error: error.error});
       })
     )
   }
 
   getArticlesByLanguage(language: string): Observable<any>{
-    console.log(language)
     return this.http.get<any>(baseUrl +`/articlesbylanguage?language=${language}`)
   }
 

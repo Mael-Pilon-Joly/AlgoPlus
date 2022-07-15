@@ -1,5 +1,6 @@
 package com.filesharing.springjwt.payload.response;
 
+import com.filesharing.springjwt.dto.ArticleDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -10,6 +11,8 @@ public class LoginResponse {
     private Long id;
     private String username;
     private String email;
+
+    private List<ArticleDTO> articleDTOS;
     private List<String> roles;
     private SuccessFailure status;
     private String message;
@@ -20,10 +23,11 @@ public class LoginResponse {
         SUCCESS, FAILURE
     }
 
-    public LoginResponse(Long id, String username, String email, List<String> roles,  String sessionToken, String refreshToken, SuccessFailure status, String message) {
+    public LoginResponse(Long id, String username, String email, List<String> roles,  String sessionToken, String refreshToken, SuccessFailure status, String message, List<ArticleDTO> articleDTOs) {
         this.id = id;
         this.username = username;
         this.email = email;
+        this.articleDTOS = articleDTOS;
         this.roles = roles;
         this.status = status;
         this.message = message;
@@ -39,6 +43,7 @@ public class LoginResponse {
     public Long getId() {
         return id;
     }
+
 
     public void setId(Long id) {
         this.id = id;
@@ -58,6 +63,14 @@ public class LoginResponse {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<ArticleDTO> getArticleDTOS() {
+        return articleDTOS;
+    }
+
+    public void setArticleDTOS(List<ArticleDTO> articleDTOS) {
+        this.articleDTOS = articleDTOS;
     }
 
     public List<String> getRoles() {

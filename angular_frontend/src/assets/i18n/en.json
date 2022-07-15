@@ -64,5 +64,8 @@
     "comments": "Comments:",
     "addcomment": "Write a commment to the article (You need to be logged in)",
     "comment": "Comment:",
-    "errorcommentlength": "You need to write a comment of at least 10 characters"
+    "errorcommentlength": "You need to write a comment of at least 10 characters",
+    "yourarticles": "Your articles",
+    "updatearticle": "Update this article",
+    "deletearticle": "Delete this article"
 }

@@ -27,6 +27,7 @@ export class ReadarticleComponent implements OnInit {
     console.log(this.article)
     this.commentService.postComment(this.article.id, this.commentcontent).subscribe((comment) => {
     console.log(comment)
+    window.location.reload()
     },
     error => {
       console.log(error)

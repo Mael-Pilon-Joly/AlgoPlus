@@ -10,7 +10,6 @@ export class FileservicesService {
 
 
   convertBlobToImage(data: string): SafeUrl {
-     console.log("image data:" + data)
          let objectURL = 'data:image/jpeg;base64,' + data;
         return this.sanitizer.bypassSecurityTrustUrl(objectURL);
   }

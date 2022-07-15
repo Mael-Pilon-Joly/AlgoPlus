@@ -18,7 +18,8 @@ export class AdminboardComponent implements OnInit {
     username:"",
     avatar: {},
     cv:{},
-    roles:[]
+    roles:[],
+    articles: []
   }
 
   requestResponse: RequestResponseUser = {
@@ -34,13 +35,21 @@ export class AdminboardComponent implements OnInit {
     await  this.services.getProfil().then( res=> {
       console.log(res);
       this.requestResponse = res;
+      if (res!.user!.avatar != null) {
       var urlAvatar = this.fileservices.convertBlobToImage(res.user?.avatar.data);
-      var urlCV = this.fileservices.convertBlobToText(res.user?.cv?.data )
-      console.log("url avatar:"+ urlAvatar)
-      console.log("url cv:" + urlCV)
       this.avatarUrl = urlAvatar
+      }
+      if (res!.user!.cv != null) {
+      var urlCV = this.fileservices.convertBlobToText(res.user?.cv?.data )
       this.cvUrl = urlCV
+      }
+      this.user.articles = res.user?.articles;
     })
+  }
+
+  convertDataToImage(a: any) {
+    console.log("article..." + a);
+    return  this.fileservices.convertBlobToImage(a.image.data)
   }
 
   ngOnInit(): void {

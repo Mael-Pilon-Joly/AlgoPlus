@@ -1,3 +1,4 @@
+import { CompleteArticle } from "./completearticle.model";
 import { Roles } from "./roles.model";
 
 export class User {
@@ -10,4 +11,5 @@ export class User {
         roles?: Roles[];
         enabled?: boolean;
         locked?: boolean;
+        articles?: CompleteArticle[]
   }

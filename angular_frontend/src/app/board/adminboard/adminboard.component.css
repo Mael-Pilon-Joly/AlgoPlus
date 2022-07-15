@@ -11,10 +11,10 @@
 .grid .header {
     display: grid;
     padding: 5px;
+    margin-left:20px;
     grid-column-start: 3;
     grid-column-end: 9;
     grid-row-start: 1;
-    grid-row-end: 10;
     background-color: rgb(207, 209, 207);
     grid-template-columns: subgrid;
     grid-template-rows: repeat(3, 80px);
@@ -33,3 +33,37 @@
     grid-row-start: 1;
     grid-row-end: 4;
 }
+
+.grid .articles {
+    background-color: white;
+    margin-top: 20px;
+    grid-column-start: 1;
+    grid-column-end: 8;
+}
+
+.grid .header .articles ul {
+    list-style: none;
+}
+
+.articles .article {
+    display: flex;
+    border-bottom-style: groove;
+    border-bottom-color: darkgrey;
+}
+
+.articles .article a{
+    display: flex;
+    text-decoration: none;
+}
+
+.articles .article a .leftpart{
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+.articles .article a .content{
+    display: inline-block;
+    align-self: flex-end;
+}
+

@@ -60,5 +60,8 @@
     "comments": "Commentaires:",
     "addcomment": "Ajoutez un commentaire sur l'article (Vous devez être connecté pour écrire un commentaire) ",
     "comment": "Commentaire:",
-    "errorcommentlength": " Vous devez écrire un commentaire d'au moins 10 caractères"
+    "errorcommentlength": " Vous devez écrire un commentaire d'au moins 10 caractères",
+    "yourarticles": "Vos articles:",
+    "updatearticle": "Modifier cet article",
+    "deletearticle": "Supprimer cet article"
 }

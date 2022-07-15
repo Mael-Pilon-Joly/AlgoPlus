@@ -122,6 +122,21 @@ public class ArticleController {
         }
     }
 
+    @GetMapping("/articlesbyuser")
+    public ResponseEntity<List<ArticleDTO>> findArticlesByUser(@RequestHeader(name = "Authorization", required = false) String token,
+                                                               @CookieValue(name = "accessToken", required = false) String accessToken) {
+        try {
+            if (token != null && token.length() > 15) {
+                accessToken = token.substring(7);
+            }
+            String decryptedAccessToken = SecurityCipher.decrypt(accessToken);
+            return new ResponseEntity<>(articleService.findArticlesByUser(decryptedAccessToken), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ArrayList<ArticleDTO>(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
     @PostMapping("/article")
     public ResponseEntity<ArticleDTO> createArticle(@RequestHeader(name = "Authorization", required = false) String token,
                                                     @CookieValue(name = "accessToken", required = false) String accessToken,
