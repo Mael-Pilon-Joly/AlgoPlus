@@ -17,6 +17,7 @@ import { HomearticlesComponent } from './article/homearticles/homearticles.compo
 import { WritearticleComponent } from './article/writearticle/writearticle.component';
 import { ReadarticleComponent } from './article/readarticle/readarticle.component';
 import { ArticlesbylanguageComponent } from './article/articlesbylanguage/articlesbylanguage.component';
+import { IdeComponent } from './exercice/ide/ide.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -37,8 +38,8 @@ const routes: Routes = [
   { path: 'homearticles', component: HomearticlesComponent},
   { path: 'writearticle', component: WritearticleComponent},
   { path: 'readarticle', component: ReadarticleComponent},
-  { path: 'articlesbylanguage', component: ArticlesbylanguageComponent}
-
+  { path: 'articlesbylanguage', component: ArticlesbylanguageComponent},
+  { path: 'ide', component:IdeComponent}
 ];
 
 @NgModule({
