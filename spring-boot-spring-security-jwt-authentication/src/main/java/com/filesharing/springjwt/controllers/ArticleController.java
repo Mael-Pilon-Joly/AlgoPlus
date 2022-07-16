@@ -172,23 +172,40 @@ public class ArticleController {
         }
 
     @PutMapping("/article")
-    public ResponseEntity<ArticleResponse> updateArticle(@RequestHeader(name = "Authorization", required = false) String token,
+    public ResponseEntity<ArticleDTO> updateArticle(@RequestHeader(name = "Authorization", required = false) String token,
                                                          @CookieValue(name = "accessToken", required = false) String accessToken,
-                                                         @RequestParam Long id, @RequestParam String username,@RequestParam String title, @RequestParam String content,
-                                                         @RequestParam String language, @RequestParam MultipartFile image) {
+                                                         @RequestParam("id") String id, @RequestParam("title") String title, @RequestParam("content") String content,
+                                                         @RequestParam("language") String language, @RequestParam("image") MultipartFile image, @RequestParam("keepsameimage") String keepSameImage) {
+        boolean keepSameImageBool = false;
+        if (keepSameImage.equals("true")) {
+            keepSameImageBool = true;
+        }
+        Long id_long = Long.parseLong(id);
+        ArticleRequest article = new ArticleRequest( id_long, null, image, language, content, title);
+
         try {
             if (token!= null && token.length() > 15) {
                 accessToken = token.substring(7);
             }
             String decryptedAccessToken = SecurityCipher.decrypt(accessToken);
-            ArticleRequest article = new ArticleRequest( username, image, language, content, title);
-            List<Article> articles = articleService.updateArticle(article, image, decryptedAccessToken);
-            if (articles == null) {
-                return new ResponseEntity<>(new ArticleResponse(), HttpStatus.UNAUTHORIZED);
+            Article ret = articleService.updateArticle(article, image, decryptedAccessToken, keepSameImageBool);
+            if (ret == null) {
+                return new ResponseEntity<>(new ArticleDTO(), HttpStatus.UNAUTHORIZED);
             }
-            return new ResponseEntity<>(new ArticleResponse(articles), HttpStatus.OK);
+
+            ArticleDTO articleDTO = new ArticleDTO();
+            articleDTO.setId(ret.getId());
+            articleDTO.setUsernameId(ret.getUser().getId());
+            articleDTO.setUsername(ret.getUser().getUsername());
+            articleDTO.setImage(ret.getImage());
+            articleDTO.setTitle(ret.getTitle());
+            articleDTO.setLanguage(ret.getLanguage());
+            articleDTO.setContent(ret.getContent());
+            articleDTO.setPublished(ret.getPublished());
+
+            return new ResponseEntity<>(articleDTO, HttpStatus.OK);
         } catch(Exception e) {
-            return new ResponseEntity<>(new ArticleResponse(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new ArticleDTO(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

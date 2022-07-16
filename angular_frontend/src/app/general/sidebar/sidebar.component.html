@@ -7,12 +7,7 @@
         <ul class="nav">
 
             <li>
-                <a *ngIf="this.isLoggedIn && this.isAdmin"  routerLinkActive="active " routerLink="/adminboard">
-                    <fa-icon [icon]="faClipboardList"></fa-icon>
-                    &nbsp; {{ 'dashboard' | translate }}
-                </a>
-
-                <a *ngIf="this.isLoggedIn && this.isUser"  routerLinkActive="active " routerLink="/userboard">
+                <a *ngIf="this.isLoggedIn "  routerLinkActive="active " routerLink="/userboard">
                     <fa-icon [icon]="faClipboardList"></fa-icon>
                     &nbsp; {{ 'dashboard' | translate }}
                 </a>

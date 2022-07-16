@@ -64,13 +64,8 @@ export class LoginComponent implements OnInit {
     }
     const result : Roles[] = res.user!.roles!;
     this.services.setValue(result);
-    if (result.filter(e => e.name === 'ROLE_USER').length > 0) {
     this.router.navigate(['/userboard']);
-    }
 
-    if (result.filter(e => e.name === 'ROLE_ADMIN').length > 0) {
-      this.router.navigate(['/adminboard']);
-    }
   }).catch ( error => {
     this.errorLogin = false;
     this.errorPendingConfirmation = false;

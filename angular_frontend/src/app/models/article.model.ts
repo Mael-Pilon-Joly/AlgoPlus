@@ -1,7 +1,7 @@
 import { User } from "./user.model";
 
 export class Article {
-    id!: number;
+    id!: string;
     username!: string;
     title!: string;
     content!: string;

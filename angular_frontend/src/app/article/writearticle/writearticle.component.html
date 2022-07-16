@@ -18,11 +18,13 @@
 
             <div class="form-group">
                 <label  for="Title">{{'title' | translate}}</label>
-                <input  [(ngModel)]="article.title" (change) = "updateTitle($event)" name="title" type="text" class="form-control" id="title" aria-describedby="Title of article" placeholder="...">
+                <input  [(ngModel)]="article.title" (change) = "updateTitle($event)" name="title" type="text" class="form-control" id="title" aria-describedby="Title of article" placeholder="{{article.title}}">
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">{{'imagearticle' | translate}}</label>
                 <input (change)="fileChange($event)" class="form-control" type="file" id="image" name="image">
+                {{ 'keepsameimage' | translate }} <input type="checkbox" [(ngModel)]="sameimage" name="sameimage" (click)="onItemChange($event)">
+
             </div>
 
 
@@ -38,8 +40,10 @@
                         <a class="dropdown-item">{{ v.val }}</a>
                 </div>
             </div>
-            <label for="Content">{{'contentofarticle' | translate}}</label><textarea [(ngModel)]="article.content" class="form-control text-left" id="form4Example3" rows="4" id="w3review" name="w3review" rows="4" cols="50">
+            <label for="Content">{{'contentofarticle' | translate}}</label><textarea placeholder="{{article.content}}" [(ngModel)]="article.content" class="form-control text-left" id="form4Example3" rows="4" id="w3review" name="w3review" rows="4" cols="50">
             </textarea>
-            <button type="submit" (click)="sendArticle()" class="btn btn-primary">{{'sendarticle' | translate}}</button>
+
+            <button *ngIf="article.id == ''" type="submit" (click)="sendArticle()" class="btn btn-primary">{{'sendarticle' | translate}}</button>
+            <button *ngIf="article.id != ''" type="submit" (click)="updateArticle()" class="btn btn-primary">{{'updatearticle' | translate}}</button>
         </form>
     </div>

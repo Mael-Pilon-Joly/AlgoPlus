@@ -63,5 +63,6 @@
     "errorcommentlength": " Vous devez écrire un commentaire d'au moins 10 caractères",
     "yourarticles": "Vos articles:",
     "updatearticle": "Modifier cet article",
-    "deletearticle": "Supprimer cet article"
+    "deletearticle": "Supprimer cet article",
+    "keepsameimage": "Préserver la même image pour l'article"
 }

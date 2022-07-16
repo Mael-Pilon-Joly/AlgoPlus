@@ -62,7 +62,6 @@ export class UpdateprofileComponent implements OnInit {
   this.router.navigate(['/userboard']);
  }
 
-
   ngOnInit(): void {
   }
 

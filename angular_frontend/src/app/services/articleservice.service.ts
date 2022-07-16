@@ -34,6 +34,34 @@ export class ArticleserviceService {
     )
   }
 
+  async updateArticle(article: Article,  keepSameImage: boolean, image?:File): Promise<any> {
+    let boolean_string = "false";
+    if (keepSameImage) {
+      boolean_string = "true"
+    } 
+    const formData: FormData = new FormData();
+      if(!keepSameImage) {
+      formData.append('image',image!);
+      } else {
+      formData.append('image', new Blob()); 
+      }
+      formData.append('id',article.id.toString());
+      formData.append('title', article.title)
+      formData.append('content', article.content)
+      formData.append('language', article.language);
+      formData.append('keepsameimage', boolean_string);
+      console.log(JSON.stringify(formData))
+    return new Promise ((resolve,reject) => this.http.put( baseUrl + "/article", formData ,  {
+      withCredentials: true
+    }).subscribe(
+      (response:any) => {
+        resolve(response);
+      }, error => {
+        reject({error: error.error});
+      })
+    )
+  }
+
   getArticlesByLanguage(language: string): Observable<any>{
     return this.http.get<any>(baseUrl +`/articlesbylanguage?language=${language}`)
   }

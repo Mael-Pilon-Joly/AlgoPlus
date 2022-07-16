@@ -1,6 +1,6 @@
 import { HttpClient, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Article } from 'src/app/models/article.model';
 import { RequestResponseUser } from 'src/app/models/requestresponselogin.model';
@@ -39,6 +39,7 @@ export class WritearticleComponent implements OnInit {
   errorLanguage = false;
   errorImage = false;
   errorGeneral = false;
+  sameimage = false;
 
   user: User = {
     id: 0,
@@ -49,7 +50,7 @@ export class WritearticleComponent implements OnInit {
   }
 
   article: Article = {
-    id: 0,
+    id: "",
     username: "",
     title: "",
     content: "",
@@ -57,7 +58,7 @@ export class WritearticleComponent implements OnInit {
   }
 
   
-  constructor(private apiservices: ApiService, private services: ArticleserviceService, private http: HttpClient, private router: Router) { }
+  constructor(private apiservices: ApiService, private services: ArticleserviceService, private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
 
   requestResponse: RequestResponseUser = {
@@ -74,6 +75,10 @@ export class WritearticleComponent implements OnInit {
     if(fileList.length > 0) {
         this.image = fileList[0];
     }
+  }
+
+  onItemChange(event:any) {
+    this.sameimage =! this.sameimage;
   }
 
 
@@ -110,6 +115,45 @@ export class WritearticleComponent implements OnInit {
       }
     }
 
+    async updateArticle(): Promise<void> {
+      this.errorTitle = false;
+      this.errorContent = false;
+      this.errorLanguage = false;
+      this. errorImage = false;
+      this.errorGeneral = false;
+    
+           if(this.article.title == "") {
+            this.errorTitle = true;
+           } 
+           if(this.article.content.length < 100) {
+            this.errorContent = true;
+           } 
+           if(this.article.language =="") {
+            this.errorLanguage = true;
+           } 
+           if(this.image == undefined) {
+            if (this.sameimage == false) {
+            this.errorImage = true;
+            } else {
+              console.log(this.sameimage)
+            }
+           } 
+           if (!this.errorTitle && !this.errorContent && !this.errorLanguage && !this.errorImage) {
+            this.user = this.requestResponse.user!;
+            this.article.username = this.user.username!;
+           
+            await this.services.updateArticle(this.article, this.sameimage, this.image! ).then((res: any)=> {
+              console.log(res);
+              this.router.navigate(['/homearticles']);
+            }).catch ( (error: { error: any; }) => {
+              this.errorGeneral = true;
+              console.log(JSON.stringify(error.error))
+            })
+
+          }
+        }
+    
+
   selectChangeHandler (event: any, i:any) {
         console.log(i)
         this.article.language = i;
@@ -124,8 +168,24 @@ export class WritearticleComponent implements OnInit {
     })
   }
 
+  getByValue( searchValue: string) {
+    for (let [key, value] of this.items.entries()) {
+      if (value.val === searchValue)
+        return key;
+    }
+    return '';
+  }
+
   ngOnInit(): void {
     this.getProfile();
+    if(this.route.snapshot.paramMap.get('id') != undefined && this.route.snapshot.paramMap.get('id') != null) {
+      this.article.id = this.route.snapshot.paramMap.get('id')!;
+      this.article.title = this.route.snapshot.paramMap.get('title')!;
+      this.article.language = this.route.snapshot.paramMap.get('language')!;
+      this.article.content = this.route.snapshot.paramMap.get('content')!;
+      this.article.username = this.route.snapshot.paramMap.get('username')!;
+      console.log("transmitted article:" + JSON.stringify(this.article))
+    }
     console.log(this.requestResponse)
     this.apiservices.getUser.subscribe(user => { 
       this.requestResponse = user

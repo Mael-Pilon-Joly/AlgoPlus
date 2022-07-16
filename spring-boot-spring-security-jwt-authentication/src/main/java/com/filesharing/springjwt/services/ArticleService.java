@@ -16,10 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ArticleService {
@@ -85,23 +82,25 @@ public class ArticleService {
         }
     }
 
-    public List<Article> updateArticle(ArticleRequest request, MultipartFile image, String token) throws IOException {
+    public Article updateArticle(ArticleRequest request, MultipartFile image, String token, boolean keepSameImage) throws IOException {
         String username = jwtUtils.getUserNameFromJwtToken(token);
-        if(username!=null && jwtUtils.validateJwtToken(token) && username.equals(request.getUsername())) {
-            FileDB temp = fileStorageDBService.store(image);
-            FileDB article_image = fileDBRepository.getById(temp.getId());
-            Optional<Article>  article_opt = articleRepository.findById(request.getId());
-            if (article_opt.isEmpty()) {
-                return null;
+        Optional<User> user = userRepository.findByUsername(username);
+        Optional<Article>  article_opt = articleRepository.findById(request.getId());
+        if (article_opt.isEmpty()) {
+            return null;
+        }
+
+        if(user.isPresent() && jwtUtils.validateJwtToken(token) && Objects.equals(user.get().getId(), article_opt.get().getUser().getId())) {
+            if (!keepSameImage) {
+                FileDB temp = fileStorageDBService.store(image);
+                FileDB article_image = fileDBRepository.getById(temp.getId());
+                article_opt.get().setImage(article_image);
             }
             article_opt.get().setTitle(request.getTitle());
             article_opt.get().setLastEdited(new Date());
-            article_opt.get().setImage(article_image);
             article_opt.get().setLanguage(ELanguage.valueOf(request.getLanguage().toUpperCase()));
-            articleRepository.save(article_opt.get());
-            List<Article> articles = new ArrayList<>();
-            articles.add(article_opt.get());
-            return articles;
+            article_opt.get().setContent(request.getContent());
+            return (articleRepository.save(article_opt.get()));
         } else {
             return null;
         }
