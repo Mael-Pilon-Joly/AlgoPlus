@@ -94,6 +94,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .antMatchers(HttpMethod.POST, "/api/comments/**").hasAnyRole("ADMIN", "USER")
       .antMatchers(HttpMethod.PUT, "/api/comments/**").hasAnyRole("ADMIN", "USER")
       .antMatchers(HttpMethod.DELETE, "/api/comments/**").hasAnyRole("ADMIN", "USER")
+      .antMatchers("/api/exercise/**").hasAnyRole("ADMIN", "USER")
       .antMatchers("/api/admin/**").hasRole("ADMIN")
       .anyRequest().authenticated()
             .and()
