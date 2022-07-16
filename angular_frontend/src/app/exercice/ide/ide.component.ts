@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Injectable } from '@angular/core';
 import * as ace from 'ace-builds'; 
 import 'ace-builds/src-noconflict/mode-javascript';
 import 'ace-builds/src-noconflict/theme-github';
@@ -8,14 +8,50 @@ import 'ace-builds/src-noconflict/ext-beautify';
 const THEME = 'ace/theme/github'; 
 const LANG = 'ace/mode/javascript';
 
+interface description {
+  v: string;
+  language: string;
+  tag: string;
+}
+@Injectable()
 @Component({
   selector: 'app-ide',
   templateUrl: './ide.component.html',
   styleUrls: ['./ide.component.css']
 })
-
-
 export class IdeComponent implements OnInit {
+  languageId:number = 0;
+  languageName = "";
+  languageVersion ="";
+
+  language:any[] =  [
+    {id:0, val:"Java"},
+    {id:1, val:"Python2"},
+    {id:2, val:"Python3"},
+    {id:3, val:"C++"},
+    {id:4, val:"C"},
+    {id:5, val:"SQL"},
+    {id:6, val:"PHP"},
+    {id:7, val:"Nodejs"},
+  ]
+
+
+  version:Array<{id: number; value: Array<{v: string; language: string, tag:any}>}>  = [
+    {id:0, value:[{v: "0", language:"java", tag:"1.8"}, {v: "3",language:"java", tag:"11"}, {v: "4",language:"java", tag:"17"}]},
+    {id:1, value:[{v: "0", language:"python2", tag:"2.7.11"}]},
+    {id:2, value:[{v: "0", language:"python3", tag:"3.5.1"}]},
+    {id:3, value:[{v: "0", language:"cpp", tag:"5.3.0"}, {v: "2", language:"cpp", tag:"7.2.0"}, {v: "5", language:"cpp", tag:"GCC 11.1.0"}]},
+    {id:4, value:[{v: "0", language:"c", tag:"5.3.0"}, {v: "3", language:"c", tag:"8.1.0"}, {v: "4", language:"c", tag:"9.1.0"}, {v: "5", language:"c", tag:"11.1.0"}]},
+    {id:5, value:[{v: "0", language:"sql", tag:"SQLite 3.9.2"}, {v: "4", language:"sql", tag:"3.37.0"}]},
+    {id:6, value:[{v: "0", language:"php", tag:"5.6.16"}, {v: "1", language:"php", tag:"7.1.11"}, {v: "4", language:"php", tag:"8.0.13"}]},
+    {id:7, value:[{v: "0", language:"nodejs", tag:"6.3.1"},{v: "1", language:"nodejs", tag:"9.2.0"}, {v: "3", language:"nodejs", tag:"12.11.1"}]}
+  ]
+
+  requestBody = {
+    script: "",
+    language: "",
+    versionIndex: ""
+  }
 
   @ViewChild('codeEditor')
   codeEditorElmRef: ElementRef | undefined;
@@ -64,5 +100,19 @@ private getEditorOptions(): Partial<ace.Ace.EditorOptions> & { enableBasicAutoco
   const margedOptions = Object.assign(basicEditorOptions, extraEditorOptions);
   return margedOptions;
 
+}
+
+selectChangeHandler (event: any, val:any, i:any) {
+  console.log(val + " " + i)
+  this.languageName = val;
+  this.languageId = i;
+}
+
+selectChangeHandlerVersion (event: any, v:any, language:any, tag:any) {
+  console.log(v, language)
+  this.requestBody.language = language;
+  this.requestBody.versionIndex  = v;
+  this.languageVersion = tag;
+  console.log(this.requestBody)
 }
 }

@@ -16,33 +16,25 @@
         <!-- languages select -->
         <div style="grid-column-start: 1; grid-column-end: 4; grid-row-start: 1;">
             <div class="input-group input-group-sm">
-                <div class="input-group-prepend">
-                    <label class="input-group-text" for="languages-select">Languages</label>
+                Language:
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-target="dropdown-menu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    {{this.languageName}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <li *ngFor="let v of language; let i = index" (click)="selectChangeHandler($event, v.val, v.id )">
+                        <a class="dropdown-item">{{ v.val }}</a>
                 </div>
-                <select class="languages-select" id="languages-select" #languagesSelect>
-                        <option value="1">language01</option>
-                        <option value="2">language02</option>
-                        <option value="3">language03</option>
-                    </select>
+                Version:
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-bs-target="dropdown-menu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    {{this.languageVersion}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                    <li *ngFor="let v of version[languageId].value; let i = index" (click)="selectChangeHandlerVersion($event, v.v, v.language, v.tag)">
+                        <a class="dropdown-item">{{ v.tag }}</a>
+                </div>
             </div>
         </div>
-        <!-- theme radio buttons -->
-        <div style="grid-column-start: 6; grid-column-end: 10; grid-row-start: 1;">
-            <div class="btn-group btn-group-toggle btn-group-sm mx-auto" data-toggle="buttons">
-                <label class="btn btn-secondary active">
-                        <input type="radio" name="options" id="option1" autocomplete="off" checked>
-                        theme01
-                    </label>
-                <label class="btn btn-secondary">
-                        <input type="radio" name="options" id="option2" autocomplete="off">
-                        theme02
-                    </label>
-                <label class="btn btn-secondary">
-                        <input type="radio" name="options" id="option3" autocomplete="off">
-                        theme03
-                    </label>
-            </div>
-        </div>
+
 
         <!-- the code editor -->
         <div class="col" style="grid-row-start:1; grid-column-start: 1; grid-column-end: 10; margin-top:50px;">
