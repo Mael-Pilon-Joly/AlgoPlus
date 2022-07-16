@@ -19,4 +19,9 @@ export class CommentService {
   postComment(articleId: number, content:string): Observable<CommentModel> {
     return this.http.post<CommentModel>(baseUrl +`comment?articleId=${articleId}&comment=${content}`, {withCredentials:true})
   }
+
+  deleteComment(commentId: number): Observable<any> {
+    console.log("deleting comment...")
+    return this.http.delete<any>(baseUrl +`comment?id=${commentId}`, {withCredentials:true})
+  }
 }

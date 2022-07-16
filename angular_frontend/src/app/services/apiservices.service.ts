@@ -36,6 +36,10 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
+  getUserValue() {
+    return this.requestResponse.user;
+  }
+
   setValue(roles: Roles[]){
     console.log("settig user roles globally..." + JSON.stringify(roles))
     this.user.roles = roles;

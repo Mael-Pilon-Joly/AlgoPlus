@@ -3,75 +3,71 @@
     background: white !important;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
-    float:left;
+    float: left;
     position: relative;
     min-width: 85%;
     overflow: scroll;
 }
 
-
 .wrapper .image {
     padding-top: 25px;
     grid-column-start: 2;
     grid-column-end: 8;
-
 }
 
 .wrapper .title {
-    margin-top:20px;
+    margin-top: 20px;
     grid-column-start: 2;
     grid-column-end: 8;
-
 }
 
 .wrapper .content {
-    margin-top:20px;
+    margin-top: 20px;
     grid-column-start: 2;
     grid-column-end: 9;
 }
 
 .comments {
-    padding-top:10x;
+    padding-top: 10x;
     grid-column-start: 2;
     grid-column-end: 8;
-    background-color: lightblue;
- 
+    background-color: rgb(213, 229, 235);
 }
 
-.comment{
+.comment {
     border-top-style: groove;
     border-top-color: darkgrey;
     display: flex;
 }
-.comment .leftpart{
+
+.comment .leftpart {
     display: inline-block;
 }
 
-.article .content{
-    margin-left:10px;
+.article .content {
+    margin-left: 10px;
     align-self: flex-end;
-
 }
 
-.article .content p{
- font-size: 10px;
+.article .content p {
+    font-size: 10px;
 }
 
 .addcomment {
-    padding-top:10x;
+    padding-top: 10x;
     grid-column-start: 2;
     grid-column-end: 8;
 }
 
-.addcomment .headeraddcomment{
+.addcomment .headeraddcomment {
     display: flex;
 }
 
-.addcomment .headeraddcomment .solicitationimageimage{
+.addcomment .headeraddcomment .solicitationimageimage {
     display: inline-block;
 }
 
-.addcomment .headeraddcomment .solicitationimage{
+.addcomment .headeraddcomment .solicitationimage {
     display: inline-block;
     align-self: flex-end;
 }

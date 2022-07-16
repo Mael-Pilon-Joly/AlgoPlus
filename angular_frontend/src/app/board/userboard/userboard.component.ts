@@ -38,11 +38,9 @@ export class UserboardComponent implements OnInit {
 
   async getProfile(): Promise<void> {
     await  this.services.getProfil().then( res=> {
-      console.log(res);
       this.requestResponse = res;
       if (res!.user!.avatar != null) {
       var urlAvatar = this.fileservices.convertBlobToImage(res.user?.avatar.data);
-      console.log("url avatar" + urlAvatar)
       this.avatarUrl = urlAvatar
       }
       if (res!.user!.cv != null) {

@@ -22,9 +22,10 @@
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">{{'imagearticle' | translate}}</label>
-                <input (change)="fileChange($event)" class="form-control" type="file" id="image" name="image">
+                <input  (change)="fileChange($event)" class="form-control" type="file" id="image" name="image">
+                <div *ngIf="article.id != ''">
                 {{ 'keepsameimage' | translate }} <input type="checkbox" [(ngModel)]="sameimage" name="sameimage" (click)="onItemChange($event)">
-
+                </div>
             </div>
 
 

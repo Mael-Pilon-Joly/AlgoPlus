@@ -11,7 +11,7 @@
                 <li *ngFor="let a of articles$">
                     <a routerLinkActive="active " routerLink="/readarticle" [state]="{ data: a}"> 
                         <h2>{{a.title}}</h2>
-                        <p> {{a.content.substring(0, 50)}} ..</p>
+                        <p> {{a.content.substring(0, 35)}} ..</p>
                         <p> {{a.published.toString().substring(0,10)}}</p>
                     </a>
                 </li>
