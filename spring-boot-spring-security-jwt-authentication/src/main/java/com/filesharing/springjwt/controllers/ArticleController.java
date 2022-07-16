@@ -210,7 +210,7 @@ public class ArticleController {
     }
 
     @DeleteMapping("/article")
-    public ResponseEntity<ArticleResponse> deleteArticle(@RequestHeader(name = "Authorization", required = false) String token,
+    public ResponseEntity<Article> deleteArticle(@RequestHeader(name = "Authorization", required = false) String token,
                                                          @CookieValue(name = "accessToken", required = false) String accessToken,
                                                          @RequestParam Long id) {
         Optional<Article> article = articleRepostitory.findById(id);
@@ -219,13 +219,10 @@ public class ArticleController {
                 accessToken = token.substring(7);
             }
             String decryptedAccessToken = SecurityCipher.decrypt(accessToken);
-            List<Article> articles = articleService.deleteArticle(article.get(), decryptedAccessToken);
-            if (articles == null) {
-                return new ResponseEntity<>(new ArticleResponse(), HttpStatus.UNAUTHORIZED);
-            }
-            return new ResponseEntity<>(new ArticleResponse(articles), HttpStatus.OK);
+            articleService.deleteArticle(article.get(), decryptedAccessToken);
+            return new ResponseEntity<>(article.get(), HttpStatus.OK);
         } catch(Exception e) {
-            return new ResponseEntity<>(new ArticleResponse(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     }

@@ -64,5 +64,7 @@
     "yourarticles": "Vos articles:",
     "updatearticle": "Modifier cet article",
     "deletearticle": "Supprimer cet article",
-    "keepsameimage": "Préserver la même image pour l'article"
+    "keepsameimage": "Préserver la même image pour l'article",
+    "lastedited": "Dernière mise à jour",
+    "deletearticleconfirmation": "Êtes-vous sûr de vouloir supprimer cet article? Cette action est irréversible."
 }

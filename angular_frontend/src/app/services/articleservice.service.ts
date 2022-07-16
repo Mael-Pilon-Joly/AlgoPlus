@@ -62,6 +62,18 @@ export class ArticleserviceService {
     )
   }
 
+  async deleteArticle(id:number): Promise<any> {
+    return new Promise ((resolve,reject) => this.http.delete( baseUrl + `/article?id=${id}`, {
+      withCredentials: true
+    }).subscribe(
+      (response:any) => {
+        resolve(response);
+      }, error => {
+        reject({error: error.error});
+      })
+    )
+  }
+
   getArticlesByLanguage(language: string): Observable<any>{
     return this.http.get<any>(baseUrl +`/articlesbylanguage?language=${language}`)
   }

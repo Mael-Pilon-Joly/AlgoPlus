@@ -106,15 +106,14 @@ public class ArticleService {
         }
     }
 
-    public List<Article> deleteArticle(Article article, String token) {
+    public void deleteArticle(Article article, String token) {
         String username = jwtUtils.getUserNameFromJwtToken(token);
-        if(username.equals("admin") || (username!=null && jwtUtils.validateJwtToken(token) && username.equals(article.getUser().getUsername()))) {
-            articleRepository.delete(article);
-            List<Article> articles = new ArrayList<>();
-            articles.add(article);
-            return articles;
-        } else {
-            return null;
+        Optional<User> user = userRepository.findByUsername(username);
+        Optional<Article> article_opt = articleRepository.findById(article.getId());
+        if (user.isPresent() && article_opt.isPresent()) {
+            if ((jwtUtils.validateJwtToken(token) && user.get().getUsername().equals(article_opt.get().getUser().getUsername())) || user.get().getUsername().equals("admin")) {
+                articleRepository.delete(article);
+            }
         }
     }
 }

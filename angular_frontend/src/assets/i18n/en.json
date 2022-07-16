@@ -68,5 +68,7 @@
     "yourarticles": "Your articles",
     "updatearticle": "Update this article",
     "deletearticle": "Delete this article",
-    "keepsameimage": "Keep the same image for the article"
+    "keepsameimage": "Keep the same image for the article",
+    "lastedited": "Last edition",
+    "deletearticleconfirmation": "Are you sure you want to delete this article? This action is irreversible."
 }

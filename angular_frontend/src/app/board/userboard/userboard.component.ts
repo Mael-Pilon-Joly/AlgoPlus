@@ -7,6 +7,8 @@ import { FileservicesService } from '../../services/fileservices.service';
 import { Router } from '@angular/router'
 import { Article } from 'src/app/models/article.model';
 import { CompleteArticle } from 'src/app/models/completearticle.model';
+import { TranslateService } from '@ngx-translate/core';
+import { ArticleserviceService } from 'src/app/services/articleservice.service';
 
 @Component({
   selector: 'app-userboard',
@@ -32,7 +34,7 @@ export class UserboardComponent implements OnInit {
    avatarUrl: any;
    cvUrl: any;
 
-  constructor(private services: ApiService, private fileservices: FileservicesService, private router: Router) { }
+  constructor(private services: ApiService, private fileservices: FileservicesService, private articleService: ArticleserviceService, private router: Router, private translateService: TranslateService) { }
 
   async getProfile(): Promise<void> {
     await  this.services.getProfil().then( res=> {
@@ -62,6 +64,16 @@ export class UserboardComponent implements OnInit {
     console.log("click event fired..."+JSON.stringify(article))
     this.router.navigate(['/writearticle', {id: article.id, username: article.username, title:article.title, image:article.image, content: article.content, language:article.language}]);
   }
+  
+  async deleteArticle(id: number) {
+    if(confirm(this.translateService.instant('deletearticleconfirmation'))) {
+      await  this.articleService.deleteArticle(id).then( res=> {
+        console.log(res)
+    }).catch (error => {
+      console.log(error)
+    })
+  }
+}
   
   ngOnInit(): void {
     this.getProfile();
