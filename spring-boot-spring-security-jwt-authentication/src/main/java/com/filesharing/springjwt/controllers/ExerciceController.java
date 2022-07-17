@@ -1,7 +1,6 @@
 package com.filesharing.springjwt.controllers;
 
-import com.filesharing.springjwt.dto.CompileDTO;
-import com.filesharing.springjwt.payload.response.CompileRequest;
+import com.filesharing.springjwt.payload.request.CompileRequest;
 import com.filesharing.springjwt.services.ExerciceService;
 import org.json.JSONArray;
 import org.json.JSONObject;

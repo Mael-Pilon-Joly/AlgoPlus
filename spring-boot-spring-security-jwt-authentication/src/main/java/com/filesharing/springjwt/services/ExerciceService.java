@@ -1,7 +1,7 @@
 package com.filesharing.springjwt.services;
 
 import com.filesharing.springjwt.dto.ExerciseDTO;
-import com.filesharing.springjwt.payload.response.CompileRequest;
+import com.filesharing.springjwt.payload.request.CompileRequest;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -33,6 +33,7 @@ public class ExerciceService {
         exerciseDTO.setScript(script);
         exerciseDTO.setLanguage(language);
         exerciseDTO.setVersionIndex(versionIndex);
+        exerciseDTO.setStdIn(request.getStdIn());
         String jsonInString = new Gson().toJson(exerciseDTO);
 
         try {

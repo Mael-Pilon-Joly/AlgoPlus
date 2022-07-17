@@ -21,10 +21,14 @@ interface description {
   styleUrls: ['./ide.component.css']
 })
 export class IdeComponent implements OnInit {
+
+  // Program variables
   languageId:number = 0;
   languageName = "";
   languageVersion ="";
   runOutput = "";
+  imports=""
+  stdIn = "1 2 3";
 
   language:any[] =  [
     {id:0, val:"Java"},
@@ -52,13 +56,15 @@ export class IdeComponent implements OnInit {
   requestBody = {
     script: "",
     language: "",
-    versionIndex: ""
+    versionIndex: "",
+    stdIn: ""
   }
 
   @ViewChild('codeEditor')
   codeEditorElmRef: ElementRef | undefined;
   private codeEditor: ace.Ace.Editor | undefined;
   private editorBeautify: any;
+
   constructor(private exerciseService: ExerciseService) { }
 
   ngOnInit(): void {
@@ -88,6 +94,10 @@ public getCode() {
   const code = this.codeEditor!.getValue();
   console.log(code)
   return code;
+}
+
+public clear() {
+  this.codeEditor?.setValue("")
 }
 
 private getEditorOptions(): Partial<ace.Ace.EditorOptions> & { enableBasicAutocompletion?: boolean; } {
@@ -120,8 +130,11 @@ selectChangeHandlerVersion (event: any, v:any, language:any, tag:any) {
 }
 
 async runCode() {
+
+this.requestBody.stdIn = this.stdIn;
 this.requestBody.script = this.getCode();
 if (this.requestBody.script != "" && this.requestBody.language != "" && this.requestBody.versionIndex!="") {
+  console.log(this.requestBody)
 await this.exerciseService.getOutputFromCode(this.requestBody).then(res => {
   console.log(res)
   this.runOutput = res.output;

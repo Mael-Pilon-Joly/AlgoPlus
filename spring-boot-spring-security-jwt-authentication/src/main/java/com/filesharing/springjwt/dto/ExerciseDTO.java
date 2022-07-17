@@ -7,6 +7,8 @@ public class ExerciseDTO {
     private String language;
     private String versionIndex;
 
+    private String stdin;
+
     public ExerciseDTO() {
     }
 
@@ -56,5 +58,13 @@ public class ExerciseDTO {
 
     public void setVersionIndex(String versionIndex) {
         this.versionIndex = versionIndex;
+    }
+
+    public String getStdIn() {
+        return stdin;
+    }
+
+    public void setStdIn(String stdIn) {
+        this.stdin = stdIn;
     }
 }
