@@ -44,12 +44,12 @@ public class ExerciceController {
 
            for(int i=0; i<exercises.size() ; i++) {
            NewExerciseDTO newExerciseDTO = new NewExerciseDTO();
-           newExerciseDTO.setId(newExerciseDTOList.get(i).getId());
-           newExerciseDTO.setImage(newExerciseDTOList.get(i).getImage());
-           newExerciseDTO.setTitle(newExerciseDTOList.get(i).getTitle());
-           newExerciseDTO.setExplanation(newExerciseDTOList.get(i).getExplanation());
-           newExerciseDTO.setCreator_username(newExerciseDTOList.get(i).getCreator_username());
-           newExerciseDTO.setPublished(newExerciseDTOList.get(i).getPublished());
+           newExerciseDTO.setId(exercises.get(i).getId());
+           newExerciseDTO.setImage(exercises.get(i).getImage());
+           newExerciseDTO.setTitle(exercises.get(i).getTitle());
+           newExerciseDTO.setExplanation(exercises.get(i).getExplanation());
+           newExerciseDTO.setCreator_username(exercises.get(i).getCreator().getUsername());
+           newExerciseDTO.setPublished(exercises.get(i).getPublished());
            NewExerciseDTO clone = new NewExerciseDTO(newExerciseDTO);
            newExerciseDTOList.add(clone);
            }
