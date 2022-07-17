@@ -52,11 +52,11 @@
     "languagechoice": "Choisissez le langage de programmation qui est abordé dans votre article",
     "author": "Auteur:",
     "published": "Publié le:",
-    "errortitle":"Vous devez fournir un titre",
-    "errorcontent":"Vous devez composer un article d'au moins 100 caractères.",
-    "errorlanguage":"Vous devez choisir un langage de programmation pour votre article",
-    "errorimage":"Vous devez fournir une image pour votre article",
-    "errorgeneral":"Une erreur est survenue lors de la publication de votre article. S'il vous plaît, veuillez réessayer plus tard.",
+    "errortitle": "Vous devez fournir un titre",
+    "errorcontent": "Vous devez composer un article d'au moins 100 caractères.",
+    "errorlanguage": "Vous devez choisir un langage de programmation pour votre article",
+    "errorimage": "Vous devez fournir une image pour votre article",
+    "errorgeneral": "Une erreur est survenue lors de la publication de votre article. S'il vous plaît, veuillez réessayer plus tard.",
     "comments": "Commentaires:",
     "addcomment": "Ajoutez un commentaire sur l'article (Vous devez être connecté pour écrire un commentaire) ",
     "comment": "Commentaire:",
@@ -68,5 +68,7 @@
     "lastedited": "Dernière mise à jour",
     "deletearticleconfirmation": "Êtes-vous sûr de vouloir supprimer cet article? Cette action est irréversible.",
     "deletecomment": "Supprimer votre commentaire",
-    "deletecommentconfirmation": "Êtes-vous sûr de vouloir supprimer ce commentaire? Cette action est irréversible."
+    "deletecommentconfirmation": "Êtes-vous sûr de vouloir supprimer ce commentaire? Cette action est irréversible.",
+    "language": "Langage",
+    "exercise": "Exercises de programmation"
 }

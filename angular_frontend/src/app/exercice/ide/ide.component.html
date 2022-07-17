@@ -1,70 +1,78 @@
-<div class="wrapper">
-    <div class="header">
-        <!-- header -->
-        <nav class="navbar navbar-light bg-light ">
-            <div class="container text-center p-2 ">
-                <span class="mx-auto text-bold">My Own IDE</span>
-            </div>
-        </nav>
+<div class="container">
+
+    <div class="problem">
+
     </div>
+    <div class="wrapper">
+        <div class="header">
+            <!-- header -->
+            <nav class="navbar navbar-light bg-light ">
+                <span class="mx-auto text-bold">My Own IDE</span>
+            </nav>
+        </div>
 
 
 
-    <div class="container h-100 mt-4" style="grid-column-start: 1; grid-column-end: 10; grid-row-start: 2; display:grid; grid-template-columns: repeat(10, 1fr); grid-template-rows: repeat(10, 1fr);">
+        <div class="container h-100 mt-4" style="grid-column-start: 1; grid-column-end: 10; grid-row-start: 2; display:grid; grid-template-columns: repeat(10, 1fr); grid-template-rows: repeat(10, 1fr);">
 
-        <!-- languages & theme -->
-        <!-- languages select -->
-        <div style="grid-column-start: 1; grid-column-end: 4; grid-row-start: 1;">
-            <div class="input-group input-group-sm">
-                Language:
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-target="dropdown-menu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <!-- languages & theme -->
+            <!-- languages select -->
+            <div style="grid-column-start: 1; grid-column-end: 10; grid-row-start: 1;">
+                <div class="input-group input-group-sm">
+                    <div>
+                        {{'language' | translate}}
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-target="dropdown-menu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     {{this.languageName}}
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <li *ngFor="let v of language; let i = index" (click)="selectChangeHandler($event, v.val, v.id )">
-                        <a class="dropdown-item">{{ v.val }}</a>
-                </div>
-                Version:
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-bs-target="dropdown-menu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <li *ngFor="let v of language; let i = index" (click)="selectChangeHandler($event, v.val, v.id )">
+                                <a class="dropdown-item">{{ v.val }}</a>
+                        </div>
+                    </div>
+                    <div style="margin-left:20px;">
+                        Version:
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-bs-target="dropdown-menu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     {{this.languageVersion}}
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
-                    <li *ngFor="let v of version[languageId].value; let i = index" (click)="selectChangeHandlerVersion($event, v.v, v.language, v.tag)">
-                        <a class="dropdown-item">{{ v.tag }}</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                            <li *ngFor="let v of version[languageId].value; let i = index" (click)="selectChangeHandlerVersion($event, v.v, v.language, v.tag)">
+                                <a class="dropdown-item">{{ v.tag }}</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
 
-        <!-- the code editor -->
-        <div class="col" style="grid-row-start:1; grid-column-start: 1; grid-column-end: 10; margin-top:50px;">
-            <div class="code-editor" #codeEditor></div>
-        </div>
+            <!-- the code editor -->
+            <div class="col" style="grid-row-start:1; grid-column-start: 1; grid-column-end: 10; margin-top:50px;">
+                <div class="code-editor" #codeEditor></div>
+            </div>
 
-        <!-- run, clear & beautify buttons -->
-        <div style="width: 66%;margin: 0 auto; text-align: center; grid-row-start:2; grid-row-end:4;grid-column-start:1; grid-column-end:10;">
-            <div class="col-3 col-lg-2 col-md-3 col-sm-4 w-50">
-                <button type="button" class="btn btn-dark btn-sm btn-block px-4 mx-2" style="float: left;" (click)="getCode()">
+            <!-- run, clear & beautify buttons -->
+            <div style="width: 100%;margin: 0 auto; display:flex; grid-row-start:2; grid-row-end:3;grid-column-start:1; grid-column-end:6;">
+                <div class="col-3 col-lg-2 col-md-3 col-sm-4 w-50">
+                    <button type="button" class="btn btn-dark btn-sm btn-block px-4 mx-2" style="float: left;" (click)="runCode()">
                     Run
                 </button>
-            </div>
-            <div class="col-3 col-lg-2 col-md-3 col-sm-4 w-50">
-                <button type="button" class="btn btn-primary btn-sm btn-block px-4 mx-2" style="float: left;" (click)="getCode()">
+                </div>
+                <div class="col-3 col-lg-2 col-md-3 col-sm-4 w-50">
+                    <button type="button" class="btn btn-primary btn-sm btn-block px-4 mx-2" style="float: left;" (click)="getCode()">
                     Clear
                 </button>
-            </div>
-            <div class="col-3 col-lg-2 col-md-3 col-sm-4 w-50">
-                <button type="button" class="btn btn-beautify btn-sm btn-block px-4 mx-2" style="float: left;" (click)="beautifyContent()">
+                </div>
+                <div class="col-3 col-lg-2 col-md-3 col-sm-4 w-50">
+                    <button type="button" class="btn btn-beautify btn-sm btn-block px-4 mx-2" style="float: right;" (click)="beautifyContent()">
                     Beautify
                 </button>
+                </div>
             </div>
-        </div>
 
-        <!-- output box -->
-        <div class="row mt-4" style="margin-top: 50px !important; grid-row-start: 2; grid-column-start:1; grid-column-end:10;">
-            <div class="col">
-                <div class="label-box border"><span class="mx-4 font-weight-light">Output</span></div>
-                <textarea class="form-control output" rows="6" disabled="true" aria-label="output-textarea"></textarea>
+            <!-- output box -->
+            <div class="row mt-4" style="margin-top: 50px !important; grid-row-start: 2; grid-column-start:1; grid-column-end:10;">
+                <div class="col">
+                    <div class="label-box border"><span class="mx-4 font-weight-light">Output</span></div>
+                    <textarea [(ngModel)]="runOutput" class="form-control output" rows="6" disabled="true" aria-label="output-textarea"></textarea>
+                </div>
             </div>
         </div>
     </div>

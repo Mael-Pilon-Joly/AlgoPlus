@@ -1,4 +1,17 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+}
+
+.problem {
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
 .wrapper {
+    grid-column-start: 4;
+    grid-column-end: 11;
     background: white !important;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
@@ -6,7 +19,6 @@
     float: left;
     position: relative;
     min-width: 85%;
-    overflow: scroll;
 }
 
 .wrapper .header {

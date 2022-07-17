@@ -1,7 +1,8 @@
 package com.filesharing.springjwt.services;
 
-import com.filesharing.springjwt.dto.CompileDTO;
+import com.filesharing.springjwt.dto.ExerciseDTO;
 import com.filesharing.springjwt.payload.response.CompileRequest;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.util.stream.Collectors;
 import org.json.JSONObject;
@@ -25,10 +25,15 @@ public class ExerciceService {
 
     public JSONObject getCompileResultFromInput(CompileRequest request) throws MalformedURLException {
         String script = request.getScript();
-        script = script.replaceAll("\"","\\\\\"");
         String language = request.getLanguage();
         String versionIndex = request.getVersionIndex();
-        CompileDTO compileDTO = new CompileDTO();
+        ExerciseDTO exerciseDTO = new ExerciseDTO();
+        exerciseDTO.setClientId(clientId);
+        exerciseDTO.setClientSecret(clientSecret);
+        exerciseDTO.setScript(script);
+        exerciseDTO.setLanguage(language);
+        exerciseDTO.setVersionIndex(versionIndex);
+        String jsonInString = new Gson().toJson(exerciseDTO);
 
         try {
             URL url = new URL("https://api.jdoodle.com/v1/execute");
@@ -37,17 +42,13 @@ public class ExerciceService {
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");
 
-            String input = "{\"clientId\": \"" + clientId + "\",\"clientSecret\":\"" + clientSecret + "\",\"script\":\"" + script +
-                    "\",\"language\":\"" + language + "\",\"versionIndex\":\"" + versionIndex + "\"} ";
+            String input = jsonInString;
 
             OutputStream outputStream = connection.getOutputStream();
             outputStream.write(input.getBytes());
             outputStream.flush();
 
             if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
-               compileDTO.setErrorMessage(connection.getResponseMessage());
-               compileDTO.setStatus(connection.getResponseCode());
-               compileDTO.setErrorStream(connection.getErrorStream());
                return new JSONObject();
             }
 
@@ -59,7 +60,6 @@ public class ExerciceService {
             JSONObject json = new JSONObject(output);
 
             connection.disconnect();
-            compileDTO.setOutput(output);
 
             return json;
         } catch (IOException e) {

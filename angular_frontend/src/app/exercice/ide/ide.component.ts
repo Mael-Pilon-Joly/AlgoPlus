@@ -4,6 +4,7 @@ import 'ace-builds/src-noconflict/mode-javascript';
 import 'ace-builds/src-noconflict/theme-github';
 import 'ace-builds/src-noconflict/ext-language_tools';
 import 'ace-builds/src-noconflict/ext-beautify';
+import { ExerciseService } from 'src/app/services/exercise.service';
 
 const THEME = 'ace/theme/github'; 
 const LANG = 'ace/mode/javascript';
@@ -23,6 +24,7 @@ export class IdeComponent implements OnInit {
   languageId:number = 0;
   languageName = "";
   languageVersion ="";
+  runOutput = "";
 
   language:any[] =  [
     {id:0, val:"Java"},
@@ -57,7 +59,7 @@ export class IdeComponent implements OnInit {
   codeEditorElmRef: ElementRef | undefined;
   private codeEditor: ace.Ace.Editor | undefined;
   private editorBeautify: any;
-  constructor() { }
+  constructor(private exerciseService: ExerciseService) { }
 
   ngOnInit(): void {
 }
@@ -84,7 +86,8 @@ public beautifyContent() {
 
 public getCode() {
   const code = this.codeEditor!.getValue();
-  console.log(code);
+  console.log(code)
+  return code;
 }
 
 private getEditorOptions(): Partial<ace.Ace.EditorOptions> & { enableBasicAutocompletion?: boolean; } {
@@ -114,5 +117,17 @@ selectChangeHandlerVersion (event: any, v:any, language:any, tag:any) {
   this.requestBody.versionIndex  = v;
   this.languageVersion = tag;
   console.log(this.requestBody)
+}
+
+async runCode() {
+this.requestBody.script = this.getCode();
+if (this.requestBody.script != "" && this.requestBody.language != "" && this.requestBody.versionIndex!="") {
+await this.exerciseService.getOutputFromCode(this.requestBody).then(res => {
+  console.log(res)
+  this.runOutput = res.output;
+}). catch (error => {
+  console.log(error)
+})
+} 
 }
 }

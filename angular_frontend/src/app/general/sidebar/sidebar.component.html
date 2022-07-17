@@ -7,7 +7,7 @@
         <ul class="nav">
 
             <li>
-                <a *ngIf="this.isLoggedIn "  routerLinkActive="active " routerLink="/userboard">
+                <a *ngIf="this.isLoggedIn " routerLinkActive="active " routerLink="/userboard">
                     <fa-icon [icon]="faClipboardList"></fa-icon>
                     &nbsp; {{ 'dashboard' | translate }}
                 </a>
@@ -17,6 +17,11 @@
             <li>
                 <a mat-button routerLinkActive="active " routerLink="/homearticles">
                     <img src="../../../assets/newspaperwhite.png" height=20px weight=20px> &nbsp; {{ 'articles' | translate }}
+                </a>
+            </li>
+            <li>
+                <a mat-button routerLinkActive="active " routerLink="/ide">
+                    <img src="../../../assets/codingexercises.png" height=20px weight=20px> &nbsp; {{ 'exercise' | translate }}
                 </a>
             </li>
             <li>
