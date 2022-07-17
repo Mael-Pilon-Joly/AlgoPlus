@@ -119,6 +119,7 @@ selectChangeHandler (event: any, val:any, i:any) {
   console.log(val + " " + i)
   this.languageName = val;
   this.languageId = i;
+  this.languageVersion = "";
 }
 
 selectChangeHandlerVersion (event: any, v:any, language:any, tag:any) {

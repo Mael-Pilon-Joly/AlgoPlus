@@ -7,8 +7,9 @@
         <div class="header">
             <!-- header -->
             <nav class="navbar navbar-light bg-light ">
-                <span class="mx-auto text-bold">My Own IDE</span>
+                <span class="mx-auto text-bold">Solution</span>
             </nav>
+            <p style="font-size: 10px;">{{'exerciseexplanation' | translate}}</p>
         </div>
 
 
@@ -32,7 +33,7 @@
                     <div style="margin-left:20px;">
                         Version:
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-bs-target="dropdown-menu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    {{this.languageVersion}}
+                            <div style="max-height:25px;" [innerHTML]="this.languageVersion"></div>
                 </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
                             <li *ngFor="let v of version[languageId].value; let i = index" (click)="selectChangeHandlerVersion($event, v.v, v.language, v.tag)">
@@ -44,7 +45,7 @@
 
 
             <!-- the code editor -->
-            <div class="col" style="grid-row-start:1; grid-column-start: 1; grid-column-end: 10; margin-top:50px;">
+            <div class="col" style="grid-row-start:1; grid-column-start: 1; grid-column-end: 10; margin-top:60px;">
                 <div class="code-editor" #codeEditor></div>
             </div>
 
@@ -52,17 +53,17 @@
             <div style="width: 100%;margin: 0 auto; display:flex; grid-row-start:2; grid-row-end:3;grid-column-start:1; grid-column-end:6;">
                 <div class="col-3 col-lg-2 col-md-3 col-sm-4 w-50">
                     <button type="button" class="btn btn-dark btn-sm btn-block px-4 mx-2" style="float: left;" (click)="runCode()">
-                    Run
+                        {{'run' | translate}}
                 </button>
                 </div>
                 <div class="col-3 col-lg-2 col-md-3 col-sm-4 w-50">
                     <button type="button" class="btn btn-primary btn-sm btn-block px-4 mx-2" style="float: left;" (click)="clear()">
-                    Clear
+                        {{'clear' | translate}}
                 </button>
                 </div>
                 <div class="col-3 col-lg-2 col-md-3 col-sm-4 w-50">
                     <button type="button" class="btn btn-beautify btn-sm btn-block px-4 mx-2" style="float: right;" (click)="beautifyContent()">
-                    Beautify
+                        {{'beautify' | translate}}
                 </button>
                 </div>
             </div>
@@ -70,7 +71,7 @@
             <!-- output box -->
             <div class="row mt-4" style="margin-top: 50px !important; grid-row-start: 2; grid-column-start:1; grid-column-end:10;">
                 <div class="col">
-                    <div class="label-box border"><span class="mx-4 font-weight-light">Output</span></div>
+                    <div class="label-box border"><span class="mx-4 font-weight-light">{{'output' | translate}}</span></div>
                     <textarea [(ngModel)]="runOutput" class="form-control output" rows="6" disabled="true" aria-label="output-textarea"></textarea>
                 </div>
             </div>

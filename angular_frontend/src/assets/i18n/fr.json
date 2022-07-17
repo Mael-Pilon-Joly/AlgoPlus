@@ -70,5 +70,10 @@
     "deletecomment": "Supprimer votre commentaire",
     "deletecommentconfirmation": "Êtes-vous sûr de vouloir supprimer ce commentaire? Cette action est irréversible.",
     "language": "Langage",
-    "exercise": "Exercises de programmation"
+    "exercise": "Exercises de programmation",
+    "run": "Exécuter",
+    "clear": "Nettoyer",
+    "beautify": "Indenter",
+    "output": "Sortie",
+    "exerciseexplanation": "Considérez que votre programme sera roulé comme si il était exécuter à la ligne de commande. Vous devez donc inclure tout les imports, les notations de classe et les notations de méthodes si nécéssaires. De plus, les paramètres à utiliser pour votre programme et qui seront utilisés pour les tests seront passés comme un string par stdin(flux standard d'entrée). Par exemple, un appel au programme printmessage.java pour imprimer Hello World se ferait de la façon suivante: \"Hello World\" | java printmessage . Finalement, votre programme doit imprimer la solution par le stdout(flux standard de sortie) "
 }
