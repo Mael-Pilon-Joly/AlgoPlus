@@ -70,6 +70,10 @@ public class User  {
   @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
   private List<Comment> comments;
 
+  @JsonManagedReference
+  @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
+  private List<Exercise> exercises;
+
   private int points;
 
   public int getPoints() {
