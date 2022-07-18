@@ -1,7 +1,11 @@
 <div class="container">
 
     <div class="problem">
-
+        <h3>{{this.challenge.title}}</h3>
+        <br>
+        <img *ngIf="this.image" [src]=this.image style="height: 200px; width:400px;">
+        <br>
+        <p style="width:80%">{{this.challenge.explanation}}</p>
     </div>
     <div class="wrapper">
         <div class="header">

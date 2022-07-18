@@ -45,7 +45,7 @@ export class ExerciseService {
       )}
 
   async fetchExercises(): Promise<any> {
-    return new Promise ((resolve,reject) => this.http.get( baseUrl + "/exercices" ,  {
+    return new Promise ((resolve,reject) => this.http.get( baseUrl + "/exercises" ,  {
       withCredentials: true
     }).subscribe(
       (response:any) => {
@@ -54,5 +54,16 @@ export class ExerciseService {
         reject({error: error.error});
       })
       )}
+
+      async fetchExerciseById(id: number): Promise<any> {
+        return new Promise ((resolve,reject) => this.http.get( baseUrl +`/exercise?id=${id}` , {
+          withCredentials: true
+        }).subscribe(
+          (response:any) => {
+            resolve(response);
+          }, error => {
+            reject({error: error.error});
+          })
+          )} 
   }
 

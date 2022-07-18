@@ -5,6 +5,9 @@ import 'ace-builds/src-noconflict/theme-github';
 import 'ace-builds/src-noconflict/ext-language_tools';
 import 'ace-builds/src-noconflict/ext-beautify';
 import { ExerciseService } from 'src/app/services/exercise.service';
+import { ActivatedRoute } from '@angular/router';
+import { Exercise } from 'src/app/models/exercise.model';
+import { FileservicesService } from 'src/app/services/fileservices.service';
 
 const THEME = 'ace/theme/github'; 
 const LANG = 'ace/mode/javascript';
@@ -29,6 +32,7 @@ export class IdeComponent implements OnInit {
   runOutput = "";
   imports=""
   stdIn = "1 2 3";
+  pos = "";
 
   language:any[] =  [
     {id:0, val:"Java"},
@@ -60,14 +64,44 @@ export class IdeComponent implements OnInit {
     stdIn: ""
   }
 
+  challenge: Exercise = {
+    id: "",
+    title:  "",
+    username:  "",
+    explanation: "",
+    image:  undefined,
+    solutions: new Map<string,string>()
+  }
+
+  image: any;
+
   @ViewChild('codeEditor')
   codeEditorElmRef: ElementRef | undefined;
   private codeEditor: ace.Ace.Editor | undefined;
   private editorBeautify: any;
 
-  constructor(private exerciseService: ExerciseService) { }
+  constructor(private exerciseService: ExerciseService, private fileservices: FileservicesService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    console.log("return:" +  JSON.stringify(this.route.snapshot.paramMap))
+    this.pos = this.route.snapshot.paramMap.get('id')!;
+    console.log("position" + this.pos)
+    var id: number = +this.pos;
+    this.challenge.id = this.pos;
+    this.exerciseService.fetchExerciseById(id).then( res => {
+    this.challenge.image = res.image
+    if(this.challenge.image) {
+      this.image = this.fileservices.convertBlobToImage(res.image.data);
+      }
+    this.challenge.title = res.title;
+    this.challenge.explanation = res.explanation
+    this.challenge.solutions = res.solutions
+    this.challenge.username = res.username
+    console.log(JSON.stringify("this challenge" + JSON.stringify(this.challenge)))
+    }
+    ).catch (error=> {
+      console.log(error)
+    })
 }
 
 ngAfterViewInit() {

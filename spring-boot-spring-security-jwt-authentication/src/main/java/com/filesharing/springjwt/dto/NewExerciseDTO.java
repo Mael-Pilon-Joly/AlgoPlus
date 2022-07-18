@@ -3,6 +3,7 @@ package com.filesharing.springjwt.dto;
 import com.filesharing.springjwt.models.FileDB;
 
 import java.util.Date;
+import java.util.Map;
 
 public class NewExerciseDTO {
     private Long   id;
@@ -11,6 +12,8 @@ public class NewExerciseDTO {
     private String creator_username;
     private String explanation;
     private Date published;
+
+    private Map<String,String> solutions;
 
     public NewExerciseDTO() {
     }
@@ -81,5 +84,11 @@ public class NewExerciseDTO {
         this.published = published;
     }
 
+    public Map<String, String> getSolutions() {
+        return solutions;
+    }
 
+    public void setSolutions(Map<String, String> solutions) {
+        this.solutions = solutions;
+    }
 }

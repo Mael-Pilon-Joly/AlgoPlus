@@ -27,7 +27,7 @@ export class ExerciseslistComponent implements OnInit {
 
   startChallenge(position: number){
     console.log("position:" + position)
-    this.router.navigate(['/ide'],  { state: { id: position } });
+    this.router.navigate(['/ide',   { id: position } ]);
   }
 
   ngOnInit(): void {

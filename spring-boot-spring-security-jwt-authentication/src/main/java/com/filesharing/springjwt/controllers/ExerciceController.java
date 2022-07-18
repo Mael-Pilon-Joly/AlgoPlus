@@ -19,10 +19,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
@@ -35,7 +32,28 @@ public class ExerciceController {
     @Autowired
     ExerciseRepository exerciseRepository;
 
-    @GetMapping("/exercices")
+    @GetMapping("/exercise")
+    public ResponseEntity<NewExerciseDTO> findExerciseById(@RequestParam Long id){
+        NewExerciseDTO newExerciseDTO = new NewExerciseDTO();
+        try {
+            Optional<Exercise> exercise = exerciseRepository.findById(id);
+            if (exercise.isEmpty()) {
+                return new ResponseEntity<>(newExerciseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+            newExerciseDTO.setId(exercise.get().getId());
+            newExerciseDTO.setCreator_username(exercise.get().getCreator().getUsername());
+            newExerciseDTO.setImage(exercise.get().getImage());
+            newExerciseDTO.setExplanation(exercise.get().getExplanation());
+            newExerciseDTO.setTitle(exercise.get().getTitle());
+            newExerciseDTO.setPublished(exercise.get().getPublished());
+            newExerciseDTO.setSolutions(exercise.get().getSolutions());
+
+            return new ResponseEntity<>(newExerciseDTO, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(newExerciseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping("/exercises")
     public ResponseEntity<List<NewExerciseDTO>> findAllExerices() {
         List<NewExerciseDTO> newExerciseDTOList = new ArrayList<>();
 
