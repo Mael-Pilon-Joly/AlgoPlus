@@ -1,6 +1,7 @@
 package com.filesharing.springjwt.dto;
 
 public class ExerciseDTO {
+    private Long id;
     private String clientId;
     private String clientSecret;
     private String script;
@@ -18,6 +19,22 @@ public class ExerciseDTO {
         this.script = script;
         this.language = language;
         this.versionIndex = versionIndex;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getStdin() {
+        return stdin;
+    }
+
+    public void setStdin(String stdin) {
+        this.stdin = stdin;
     }
 
     public String getClientId() {

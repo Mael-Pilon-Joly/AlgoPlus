@@ -44,7 +44,7 @@ public class AdminService {
         try {
             Optional<User> user = userRepository.findByUsername(currentUserUsername);
             if (user.isPresent()) {
-                requestResponse.setUser(user.get());
+                requestResponse.setUsername(user.get().getUsername());
                 httpStatus.add(HttpStatus.OK);
                 requestResponse.setHttpsStatus(httpStatus);
                 return new ResponseEntity<>(requestResponse, HttpStatus.OK);

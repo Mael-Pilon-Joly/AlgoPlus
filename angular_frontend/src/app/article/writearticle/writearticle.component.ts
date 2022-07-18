@@ -61,13 +61,11 @@ export class WritearticleComponent implements OnInit {
   constructor(private apiservices: ApiService, private services: ArticleserviceService, private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
 
-  requestResponse: RequestResponseUser = {
-    user: this.user
-  }
+  requestResponse: User = {}
 
   updateTitle(event:any) {
     console.log(event)
-    this.user.username = this.requestResponse.user?.username;
+    this.user.username = this.requestResponse.username;
   }
 
   fileChange(event:any) {
@@ -102,7 +100,7 @@ export class WritearticleComponent implements OnInit {
         this.errorImage = true;
        } 
        if (!this.errorTitle && !this.errorContent && !this.errorLanguage && !this.errorImage) {
-        this.user = this.requestResponse.user!;
+        this.user = this.requestResponse;
         this.article.username = this.user.username!;
        
         await this.services.createArticle(this.article, this.image! ).then((res: any)=> {
@@ -139,7 +137,7 @@ export class WritearticleComponent implements OnInit {
             }
            } 
            if (!this.errorTitle && !this.errorContent && !this.errorLanguage && !this.errorImage) {
-            this.user = this.requestResponse.user!;
+            this.user = this.requestResponse;
             this.article.username = this.user.username!;
            
             await this.services.updateArticle(this.article, this.sameimage, this.image! ).then((res: any)=> {

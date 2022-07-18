@@ -57,7 +57,7 @@ public class UserController {
                         break;
                 }
             }
-            requestResponse.setUser(null);
+            requestResponse.setUsername(null);
             requestResponse.setHttpsStatus(status);
             return new ResponseEntity<>(requestResponse, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -70,7 +70,7 @@ public class UserController {
         String token = UUID.randomUUID().toString();
         userService.createPasswordResetTokenForUser(user.get(), token);
         status.add(HttpStatus.OK);
-        requestResponse.setUser(user.get());
+        requestResponse.setUsername(user.get().getUsername());
         requestResponse.setHttpsStatus(status);
         userService.constructAndSendPasswordResetEmail( user.get(), user.get().getEmail(), token);
         return new ResponseEntity<>(requestResponse, HttpStatus.OK);
@@ -101,7 +101,7 @@ public class UserController {
                         break;
                 }
             }
-            requestResponse.setUser(null);
+            requestResponse.setUsername(null);
             requestResponse.setHttpsStatus(status);
             return new ResponseEntity<>(requestResponse, HttpStatus.BAD_REQUEST);
         }

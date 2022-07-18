@@ -1,7 +1,8 @@
 package com.filesharing.springjwt.services;
 
-import com.filesharing.springjwt.dto.Token;
-import com.filesharing.springjwt.dto.TokenProvider;
+import com.filesharing.springjwt.dto.*;
+import com.filesharing.springjwt.models.Article;
+import com.filesharing.springjwt.models.Exercise;
 import com.filesharing.springjwt.models.FileDB;
 import com.filesharing.springjwt.models.User;
 import com.filesharing.springjwt.payload.request.LoginRequest;
@@ -10,6 +11,7 @@ import com.filesharing.springjwt.payload.response.LoginResponse;
 import com.filesharing.springjwt.payload.response.RequestResponse;
 import com.filesharing.springjwt.registration.email.EmailSender;
 import com.filesharing.springjwt.registration.token.PasswordResetToken;
+import com.filesharing.springjwt.repository.ArticleRepository;
 import com.filesharing.springjwt.repository.FileDBRepository;
 import com.filesharing.springjwt.repository.PasswordTokenRepository;
 import com.filesharing.springjwt.repository.UserRepository;
@@ -71,6 +73,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     ArticleService articleService;
+
+    @Autowired
+    ArticleRepository articleRepository;
 
     @Override
     public ResponseEntity<LoginResponse> login(LoginRequest loginRequest, String accessToken, String refreshToken) {
@@ -167,7 +172,50 @@ public class UserServiceImpl implements UserService {
         try {
             Optional<User> user = userRepository.findByUsername(currentUserUsername);
             if (user.isPresent()) {
-                requestResponse.setUser(user.get());
+                requestResponse.setId(user.get().getId());
+                requestResponse.setUsername(user.get().getUsername());
+                requestResponse.setAvatar(user.get().getAvatar());
+                requestResponse.setCV(user.get().getCV());
+                requestResponse.setEmail(user.get().getEmail());
+                requestResponse.setEnabled(user.get().isEnabled());
+                requestResponse.setRoles(user.get().getRoles());
+                // Convert articles to articleDTOS to prevent json infinite loop
+
+                List<ArticleDTO> articleDTOS = new ArrayList<>();
+                List<Article> articles = user.get().getArticles();
+
+                for (int i=0; i<articles.size() ; i++) {
+                    ArticleDTO articleDTO = new ArticleDTO();
+                    articleDTO.setId(articles.get(i).getId());
+                    articleDTO.setUsername(articles.get(i).getUser().getUsername());
+                    articleDTO.setContent(articles.get(i).getContent());
+                    articleDTO.setImage(articles.get(i).getImage());
+                    articleDTO.setTitle(articles.get(i).getTitle());
+                    articleDTO.setPublished(articles.get(i).getPublished());
+                    articleDTO.setLastEdited(articles.get(i).getLastEdited());
+                    ArticleDTO clone = new ArticleDTO(articleDTO);
+                    articleDTOS.add(articleDTO);
+                }
+
+                requestResponse.setArticlesDTOs(articleDTOS);
+
+                // Convert exercises to exerciseDTOS to prevent json infinite loop
+
+                List<NewExerciseDTO> exerciseDTOS = new ArrayList<>();
+                List<Exercise> exercises = user.get().getExercises();
+
+                for (int i=0; i<exercises.size() ; i++) {
+                    NewExerciseDTO exerciseDTO = new NewExerciseDTO();
+                    exerciseDTO.setId(exercises.get(i).getId());
+                    exerciseDTO.setPublished(exercises.get(i).getPublished());
+                    exerciseDTO.setImage(exercises.get(i).getImage());
+                    exerciseDTO.setCreator_username(exercises.get(i).getCreator().getUsername());
+                    exerciseDTO.setExplanation(exercises.get(i).getExplanation());
+                    NewExerciseDTO clone = new NewExerciseDTO(exerciseDTO);
+                    exerciseDTOS.add(clone);
+                }
+
+                requestResponse.setExercises(exerciseDTOS);
                 httpStatus.add(HttpStatus.OK);
                 requestResponse.setHttpsStatus(httpStatus);
                 return new ResponseEntity<>(requestResponse, HttpStatus.OK);
@@ -211,8 +259,7 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity<RequestResponse> constructAndSendPasswordResetEmail(User user, String dest, String token) {
         RequestResponse requestResponse = new RequestResponse();
         List<HttpStatus> status = new ArrayList<>();
-        requestResponse.setUser(user);
-
+        requestResponse.setUsername(user.getUsername());
         try {
             String email = "<div> <p1> Hi " + user.getUsername() + ", you have requested a password reset from AlgoPlus.</p1> <p2> Please click this link to reset your password, or ignore this message if you haven't made this request: </p2> <a href='http://localhost:8080/api/user/validatepassword?token=" + token + "'>Reset your password</a></div>";
             emailSender.send(dest, email, "Reset your password");

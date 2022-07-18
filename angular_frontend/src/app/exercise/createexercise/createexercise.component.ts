@@ -86,6 +86,7 @@ export class CreateexerciseComponent implements OnInit {
        console.log(this.exercise)
         await this.exerciseservices.createExercise(this.exercise, this.image! ).then((res: any)=> {
           console.log(res);
+          this.router.navigate(['/userboard']);
         }).catch ( (error: { error: any; }) => {
           this.errorGeneral = true;
           console.log(JSON.stringify(error.error))

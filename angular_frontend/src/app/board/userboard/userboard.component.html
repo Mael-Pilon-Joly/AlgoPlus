@@ -5,8 +5,8 @@
                 <img [src]=this.avatarUrl onerror="this.src='../../../assets/avatar.png';" style="border-radius: 50%;" height="100px" width="100px">
             </div>
             <div class="name">
-                <h3> {{requestResponse.user?.username}}</h3>
-                <p> {{requestResponse.user?.email}}</p>
+                <h3> {{requestResponse.username}}</h3>
+                <p> {{requestResponse.email}}</p>
                 <div class="link ">
                     <a mat-button routerLinkActive="active " routerLink="/updateprofile">{{ 'updateprofile' | translate }}</a>
                 </div>
@@ -22,33 +22,33 @@
                 </div>
             </div>
         </div>
-    <div class="achievements">
+        <div class="achievements">
+        </div>
+        <div class="articles">
+            <h4> <u>{{'yourarticles' | translate}}</u></h4>
+            <div *ngIf="this.user.articlesDTOs">
+                <ul>
+                    <li *ngFor="let a of user.articlesDTOs">
+                        <div class="article">
+                            <a routerLinkActive="active " routerLink="/readarticle" [state]="{ data: a}">
+                                <div class="leftpart">
+                                    <div class="image">
+                                        <ng-container *ngIf="convertDataToImage(a);let image">
+                                            <img [src]=image style="height: 75px; width:100px;">
+                                        </ng-container>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h5>{{a.title}}</h5>
+                                    <p> {{a.content.toString().substring(0,80)}}..</p>
+                                </div>
+                            </a>
+                            <button type="submit" (click)="updateArticle(a)" class="btn btn-outline-success btn-sm" style="width:100px;height:50px;margin-top: 20px; margin-left: 10px; ">{{'updatearticle' | translate }}</button>
+                            <button type="submit" (click)="deleteArticle(a.id)" class="btn btn-outline-danger btn-sm" style="width:100px;height:50px;margin-top: 20px; margin-left: 10px; margin-right:10px; ">{{'deletearticle' | translate }}</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <div class="articles">
-        <h4> <u>{{'yourarticles' | translate}}</u></h4> 
-              <div *ngIf="this.user.articles">
-               <ul  >
-                   <li *ngFor="let a of user.articles">
-                      <div class="article">
-                      <a routerLinkActive="active " routerLink="/readarticle" [state]="{ data: a}"> 
-                      <div class="leftpart">
-                      <div class="image">
-                          <ng-container *ngIf="convertDataToImage(a);let image">
-                          <img [src]=image  style="height: 75px; width:100px;">
-                      </ng-container>
-                      </div>
-                      </div>
-                       <div class="content">
-                          <h5>{{a.title}}</h5>
-                       <p> {{a.content.toString().substring(0,80)}}..</p>
-                      </div>
-                      </a>
-                      <button type="submit" (click)="updateArticle(a)" class="btn btn-outline-success btn-sm" style="width:100px;height:50px;margin-top: 20px; margin-left: 10px; ">{{'updatearticle' | translate }}</button>
-                      <button type="submit" (click)="deleteArticle(a.id)"class="btn btn-outline-danger btn-sm" style="width:100px;height:50px;margin-top: 20px; margin-left: 10px; margin-right:10px; ">{{'deletearticle' | translate }}</button>
-                    </div>
-                   </li>
-               </ul>
-              </div>
-    </div>
-</div>
 </div>

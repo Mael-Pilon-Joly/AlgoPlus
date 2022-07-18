@@ -26,9 +26,7 @@ export class LoginComponent implements OnInit {
     roles:[]
   }
 
-  requestResponse: RequestResponseUser = {
-    user: this.user
-  }
+  requestResponse: User ={};
 
   errorLogin: boolean = false;
   errorPendingConfirmation: boolean = false;
@@ -52,7 +50,7 @@ export class LoginComponent implements OnInit {
     };
 
     
-    if (this.requestResponse.user) {
+    if (this.requestResponse) {
     await  this.services.login(data, this.userDTO.rememberme).then( res=> {
     console.log(this.userDTO.rememberme);
     localStorage.setItem('loggedin', 'true');
@@ -62,8 +60,10 @@ export class LoginComponent implements OnInit {
     } else {
       localStorage.setItem('rememberme', 'false');
     }
-    const result : Roles[] = res.user!.roles!;
+    console.log("return from login service request:" + res.roles!)
+    const result : Roles[] = res.roles!;
     this.services.setValue(result);
+    console.log("redirection to userboard...")
     this.router.navigate(['/userboard']);
 
   }).catch ( error => {

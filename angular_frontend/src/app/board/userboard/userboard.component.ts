@@ -24,12 +24,10 @@ export class UserboardComponent implements OnInit {
     avatar: {},
     cv:{},
     roles:[],
-    articles: []
+    articlesDTOs: []
   }
 
-  requestResponse: RequestResponseUser = {
-    user: this.user
-  }
+  requestResponse: User ={}
 
    avatarUrl: any;
    cvUrl: any;
@@ -39,15 +37,15 @@ export class UserboardComponent implements OnInit {
   async getProfile(): Promise<void> {
     await  this.services.getProfil().then( res=> {
       this.requestResponse = res;
-      if (res!.user!.avatar != null) {
-      var urlAvatar = this.fileservices.convertBlobToImage(res.user?.avatar.data);
+      if (res!.avatar != null) {
+      var urlAvatar = this.fileservices.convertBlobToImage(res.avatar.data);
       this.avatarUrl = urlAvatar
       }
-      if (res!.user!.cv != null) {
-      var urlCV = this.fileservices.convertBlobToText(res.user?.cv?.data )
+      if (res!.cv != null) {
+      var urlCV = this.fileservices.convertBlobToText(res.cv?.data )
       this.cvUrl = urlCV
       }
-      this.user.articles = res.user?.articles;
+      this.user.articlesDTOs= res.articlesDTOs;
       
 
     })

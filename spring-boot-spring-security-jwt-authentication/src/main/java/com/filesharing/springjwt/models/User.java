@@ -1,5 +1,6 @@
 package com.filesharing.springjwt.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.security.core.GrantedAuthority;
@@ -66,11 +67,9 @@ public class User  {
   @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
   private List<Article> articles;
 
-  @JsonManagedReference
   @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
   private List<Comment> comments;
 
-  @JsonManagedReference
   @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
   private List<Exercise> exercises;
 
@@ -109,6 +108,8 @@ public class User  {
   public void setAvatar(FileDB avatar) {
     this.avatar = avatar;
   }
+
+
 
   public User() {
     this.points = 0;
@@ -197,5 +198,23 @@ public class User  {
     this.token = token;
   }
 
+  public void setArticles(List<Article> articles) {
+    this.articles = articles;
+  }
 
+  public List<Comment> getComments() {
+    return comments;
+  }
+
+  public void setComments(List<Comment> comments) {
+    this.comments = comments;
+  }
+
+  public List<Exercise> getExercises() {
+    return exercises;
+  }
+
+  public void setExercises(List<Exercise> exercises) {
+    this.exercises = exercises;
+  }
 }

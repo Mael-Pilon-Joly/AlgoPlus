@@ -80,4 +80,6 @@ public class NewExerciseDTO {
     public void setPublished(Date published) {
         this.published = published;
     }
+
+
 }

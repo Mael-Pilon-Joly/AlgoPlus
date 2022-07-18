@@ -2,6 +2,7 @@ package com.filesharing.springjwt.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -37,7 +38,6 @@ public class Article {
     @Column( length = 100000 )
     private String content;
 
-    @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER , optional = false)
     @JoinColumn(name = "user_id")
     @OnDelete(action = OnDeleteAction.CASCADE)

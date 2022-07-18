@@ -29,15 +29,13 @@ export class ApiService {
     email: "",
     roles: []
   }
-  requestResponse: RequestResponseUser = {
-    user: this.user
-  }
+  requestResponse: User ={}
 
 
   constructor(private http: HttpClient) { }
 
   getUserValue() {
-    return this.requestResponse.user;
+    return this.requestResponse;
   }
 
   setValue(roles: Roles[]){
@@ -50,7 +48,7 @@ export class ApiService {
     return  this.user.roles;
    }
 
-  async login(data: any, rememberme:boolean): Promise<RequestResponseUser> {
+  async login(data: any, rememberme:boolean): Promise<User> {
     
     return new Promise ((resolve,reject) =>  this.http.post<LoginResponse>(baseUrl + "/signin", data, {
       withCredentials: true
@@ -89,7 +87,7 @@ export class ApiService {
       });
   }
 
-  async getProfil(): Promise<RequestResponseUser> {
+  async getProfil(): Promise<User> {
    return new Promise ((resolve,reject) => this.http.get("http://localhost:8080/api/loggedin/profil", {
       withCredentials: true
     }).subscribe(response => {

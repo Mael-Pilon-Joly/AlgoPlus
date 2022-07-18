@@ -119,7 +119,7 @@ public class AuthController {
             break;
         }
       }
-      responseObj.setUser(null);
+      responseObj.setUsername(null);
       responseObj.setHttpsStatus(response);
       return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -220,7 +220,7 @@ public class AuthController {
 
             user.setRoles(setRoles);
             response.add(HttpStatus.OK);
-            responseObj.setUser(user);
+            responseObj.setUsername(user.getUsername());
             responseObj.setHttpsStatus(response);
             user.setToken("tmptoken");
             userRepository.save(user);
