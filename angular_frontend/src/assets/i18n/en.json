@@ -79,5 +79,26 @@
     "clear": "Clear",
     "beautify": "Beautify",
     "output": "Output",
-    "exerciseexplanation": "Consider that your program will be run as if it were executed at the command line. You must therefore include all imports, class notations and method notations if necessary. In addition, the parameters to be used for your program and which will be used for the tests will be passed as a string by stdin (standard input stream) For example, a call to the printmessage.java program to print Hello World would be done as follows: \"Hello World\" | java printmessage . Finally, your program has to print your solution to the stdout."
+    "exerciseexplanation": "Consider that your program will be run as if it were executed at the command line. You must therefore include all imports, class notations and method notations if necessary. In addition, the parameters to be used for your program and which will be used for the tests will be passed as a string by stdin (standard input stream) For example, a call to the printmessage.java program to print Hello World would be done as follows: \"Hello World\" | java printmessage . Finally, your program has to print your solution to the stdout.",
+    "exercisecreationerror": "There was an error in the process of creating the exercise. Please try again.",
+    "errorexplanation": "You need to provide an explanation for your exercise.",
+    "errorsolutions": "You need to provide 4 sets of (input, expected output) for your exercise (used for testing)",
+    "explanation": "Provide an explanation for your exercise",
+    "solutions": "Provide 4 sets of (input, expect output) for your exercise",
+    "exerciseimage": "Provide an image for your exercise(optional)",
+    "explanationtitle": "This section allows you to:",
+    "createexplanation1": "Create programming challenge to share with others",
+    "createexplantion2": "Personalize your exercise by adding image, explanation and provide test solutions ",
+    "createexplanation3": "Earn the maximum of points you can by participating in the growth of the community!",
+    "resolveexplanation1": "Work on your programming skills by resolving challenge created by others users of the community",
+    "resolveexplanation2": "Develop your knowledge of a multitude of programming langage by trying to resolve challenge in Java, C, C++, Python, PHP, NodeJs and SQL",
+    "resolveexplanation3": "Make yourself known by earning some points when resolving correctly the challenges and climb up the ranking!",
+    "startresolving": "Start resolving challenge now!",
+    "startcreating": "Start creating challenge now!",
+    "input": "Input(need to be a string(without surrounding quotes), if you want to pass an array, pass the value like this : 1 2 3 ... 6 7 8 ",
+    "outputsolution": "Expected output(need to be a string(without surrounding quotes), if you expect the solution to be an array, pass the value like this : 1 2 3 ... 6 7 8",
+    "solutionsetsexplanation": "For example: If your program ask to calculate the sum of an array containing integers, your first test could be \"input = 1 2 4 6 9, output = 22\" ",
+    "forminput": "Input",
+    "formoutput": "Output"
+
 }

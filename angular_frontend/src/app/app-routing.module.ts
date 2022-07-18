@@ -17,7 +17,9 @@ import { HomearticlesComponent } from './article/homearticles/homearticles.compo
 import { WritearticleComponent } from './article/writearticle/writearticle.component';
 import { ReadarticleComponent } from './article/readarticle/readarticle.component';
 import { ArticlesbylanguageComponent } from './article/articlesbylanguage/articlesbylanguage.component';
-import { IdeComponent } from './exercice/ide/ide.component';
+import { IdeComponent } from './exercise/ide/ide.component';
+import { CreateexerciseComponent } from './exercise/createexercise/createexercise.component';
+import { HomeexerciseComponent } from './exercise/homeexercise/homeexercise.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -39,7 +41,9 @@ const routes: Routes = [
   { path: 'writearticle', component: WritearticleComponent},
   { path: 'readarticle', component: ReadarticleComponent},
   { path: 'articlesbylanguage', component: ArticlesbylanguageComponent},
-  { path: 'ide', component:IdeComponent}
+  { path: 'ide', component:IdeComponent},
+  { path: 'createexercise', component:CreateexerciseComponent},
+  { path: 'homeexercise', component: HomeexerciseComponent}
 ];
 
 @NgModule({

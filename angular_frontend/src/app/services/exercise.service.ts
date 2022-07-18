@@ -1,7 +1,9 @@
+import { formatCurrency } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CompileRequest } from '../models/compileRequest.model';
+import { Exercise } from '../models/exercise.model';
 
 const baseUrl = "http://localhost:8080/api/exercise"
 
@@ -23,4 +25,22 @@ export class ExerciseService {
         reject({error: error.error});
       })
   )}
+
+  async createExercise(exercise: Exercise, image: File) {
+    const obj = Object.fromEntries(exercise.solutions);
+    const formData: FormData = new FormData();
+    formData.append('image',image);
+    formData.append('title', exercise.title)
+    formData.append('explanation', exercise.explanation)
+    formData.append('solutions', JSON.stringify(obj))
+    console.log(formData)
+    return new Promise ((resolve,reject) => this.http.post( baseUrl + "/exercise", formData ,  {
+      withCredentials: true
+    }).subscribe(
+      (response:any) => {
+        resolve(response);
+      }, error => {
+        reject({error: error.error});
+      })
+      )}
 }

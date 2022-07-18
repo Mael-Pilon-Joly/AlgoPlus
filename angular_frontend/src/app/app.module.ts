@@ -36,7 +36,9 @@ import { WritearticleComponent } from './article/writearticle/writearticle.compo
 import { ReadarticleComponent } from './article/readarticle/readarticle.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { ArticlesbylanguageComponent } from './article/articlesbylanguage/articlesbylanguage.component';
-import { IdeComponent } from './exercice/ide/ide.component';
+import { IdeComponent } from './exercise/ide/ide.component';
+import { CreateexerciseComponent } from './exercise/createexercise/createexercise.component';
+import { HomeexerciseComponent } from './exercise/homeexercise/homeexercise.component';
 
 
 
@@ -81,7 +83,9 @@ export class CustomInterceptor implements HttpInterceptor {
     WritearticleComponent,
     ReadarticleComponent,
     ArticlesbylanguageComponent,
-    IdeComponent
+    IdeComponent,
+    CreateexerciseComponent,
+    HomeexerciseComponent
   ],
   imports: [
     BrowserModule,

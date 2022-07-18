@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url(/assets/Montserrat_Alternates/MontserratAlternates-Bold.ttf) format("truetype");
+    font-weight: 300;
+}
+
+label {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #0c4604;
+    text-decoration: none;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    row-gap: 10px;
+    height: 100vh;
+    margin-left: 100px !important;
+    min-width: 160vh;
+}
+
+.wrapper .form-grid {
+    padding: 30px;
+    margin: 10px;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 8;
+    background-color: rgb(175, 214, 175);
+    border-radius: 5%;
+    box-shadow: inset -10px -10px 15px rgba(255, 255, 255, 0.5), inset 10px 10px 15px rgba(70, 70, 70, 0.12);
+}
+
+.wrapper .form-grid2 {
+    padding: 30px;
+    margin: 10px;
+    grid-column-start: 5;
+    grid-column-end: 11;
+    grid-row-start: 1;
+    grid-row-end: 8;
+    background-color: rgb(175, 214, 175);
+    border-radius: 5%;
+    box-shadow: inset -10px -10px 15px rgba(255, 255, 255, 0.5), inset 10px 10px 15px rgba(70, 70, 70, 0.12);
+}
