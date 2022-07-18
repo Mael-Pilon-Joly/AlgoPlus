@@ -39,6 +39,8 @@ import { ArticlesbylanguageComponent } from './article/articlesbylanguage/articl
 import { IdeComponent } from './exercise/ide/ide.component';
 import { CreateexerciseComponent } from './exercise/createexercise/createexercise.component';
 import { HomeexerciseComponent } from './exercise/homeexercise/homeexercise.component';
+import { ExerciseslistComponent } from './exercise/exerciseslist/exerciseslist.component';
+import { MatTableModule } from '@angular/material/table'  
 
 
 
@@ -85,7 +87,8 @@ export class CustomInterceptor implements HttpInterceptor {
     ArticlesbylanguageComponent,
     IdeComponent,
     CreateexerciseComponent,
-    HomeexerciseComponent
+    HomeexerciseComponent,
+    ExerciseslistComponent
   ],
   imports: [
     BrowserModule,
@@ -102,7 +105,8 @@ export class CustomInterceptor implements HttpInterceptor {
     FontAwesomeModule,
     PdfViewerModule,
     MatIconModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatTableModule
     
   ],
   providers: [

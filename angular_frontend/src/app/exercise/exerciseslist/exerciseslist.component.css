@@ -1,0 +1,28 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    row-gap: 10px;
+    height: 100vh;
+    margin-left: 100px !important;
+    min-width: 160vh;
+}
+
+table {
+    grid-column-start: 1;
+    grid-column-end: 10;
+    grid-row-start: 2;
+    grid-auto-rows: minmax(min-content, max-content);
+    width: 100%;
+    background: white;
+}
+
+td {
+    border: 1px solid #e7e7e7;
+    font-weight: bold;
+    height: 25px !important;
+}
+
+.table-row {
+    height: 30px !important;
+}

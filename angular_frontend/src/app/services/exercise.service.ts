@@ -43,4 +43,16 @@ export class ExerciseService {
         reject({error: error.error});
       })
       )}
-}
+
+  async fetchExercises(): Promise<any> {
+    return new Promise ((resolve,reject) => this.http.get( baseUrl + "/exercices" ,  {
+      withCredentials: true
+    }).subscribe(
+      (response:any) => {
+        resolve(response);
+      }, error => {
+        reject({error: error.error});
+      })
+      )}
+  }
+

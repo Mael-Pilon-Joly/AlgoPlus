@@ -20,6 +20,7 @@ import { ArticlesbylanguageComponent } from './article/articlesbylanguage/articl
 import { IdeComponent } from './exercise/ide/ide.component';
 import { CreateexerciseComponent } from './exercise/createexercise/createexercise.component';
 import { HomeexerciseComponent } from './exercise/homeexercise/homeexercise.component';
+import { ExerciseslistComponent } from './exercise/exerciseslist/exerciseslist.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -43,7 +44,8 @@ const routes: Routes = [
   { path: 'articlesbylanguage', component: ArticlesbylanguageComponent},
   { path: 'ide', component:IdeComponent},
   { path: 'createexercise', component:CreateexerciseComponent},
-  { path: 'homeexercise', component: HomeexerciseComponent}
+  { path: 'homeexercise', component: HomeexerciseComponent},
+  { path: 'listexercises', component: ExerciseslistComponent}
 ];
 
 @NgModule({

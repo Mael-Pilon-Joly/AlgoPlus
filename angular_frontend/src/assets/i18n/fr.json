@@ -95,5 +95,6 @@
     "outputsolution": "Sortie(doit être un string(sans guillet aux extrémitées), si la solution doit retourner un tableau, passer les valeurs de la façon suivante: 1 2 3 ... 6 7 8",
     "solutionsetsexplanation": "Par exemple: Si votre programme demande de faire la somme d'un tableau d'integers, votre premier test pourrait être \"entrée = 1 2 4 6 9, sortie = 22\" ",
     "forminput": "Entrée",
-    "formoutput": "Sortie"
+    "formoutput": "Sortie",
+    "resolve": "Commencer ce défis"
 }

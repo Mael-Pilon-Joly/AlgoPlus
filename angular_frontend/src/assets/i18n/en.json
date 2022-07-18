@@ -99,6 +99,7 @@
     "outputsolution": "Expected output(need to be a string(without surrounding quotes), if you expect the solution to be an array, pass the value like this : 1 2 3 ... 6 7 8",
     "solutionsetsexplanation": "For example: If your program ask to calculate the sum of an array containing integers, your first test could be \"input = 1 2 4 6 9, output = 22\" ",
     "forminput": "Input",
-    "formoutput": "Output"
+    "formoutput": "Output",
+    "resolve": "Start this challenge"
 
 }
