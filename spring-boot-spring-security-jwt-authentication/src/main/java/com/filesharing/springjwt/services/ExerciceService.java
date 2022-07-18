@@ -65,7 +65,7 @@ public class ExerciceService {
         exerciseDTO.setScript(script);
         exerciseDTO.setLanguage(language);
         exerciseDTO.setVersionIndex(versionIndex);
-        exerciseDTO.setStdIn(request.getStdIn());
+        exerciseDTO.setStdIn(escapeMetaCharacters(request.getStdIn()));
         String jsonInString = new Gson().toJson(exerciseDTO);
 
         try {
@@ -98,6 +98,17 @@ public class ExerciceService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public String escapeMetaCharacters(String inputString){
+        final String[] metaCharacters = {"\\","^","$","{","}","[","]","(",")",".","*","+","?","|","<",">","-","&","%"};
+
+        for (int i = 0 ; i < metaCharacters.length ; i++){
+            if(inputString.contains(metaCharacters[i])){
+                inputString = inputString.replace(metaCharacters[i],"\\"+metaCharacters[i]);
+            }
+        }
+        return inputString;
     }
 
     public NewExerciseDTO createExercise (String token, String title, String explanation, MultipartFile image, String solutions) throws IOException {

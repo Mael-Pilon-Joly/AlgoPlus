@@ -61,7 +61,7 @@ export class IdeComponent implements OnInit {
     script: "",
     language: "",
     versionIndex: "",
-    stdIn: ""
+    stdIn: "ab12cd!$_98dh[]()35"
   }
 
   challenge: Exercise = {
@@ -74,6 +74,15 @@ export class IdeComponent implements OnInit {
   }
 
   image: any;
+  tests= false;
+  successTest1 = false;
+  successTest2 = false;
+  successTest3 = false;
+  successTest4 = false;
+  failureTest1 = false;
+  failureTest2 = false;
+  failureTest3 = false;
+  failureTest4 = false;
 
   @ViewChild('codeEditor')
   codeEditorElmRef: ElementRef | undefined;
@@ -133,6 +142,185 @@ public getCode() {
 public clear() {
   this.codeEditor?.setValue("")
 }
+
+public test() {
+  this.tests = true;
+  this.runTest1();
+}
+
+public allTestSucceed(){
+  this.tests = false;
+  this.successTest1 = false;
+  this.successTest2 = false;
+  this.successTest3 = false;
+  this.successTest4 = false;
+  this.failureTest1 = false;
+  this.failureTest2 = false;
+  this.failureTest3 = false;
+  this.failureTest4 = false;
+}
+
+public failedTest() {
+  this.tests = false;
+  this.successTest1 = false;
+  this.successTest2 = false;
+  this.successTest3 = false;
+  this.successTest4 = false;
+  this.failureTest1 = false;
+  this.failureTest2 = false;
+  this.failureTest3 = false;
+  this.failureTest4 = false;
+}
+
+async runTest1(){
+
+console.log(this.challenge.solutions)
+var key =  Object.keys(this.challenge.solutions)[0]; 
+var map =  new Map(Object.entries(this.challenge.solutions));         
+var val = map.get(key)
+console.log("test 1"+ key+ "," +val)
+
+// running the code
+this.requestBody.stdIn = key;
+this.requestBody.script = this.getCode();
+if (this.requestBody.script != "" && this.requestBody.language != "" && this.requestBody.versionIndex!="") {
+  console.log(this.requestBody)
+await this.exerciseService.getOutputFromCode(this.requestBody).then(res => {
+  console.log(res)
+  var result = res.output;
+  // comparing result
+  if(result.trim() == val.trim()) {
+  this.successTest1 = true;
+  setTimeout(() => 
+{
+  this.runTest2();
+},
+3000); 
+  } else {
+  this.failureTest1 = true;
+  this.runOutput = ("Expected output:" + val + "\n" + "Actual output:" + result)
+  setTimeout(() => 
+{
+  this.failedTest();
+},
+3000); 
+  }
+}). catch (error => {
+  console.log(error)
+})
+}
+
+}
+
+async runTest2(){
+var key = Object.keys(this.challenge.solutions)[1];                
+var map =  new Map(Object.entries(this.challenge.solutions));         
+var val = map.get(key)
+console.log("test 2"+ key+ "," +val)
+// running the code
+this.requestBody.stdIn = key;
+this.requestBody.script = this.getCode();
+if (this.requestBody.script != "" && this.requestBody.language != "" && this.requestBody.versionIndex!="") {
+  console.log(this.requestBody)
+await this.exerciseService.getOutputFromCode(this.requestBody).then(res => {
+  console.log(res)
+  var result = res.output;
+  // comparing result
+  if(result.trim() == val.trim()) {
+  this.successTest2 = true;
+  setTimeout(() => 
+{
+  this.runTest3();
+},
+3000); 
+  } else {
+  this.failureTest2 = true;
+  this.runOutput = ("Expected output:" + val + "\n" + "Actual output:" + result)
+  setTimeout(() => 
+{
+  this.failedTest();
+},
+3000); 
+  }
+}). catch (error => {
+  console.log(error)
+})
+}
+}
+
+async runTest3(){
+  var key = Object.keys(this.challenge.solutions)[2];                
+  var map =  new Map(Object.entries(this.challenge.solutions));         
+  var val = map.get(key)
+  console.log("test 3"+ key+ "," +val)
+  // running the code
+this.requestBody.stdIn = key;
+this.requestBody.script = this.getCode();
+if (this.requestBody.script != "" && this.requestBody.language != "" && this.requestBody.versionIndex!="") {
+  console.log(this.requestBody)
+await this.exerciseService.getOutputFromCode(this.requestBody).then(res => {
+  console.log(res)
+  var result = res.output;
+  // comparing result
+  if(result.trim() == val.trim()) {
+  this.successTest3 = true;
+  setTimeout(() => 
+{
+  this.runTest4();
+},
+3000);
+  } else {
+  this.failureTest3 = true;
+  this.runOutput = ("Expected output:" + val + "\n" + "Actual output:" + result)
+  setTimeout(() => 
+{
+  this.failedTest();
+},
+3000); 
+  }
+}). catch (error => {
+  console.log(error)
+})
+} 
+}
+
+async runTest4(){
+var key = Object.keys(this.challenge.solutions)[3];               
+var map =  new Map(Object.entries(this.challenge.solutions));         
+var val = map.get(key)
+// running the code
+this.requestBody.stdIn = key;
+this.requestBody.script = this.getCode();
+if (this.requestBody.script != "" && this.requestBody.language != "" && this.requestBody.versionIndex!="") {
+  console.log(this.requestBody)
+await this.exerciseService.getOutputFromCode(this.requestBody).then(res => {
+  console.log(res)
+  var result = res.output;
+  // comparing result
+  if(result.trim() == val.trim()) {
+  this.successTest4 = true;
+  setTimeout(() => 
+  {
+    this.allTestSucceed();
+  },
+  3000); 
+    
+  } else {
+  this.failureTest4 = true;
+  this.runOutput = ("Expected output:" + val + "\n" + "Actual output:" + result)
+  setTimeout(() => 
+{
+  this.failedTest();
+},
+3000); 
+  }
+}). catch (error => {
+  console.log(error)
+})
+}
+}
+
+
 
 private getEditorOptions(): Partial<ace.Ace.EditorOptions> & { enableBasicAutocompletion?: boolean; } {
   const basicEditorOptions: Partial<ace.Ace.EditorOptions> = {

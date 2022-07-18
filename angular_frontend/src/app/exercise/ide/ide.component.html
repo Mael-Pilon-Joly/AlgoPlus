@@ -47,38 +47,66 @@
                 </div>
             </div>
 
+            <div class="parent" style=" grid-row-start:1; grid-column-start: 1; grid-column-end: 10; position: relative;">
+                <!-- the code editor -->
+                <div class="col" style="grid-row-start:1; grid-column-start: 1; grid-row-end:2; grid-column-end: 10; margin-top:60px;">
+                    <div class="code-editor" #codeEditor></div>
+                </div>
 
-            <!-- the code editor -->
-            <div class="col" style="grid-row-start:1; grid-column-start: 1; grid-column-end: 10; margin-top:60px;">
-                <div class="code-editor" #codeEditor></div>
+                <!-- run, clear & beautify buttons -->
+                <div style="  width: 100%;margin: 0 auto; margin-top: 10px;  display:flex; grid-row-start:2; grid-column-start:1; grid-column-end:6;">
+                    <div class="col-3 col-lg-2 col-md-3 col-sm-4 w-25">
+                        <button type="button" class="btn btn-dark btn-sm btn-block px-4 mx-2" style="float: left;" (click)="runCode()">
+        {{'run' | translate}}
+</button>
+                    </div>
+                    <div class="col-3 col-lg-2 col-md-3 col-sm-4 w-25">
+                        <button type="button" class="btn btn-primary btn-sm btn-block px-4 mx-2" style="float: left;" (click)="clear()">
+        {{'clear' | translate}}
+</button>
+                    </div>
+
+                    <div class="col-3 col-lg-2 col-md-3 col-sm-4 w-25">
+                        <button type="button" class="btn btn-beautify btn-sm btn-block px-4 mx-2" style="float: right;" (click)="beautifyContent()">
+        {{'beautify' | translate}}
+</button>
+                    </div>
+
+                    <div class="col-3 col-lg-2 col-md-3 col-sm-4 w-25">
+                        <button type="button" class="btn btn-success btn-sm btn-block px-4 mx-2" style="float: right;" (click)="test()">
+        Tests
+</button>
+                    </div>
+                </div>
+                <!-- test progress bar -->
+                <div *ngIf="tests" style="margin-top:10px; grid-row-start: 1; grid-row-end: 2; grid-column-start:1; grid-column-end:10;">
+                    <ul class="progressbar rb-step d-flex justify-content-center">
+                        <li *ngIf="!successTest1 && !failureTest1" style="width: 100%;">Test 1</li>
+                        <li *ngIf="failureTest1" class="failure" style="width: 100%;">Test 1</li>
+                        <li *ngIf="successTest1" class="active" style="width: 100%;">Test 1</li>
+                        <li *ngIf="!successTest2 && !failureTest2" style="width: 100%;">Test 2</li>
+                        <li *ngIf="failureTest2" class="failure" style="width: 100%;">Test 2</li>
+                        <li *ngIf="successTest2" class="active" style="width: 100%;">Test 2</li>
+                        <li *ngIf="!successTest3 && !failureTest3" style="width: 100%;">Test 3</li>
+                        <li *ngIf="failureTest3" class="failure" style="width: 100%;">Test 3</li>
+                        <li *ngIf="successTest3" class="active" style="width: 100%;">Test 3</li>
+                        <li *ngIf="!successTest4 && !failureTest4" style="width: 100%;">Test 4</li>
+                        <li *ngIf="failureTest4" class="failure" style="width: 100%;">Test 4</li>
+                        <li *ngIf="successTest4" class="active" style="width: 100%;">Test 4</li>
+
+                    </ul>
+                </div>
+
+                <!-- output box -->
+                <div class="row mt-4" style=" grid-row-start:1; grid-column-start:1; grid-column-end:10;">
+                    <div class="col">
+                        <div class="label-box border"><span class="mx-4 font-weight-light">{{'output' | translate}}</span></div>
+                        <textarea [(ngModel)]="runOutput" class="form-control output" rows="6" disabled="true" aria-label="output-textarea"></textarea>
+                    </div>
+                </div>
             </div>
 
-            <!-- run, clear & beautify buttons -->
-            <div style="width: 100%;margin: 0 auto; display:flex; grid-row-start:2; grid-row-end:3;grid-column-start:1; grid-column-end:6;">
-                <div class="col-3 col-lg-2 col-md-3 col-sm-4 w-50">
-                    <button type="button" class="btn btn-dark btn-sm btn-block px-4 mx-2" style="float: left;" (click)="runCode()">
-                        {{'run' | translate}}
-                </button>
-                </div>
-                <div class="col-3 col-lg-2 col-md-3 col-sm-4 w-50">
-                    <button type="button" class="btn btn-primary btn-sm btn-block px-4 mx-2" style="float: left;" (click)="clear()">
-                        {{'clear' | translate}}
-                </button>
-                </div>
-                <div class="col-3 col-lg-2 col-md-3 col-sm-4 w-50">
-                    <button type="button" class="btn btn-beautify btn-sm btn-block px-4 mx-2" style="float: right;" (click)="beautifyContent()">
-                        {{'beautify' | translate}}
-                </button>
-                </div>
-            </div>
 
-            <!-- output box -->
-            <div class="row mt-4" style="margin-top: 50px !important; grid-row-start: 2; grid-column-start:1; grid-column-end:10;">
-                <div class="col">
-                    <div class="label-box border"><span class="mx-4 font-weight-light">{{'output' | translate}}</span></div>
-                    <textarea [(ngModel)]="runOutput" class="form-control output" rows="6" disabled="true" aria-label="output-textarea"></textarea>
-                </div>
-            </div>
         </div>
     </div>
 </div>
