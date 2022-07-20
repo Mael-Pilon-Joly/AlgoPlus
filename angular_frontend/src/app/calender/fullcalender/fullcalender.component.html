@@ -2,7 +2,9 @@
 <div style="display:flex; width:80%">
     <div class="col-md5 mt-3" style="flex: 0 0 75%; background-color: white; margin-left:260px;" container>
         <h1 class="text-muted mb-6 text-center">View Events in Calender Mode</h1>
-        <full-calendar [options]="calendarOptions"></full-calendar>
+        <ng-container *ngIf="calendarOptions2$ | async as options">
+            <full-calendar [options]="calendarOptions"></full-calendar>
+        </ng-container>
     </div>
 
     <ng-template #template>
@@ -13,8 +15,8 @@
         </button>
         </div>
         <div class="modal-body">
-            Start at: {{start.substring(11,19)}}
-            <br> End at: {{end.substring(11,19)}}
+            Start at: {{start.toString().substring(0,25)}}
+            <br> End at: {{end.toString().substring(0,25)}}
         </div>
     </ng-template>
     <div class="addEvent" style="position:relative; flex: 0 0 25%; float:right; background-color: white; margin:20px; " container>

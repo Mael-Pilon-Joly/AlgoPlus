@@ -4,6 +4,10 @@ import { CalendarOptions } from '@fullcalendar/angular';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { DatePipe } from '@angular/common';
+import { DataRowOutlet } from '@angular/cdk/table';
+import { DataService } from 'src/app/services/calender.service';
+import { map, catchError, tap } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-fullcalender',
@@ -21,15 +25,22 @@ export class FullcalenderComponent implements OnInit {
   allDay= false;
   startTime:any;
   endTime:any;
+  events1 : any[] = []
+  calendarOptions2$ = this.httpClient
+  .get('http://localhost:8080/api/event/events')
+  .pipe(
+    map((res: any) => {
+     console.log(res)
+     this.calendarOptions.events = res;
+     return res;
+    })
+  );
 
-  Events: any[] = [
-    {title: 'Develop a successful Wearable Tech Entrepreneur Start Up Buisness.', allDay: false, start: "2022-07-24", startStr: "2022-07-24 13:00:00.000",  endStr: "2022-07-24 15:00:00.000"},
-    {title: 'test',  allDay: true, date: "2022-07-24"}
-  ];
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
-    events: this.Events,
-    eventClick: this.handleDateClick.bind(this) 
+    eventClick: this.handleDateClick.bind(this),
+    events: this.events1,
+    displayEventTime: false
   }
 
   config = {
@@ -37,7 +48,7 @@ export class FullcalenderComponent implements OnInit {
   }
   @ViewChild('template') template!: string;
 
-  constructor(private httpClient: HttpClient, private modalService: BsModalService, private datePipe: DatePipe) {
+  constructor(private httpClient: HttpClient, private translate: TranslateService, private modalService: BsModalService, private datePipe: DatePipe, private eventService: DataService) {
    }
 
   onDateClick(res: { dateStr: string; }) {
@@ -45,16 +56,21 @@ export class FullcalenderComponent implements OnInit {
   }
 
   handleDateClick(arg:any) {
+
     console.log(arg)
     this.title =arg.event._def.title;
-    this.start= arg.event._def.extendedProps.startStr;
-    this.end= arg.event._def.extendedProps.endStr;
+    var startDate= arg.event._def.extendedProps.startStr;
+    this.start = new Date(startDate).toLocaleDateString(this.translate.currentLang,{ day: 'numeric', month: 'short', year: 'numeric' }) + " " + new Date(startDate).toLocaleTimeString(this.translate.currentLang)
+    var temp = arg.event._def.extendedProps.endStr;
+    var date =new Date(temp).toLocaleDateString(this.translate.currentLang, { day: 'numeric', month: 'short', year: 'numeric' }) + " " + new Date(temp).toLocaleTimeString(this.translate.currentLang)
+    console.log (date)
+    this.end= date;
     this.modalRef = this.modalService.show(this.template, this.config)
   }
-
+ 
   ngOnInit(){
-     
     }  
+
 
     onItemChange(event:any) {
       this.allDay =! this.allDay;
@@ -67,7 +83,7 @@ export class FullcalenderComponent implements OnInit {
     addEvent() {
       console.log(this.datePipe.transform(this.startStr,"yyyy-MM-dd"));
       console.log(this.datePipe.transform(this.endStr,"yyyy-MM-dd"));
-
+      console.log(this.calendarOptions.events)
     }
   
 

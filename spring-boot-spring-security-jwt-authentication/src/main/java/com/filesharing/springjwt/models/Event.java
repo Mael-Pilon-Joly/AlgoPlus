@@ -1,11 +1,14 @@
 package com.filesharing.springjwt.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "event")
-public class Events {
+public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,13 +16,29 @@ public class Events {
 
     private String title;
 
-    private String date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date start;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date end;
 
     private String startStr;
 
     private String endStr;
 
     private Boolean allDay;
+
+    public Event() {
+    }
+
+    public Event(String title, Date start, Date end, String startStr, String endStr, Boolean allDay) {
+        this.title = title;
+        this.start = start;
+        this.end = end;
+        this.startStr = startStr;
+        this.endStr = endStr;
+        this.allDay = allDay;
+    }
 
     public Long getId() {
         return id;
@@ -37,12 +56,20 @@ public class Events {
         this.title = title;
     }
 
-    public String getDate() {
-        return date;
+    public Date getStart() {
+        return start;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setStart(Date start) {
+        this.start = start;
+    }
+
+    public Date getEnd() {
+        return end;
+    }
+
+    public void setEnd(Date end) {
+        this.end = end;
     }
 
     public String getStartStr() {
