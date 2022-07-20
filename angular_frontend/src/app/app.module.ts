@@ -49,6 +49,11 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {DatePipe} from '@angular/common';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -122,6 +127,12 @@ export class CustomInterceptor implements HttpInterceptor {
     FullCalendarModule,
     NgxMaterialTimepickerModule,
     BsDatepickerModule.forRoot(),
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatSliderModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     {

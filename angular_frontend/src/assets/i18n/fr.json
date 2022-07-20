@@ -96,5 +96,7 @@
     "solutionsetsexplanation": "Par exemple: Si votre programme demande de faire la somme d'un tableau d'integers, votre premier test pourrait être \"entrée = 1 2 4 6 9, sortie = 22\" ",
     "forminput": "Entrée",
     "formoutput": "Sortie",
-    "resolve": "Commencer ce défis"
+    "resolve": "Commencer ce défis",
+    "errortitleevent": "Veuillez indiquez le nom de l'événement.",
+    "errorefieldevent": "Veuillez remplir tous les champs."
 }

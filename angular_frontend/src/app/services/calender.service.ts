@@ -16,4 +16,9 @@ export class DataService {
     return this.http.get<any[]>(baseUrl +"/events", {withCredentials:true})
   }
 
+   createEvent(title:String, start: string, end:string, startStr: string, endStr: string, allDay: Boolean) {
+    console.log(title, start, end, startStr, endStr)
+    return this.http.post<any[]>(baseUrl +`/event?title=${title}&start=${start}&end=${end}&startStr=${startStr}&endStr=${endStr}&allday=${allDay}`,  {withCredentials:true})
+   }
+
 }

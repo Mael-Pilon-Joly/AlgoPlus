@@ -8,6 +8,7 @@ import { DataRowOutlet } from '@angular/cdk/table';
 import { DataService } from 'src/app/services/calender.service';
 import { map, catchError, tap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-fullcalender',
@@ -17,15 +18,18 @@ import { TranslateService } from '@ngx-translate/core';
 export class FullcalenderComponent implements OnInit {
 
   modalRef?: BsModalRef;
+  titleAddEvent: string="";
   title: string ="";
   start:any;
-  end: string="";
+  end: any;
   startStr = new Date();
   endStr = new Date();
   allDay= false;
   startTime:any;
   endTime:any;
   events1 : any[] = []
+  errorTitle=false;
+  errorDate=false;
   calendarOptions2$ = this.httpClient
   .get('http://localhost:8080/api/event/events')
   .pipe(
@@ -79,11 +83,59 @@ export class FullcalenderComponent implements OnInit {
     changeEndTime(event: any){
     console.log(event);
     }
-
+    
     addEvent() {
-      console.log(this.datePipe.transform(this.startStr,"yyyy-MM-dd"));
-      console.log(this.datePipe.transform(this.endStr,"yyyy-MM-dd"));
-      console.log(this.calendarOptions.events)
+      var before1;
+      var start = new Date(this.startStr)
+      const offset =start.getTimezoneOffset()
+      start = new Date(start.getTime() - (offset*60*1000))
+      before1 = new Date(start).toISOString().split('T')[0]
+      if(this.startTime != undefined) {
+      this.startTime = this.convertTime12to24(this.startTime)
+      this.startTime = before1 +"T"+ this.startTime
+      }
+      var before2;
+      var end = new Date(this.endStr)
+      end= new Date(end.getTime() - (offset*60*1000))
+      before2 = new Date(end).toISOString().split('T')[0]
+      if(this.endTime != undefined) {
+      this.endTime = this.convertTime12to24(this.endTime)
+      this.endTime = before2 +"T"+ this.endTime
+      }
+      if(this.allDay) {
+      this.endTime = undefined
+      this.end = undefined
+      this.startTime = undefined;
+      }
+  
+      this.errorTitle = false;
+      this.errorDate = false;
+      if (this.title ==undefined) {
+      this.errorTitle = true;
+      } else if (!this.allDay && (this.startStr==undefined || this.endStr==undefined || this.startTime ==undefined || this.endTime ==undefined  )) {
+      this.errorDate = true;
+      } else {
+      console.log("{}:" + this.startTime+","+this.endTime)
+      this.eventService.createEvent(this.titleAddEvent, before1, before2, this.startTime, this.endTime, this.allDay).subscribe();
+      }
+    }
+
+   convertTime12to24 = (time12h:string) => {
+    console.log(time12h)
+      const [time, modifier] = time12h.split(' ');
+      console.log(time+":"+modifier)
+
+      let [hours, minutes] = time.split(':');
+      console.log(hours+":"+minutes)
+      if (hours === '12') {
+        hours = '00';
+      }
+    
+      if (modifier === 'PM') {
+        hours = (parseInt(hours, 10) + 12).toString();
+      }
+    
+      return `${hours}:${minutes}:00`;
     }
   
 

@@ -100,6 +100,8 @@
     "solutionsetsexplanation": "For example: If your program ask to calculate the sum of an array containing integers, your first test could be \"input = 1 2 4 6 9, output = 22\" ",
     "forminput": "Input",
     "formoutput": "Output",
-    "resolve": "Start this challenge"
+    "resolve": "Start this challenge",
+    "errortitleevent": "Please provide a title for the event",
+    "errorfieldevent": "Invalid event. All field need to be filled."
 
 }
