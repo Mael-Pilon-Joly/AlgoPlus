@@ -102,6 +102,13 @@
     "formoutput": "Output",
     "resolve": "Start this challenge",
     "errortitleevent": "Please provide a title for the event",
-    "errorfieldevent": "Invalid event. All field need to be filled."
+    "errorfieldevent": "Invalid event. All field need to be filled.",
+    "programmingcalender": "Calendar of programming event",
+    "addevent": "Add an event",
+    "startdate": "Start date",
+    "starttime": "Start time",
+    "enddate": "End date",
+    "endtime": "End time",
+    "allday": "All day event"
 
 }

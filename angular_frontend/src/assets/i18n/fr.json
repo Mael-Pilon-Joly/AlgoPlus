@@ -98,5 +98,12 @@
     "formoutput": "Sortie",
     "resolve": "Commencer ce défis",
     "errortitleevent": "Veuillez indiquez le nom de l'événement.",
-    "errorefieldevent": "Veuillez remplir tous les champs."
+    "errorefieldevent": "Veuillez remplir tous les champs.",
+    "programmingcalender": "Calendrier des événements d'informatiques",
+    "addevent": "Ajouter un événement",
+    "startdate": "Date de début",
+    "starttime": "Heure de début",
+    "enddate": "Date de fin",
+    "endtime": "Heure de fin",
+    "allday": "Événement dure toute la journée"
 }

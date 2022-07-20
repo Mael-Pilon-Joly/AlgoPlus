@@ -1,7 +1,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We">
 <div style="display:flex; width:80%">
     <div class="col-md5 mt-3" style="flex: 0 0 75%; background-color: white; margin-left:260px;" container>
-        <h1 class="text-muted mb-6 text-center">View Events in Calender Mode</h1>
+        <h1 class="text-muted mb-6 text-center">{{'programmingcalender' | translate}}</h1>
         <ng-container *ngIf="calendarOptions2$ | async as options">
             <full-calendar [options]="calendarOptions"></full-calendar>
         </ng-container>
@@ -20,7 +20,7 @@
         </div>
     </ng-template>
     <div class="addEvent" style="position:relative; flex: 0 0 25%; float:right; background-color: white; margin:20px; " container>
-        <h1 class="text-muted mb-6 text-center">Add an event</h1>
+        <h1 class="text-muted mb-6 text-center">{{'addevent' | translate}}</h1>
         <div className="alert alert-danger" *ngIf="this.errorTitle" style="text-align: center; vertical-align: middle;background-color:darksalmon; border-color:red; color:red">
             {{'errortitleevent' | translate}}
         </div>
@@ -30,15 +30,15 @@
         <div class="row" style="max-width: 80%; margin-left: 20px;">
             <label for="Title">{{'title' | translate}}</label>
             <input [(ngModel)]="titleAddEvent" name="title" type="text" class="form-control" id="title">
-            <div> <label>Start date</label>
-                <input type=" text " style="margin-bottom:50px" placeholder="Datepicker " class="form-control " bsDatepicker [(ngModel)]="startStr "> All day event <input type="checkbox" [(ngModel)]="allDay" name="allDay" (click)="onItemChange($event)"></div>
+            <div> <label>{{'startdate'|translate}}</label>
+                <input type=" text " style="margin-bottom:50px" placeholder="Datepicker " class="form-control " bsDatepicker [(ngModel)]="startStr "> {{'allday'|translate}} <input type="checkbox" [(ngModel)]="allDay" name="allDay" (click)="onItemChange($event)"></div>
             <div id="clear" style="clear:both;"></div>
             <div *ngIf="!allDay">
-                <label>Start time</label>
+                <label>{{'starttime'|translate}}</label>
                 <input [(ngModel)]="startTime" [ngxTimepicker]="picker">
                 <ngx-material-timepicker #picker name="date"></ngx-material-timepicker>
-                <label>End date</label><input type=" text " style="margin-bottom:50px" placeholder="Datepicker " class="form-control " bsDatepicker [(ngModel)]="endStr ">
-                <label>End time</label>
+                <label>{{'enddate'|translate}}</label><input type=" text " style="margin-bottom:50px" placeholder="Datepicker " class="form-control " bsDatepicker [(ngModel)]="endStr ">
+                <label>{{'endtime'|translate}}</label>
                 <input [(ngModel)]="endTime" [ngxTimepicker]="picker2" name="date">
                 <ngx-material-timepicker #picker2></ngx-material-timepicker>
             </div>

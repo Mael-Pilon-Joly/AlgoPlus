@@ -7,8 +7,9 @@ import { DatePipe } from '@angular/common';
 import { DataRowOutlet } from '@angular/cdk/table';
 import { DataService } from 'src/app/services/calender.service';
 import { map, catchError, tap } from 'rxjs/operators';
-import { TranslateService } from '@ngx-translate/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import frLocale from '@fullcalendar/core/locales/fr';
 
 @Component({
   selector: 'app-fullcalender',
@@ -44,7 +45,8 @@ export class FullcalenderComponent implements OnInit {
     initialView: 'dayGridMonth',
     eventClick: this.handleDateClick.bind(this),
     events: this.events1,
-    displayEventTime: false
+    displayEventTime: false,
+    locale: this.translate.currentLang
   }
 
   config = {
@@ -52,7 +54,7 @@ export class FullcalenderComponent implements OnInit {
   }
   @ViewChild('template') template!: string;
 
-  constructor(private httpClient: HttpClient, private translate: TranslateService, private modalService: BsModalService, private datePipe: DatePipe, private eventService: DataService) {
+  constructor(private httpClient: HttpClient, public translate: TranslateService, private modalService: BsModalService, private datePipe: DatePipe, private eventService: DataService) {
    }
 
   onDateClick(res: { dateStr: string; }) {
@@ -73,6 +75,9 @@ export class FullcalenderComponent implements OnInit {
   }
  
   ngOnInit(){
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.calendarOptions.locale = event.lang
+    });
     }  
 
 
