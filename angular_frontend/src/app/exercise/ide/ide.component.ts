@@ -191,6 +191,7 @@ await this.exerciseService.getOutputFromCode(this.requestBody).then(res => {
   // comparing result
   if(result.trim() == val.trim()) {
   this.successTest1 = true;
+  this.runOutput = ("Expected output:" + val + "\n" + "Actual output:" + result)
   setTimeout(() => 
 {
   this.runTest2();
@@ -228,6 +229,8 @@ await this.exerciseService.getOutputFromCode(this.requestBody).then(res => {
   // comparing result
   if(result.trim() == val.trim()) {
   this.successTest2 = true;
+  this.runOutput = ("Expected output:" + val + "\n" + "Actual output:" + result)
+
   setTimeout(() => 
 {
   this.runTest3();
@@ -264,6 +267,8 @@ await this.exerciseService.getOutputFromCode(this.requestBody).then(res => {
   // comparing result
   if(result.trim() == val.trim()) {
   this.successTest3 = true;
+  this.runOutput = ("Expected output:" + val + "\n" + "Actual output:" + result)
+
   setTimeout(() => 
 {
   this.runTest4();
@@ -299,6 +304,8 @@ await this.exerciseService.getOutputFromCode(this.requestBody).then(res => {
   // comparing result
   if(result.trim() == val.trim()) {
   this.successTest4 = true;
+  this.runOutput = ("Expected output:" + val + "\n" + "Actual output:" + result)
+
   setTimeout(() => 
   {
     this.allTestSucceed();

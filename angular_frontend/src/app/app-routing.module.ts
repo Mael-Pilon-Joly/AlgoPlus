@@ -21,6 +21,10 @@ import { IdeComponent } from './exercise/ide/ide.component';
 import { CreateexerciseComponent } from './exercise/createexercise/createexercise.component';
 import { HomeexerciseComponent } from './exercise/homeexercise/homeexercise.component';
 import { ExerciseslistComponent } from './exercise/exerciseslist/exerciseslist.component';
+import { FullcalenderComponent } from './calender/fullcalender/fullcalender.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -45,11 +49,15 @@ const routes: Routes = [
   { path: 'ide', component:IdeComponent},
   { path: 'createexercise', component:CreateexerciseComponent},
   { path: 'homeexercise', component: HomeexerciseComponent},
-  { path: 'listexercises', component: ExerciseslistComponent}
+  { path: 'listexercises', component: ExerciseslistComponent},
+  { path: 'homecalender', component: FullcalenderComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), 
+    ModalModule.forRoot(),
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot(),],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

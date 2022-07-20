@@ -40,13 +40,24 @@ import { IdeComponent } from './exercise/ide/ide.component';
 import { CreateexerciseComponent } from './exercise/createexercise/createexercise.component';
 import { HomeexerciseComponent } from './exercise/homeexercise/homeexercise.component';
 import { ExerciseslistComponent } from './exercise/exerciseslist/exerciseslist.component';
-import { MatTableModule } from '@angular/material/table'  
-
+import { MatTableModule } from '@angular/material/table';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { FullcalenderComponent } from './calender/fullcalender/fullcalender.component'; 
+import interactionPlugin from '@fullcalendar/interaction';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import {DatePipe} from '@angular/common';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
+FullCalendarModule.registerPlugins([ 
+  interactionPlugin,
+  dayGridPlugin
+]);
 
 @Injectable()
 export class CustomInterceptor implements HttpInterceptor { 
@@ -88,7 +99,8 @@ export class CustomInterceptor implements HttpInterceptor {
     IdeComponent,
     CreateexerciseComponent,
     HomeexerciseComponent,
-    ExerciseslistComponent
+    ExerciseslistComponent,
+    FullcalenderComponent
   ],
   imports: [
     BrowserModule,
@@ -106,16 +118,18 @@ export class CustomInterceptor implements HttpInterceptor {
     PdfViewerModule,
     MatIconModule,
     MatProgressBarModule,
-    MatTableModule
-    
+    MatTableModule,
+    FullCalendarModule,
+    NgxMaterialTimepickerModule,
+    BsDatepickerModule.forRoot(),
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: CustomInterceptor ,
-      multi: true
-    },
+      multi: true    },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    DatePipe
   ], 
   bootstrap:    [ AppComponent ]
 })
