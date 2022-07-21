@@ -131,6 +131,7 @@
     "errorname": "Veuillez inscrire votre nom",
     "errormessage": "Veuillez écrire un message",
     "name": "Nom",
-    "message": "Message"
+    "message": "Message",
+    "errorlanguageversion": "Vous devez spécifié un language et une version!"
 
 }

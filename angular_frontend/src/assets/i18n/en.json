@@ -135,6 +135,7 @@
     "errorname": "Please write your name",
     "errormessage": "Please write a message",
     "name": "Name",
-    "message": "Message"
+    "message": "Message",
+    "errorlanguageversion": "You need to specify a language and a version!"
 
 }

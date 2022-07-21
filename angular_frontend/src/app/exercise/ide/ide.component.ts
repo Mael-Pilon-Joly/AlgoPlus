@@ -33,6 +33,7 @@ export class IdeComponent implements OnInit {
   imports=""
   stdIn = "1 2 3";
   pos = "";
+  errorLanguageAndVersion = false;
 
   language:any[] =  [
     {id:0, val:"Java"},
@@ -360,7 +361,10 @@ selectChangeHandlerVersion (event: any, v:any, language:any, tag:any) {
 }
 
 async runCode() {
-
+  this.errorLanguageAndVersion = false;
+if (this.languageName == "" || this.languageVersion == "") {
+  this.errorLanguageAndVersion = true;
+}
 this.requestBody.stdIn = this.stdIn;
 this.requestBody.script = this.getCode();
 if (this.requestBody.script != "" && this.requestBody.language != "" && this.requestBody.versionIndex!="") {

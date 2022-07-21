@@ -23,6 +23,9 @@
             <!-- languages & theme -->
             <!-- languages select -->
             <div style="grid-column-start: 1; grid-column-end: 10; grid-row-start: 1;">
+                <div className="alert alert-danger" *ngIf="this. errorLanguageAndVersion" style="text-align: center; vertical-align: middle;background-color:darksalmon; border-color:red; color:red">
+                    {{'errorlanguageversion' | translate}}
+                </div>
                 <div class="input-group input-group-sm">
                     <div>
                         {{'language' | translate}}
