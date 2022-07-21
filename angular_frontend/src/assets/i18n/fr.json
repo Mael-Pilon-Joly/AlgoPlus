@@ -107,6 +107,25 @@
     "endtime": "Heure de fin",
     "allday": "Événement dure toute la journée",
     "notloggedinevent": "Vous devez être connecté pour ajouter un événement au calendrier",
-    "deleteevent": "Supprimer cet événement?"
+    "deleteevent": "Supprimer cet événement?",
+    "errordatevalidity": "La fin de l'événement devrait être après le début de l'événement",
+    "rules": "Réglements",
+    "rulesdescription": "À AlgoPlus, nous cherchons à promouvoir un climat de respect entre les internautes. Pour cette raison, il y a certaines règles importantes à respecter si l'internaute veut garder ses droits de participation à la communauté.",
+    "rulesp1": "Chaque internaute commance avec 10 points de sureté. Chaque infraction cause une perte de points, en fonction de la gravité. Si l'internaute perds tous ses points, il sera privé de droits de participation pour une durée indéterminée. Ce même internate aura éventuellement un autre chance avec 10 nouveaux points à la fin de sa suspension temporaire, mais si il venait à perdre tous ces points une seconde fois, cela entraînerait une fermeture du compte définitive. Notez que l'équipe d'administration peut jugée qu'une infraction grave justifie la fermeture du compte permanente, peut importe le nombre de points que possède le concerné.",
+    "rulestitle": "Liste des réglements et pénalité d'infraction:",
+    "rulekey1": "Commentaire jugé non-pertinent",
+    "rulevalue1": "Supression du commentaire.",
+    "rulekey2": "Commentaire jugé non-respectueux",
+    "rulevalue2": "- 2 points.",
+    "rulekey3": "Article jugé non-pertinent",
+    "rulevalue3": "Suppresion de l'article et -3 points",
+    "rulekey4": "Article jugé non respectueux",
+    "rulevalue4": "-5 points",
+    "rulekey5": "Création d'exercices non-valide (test fautifs, explication pas assez complète)",
+    "rulevalue5": "-2 points",
+    "rulekey6": "Tricherie sur les exercices",
+    "rulevalue6": "- 5 points",
+    "conclusionrules": "Vous acceptez ces conditions lorsque vous participez au site web. Aucune négociation ne sera permise.",
+    "thankyou": "Merci"
 
 }

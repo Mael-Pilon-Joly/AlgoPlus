@@ -25,6 +25,8 @@ import { FullcalenderComponent } from './calender/fullcalender/fullcalender.comp
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { RulesComponent } from './general/rules/rules.component';
+import { ContactComponent } from './general/contact/contact.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -50,7 +52,10 @@ const routes: Routes = [
   { path: 'createexercise', component:CreateexerciseComponent},
   { path: 'homeexercise', component: HomeexerciseComponent},
   { path: 'listexercises', component: ExerciseslistComponent},
-  { path: 'homecalender', component: FullcalenderComponent}
+  { path: 'homecalender', component: FullcalenderComponent},
+  { path: 'rules', component: RulesComponent},
+  { path: 'contact', component: ContactComponent},
+  
 ];
 
 @NgModule({

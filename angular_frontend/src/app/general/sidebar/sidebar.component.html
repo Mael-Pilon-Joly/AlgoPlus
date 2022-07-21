@@ -29,7 +29,11 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a mat-button routerLinkActive="active " routerLink="/rules"> <img src="../../../assets/rules.png" height=20px weight=20px> &nbsp; {{ 'rules' | translate }}
+                </a>
+            </li>
+            <li>
+                <a mat-button routerLinkActive="active " routerLink="/contact">
                     <fa-icon [icon]="faMailBulk"></fa-icon>
                     &nbsp; {{ 'contact' | translate }}
                 </a>

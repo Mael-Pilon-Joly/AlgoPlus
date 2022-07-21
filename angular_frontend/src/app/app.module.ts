@@ -54,6 +54,8 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
+import { RulesComponent } from './general/rules/rules.component';
+import { ContactComponent } from './general/contact/contact.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -105,7 +107,9 @@ export class CustomInterceptor implements HttpInterceptor {
     CreateexerciseComponent,
     HomeexerciseComponent,
     ExerciseslistComponent,
-    FullcalenderComponent
+    FullcalenderComponent,
+    RulesComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

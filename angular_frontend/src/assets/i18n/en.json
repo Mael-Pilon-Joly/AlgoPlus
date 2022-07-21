@@ -111,6 +111,25 @@
     "endtime": "End time",
     "allday": "All day event",
     "notloggedinevent": "You need to be logged in to add an event to the calender",
-    "deleteevent": "Delete this event?"
+    "deleteevent": "Delete this event?",
+    "errordatevalidity": "End time should be after start time",
+    "rules": "Rules",
+    "rulesdescription": "At AlgoPlus, we seek to promote a climate of respect between Internet users. For this reason, there are certain important rules to respect if the Internet user wants to keep his rights to participate in the community.",
+    "rulesp1": "Each user starts with 10 safety points. Each violation causes a loss of points, depending on the severity. If the user loses all his points, he will be deprived of participation rights for an indefinite period. This even Internate will eventually get another chance with 10 new points at the end of his temporary suspension, but if he were to lose all those points a second time, it would result in a permanent account closure. A serious offense can justifies the permanent closure of the account, regardless of the number of points that the person concerned has.",
+    "rulestitle": "List of Rules and Violation Penalty:",
+    "rulekey1": "Comment deemed irrelevant",
+    "rulevalue1": "Removed comment.",
+    "rulekey2": "Comment considered disrespectful",
+    "rulevalue2": "- 2 points.",
+    "rulekey3": "Article deemed irrelevant",
+    "rulevalue3": "Item removed and -3 points",
+    "rulekey4": "Article deemed not respectful",
+    "rulevalue4": "-5 points",
+    "rulekey5": "Invalid exercise creation (faulty test, explanation not complete enough)",
+    "rulevalue5": "-2 points",
+    "rulekey6": "Cheating on exercises",
+    "rulevalue6": "- 5 points",
+    "conclusions": "You agree to these terms when participating in the website. No bargaining will be permitted.",
+    "thankyou": "Thank you"
 
 }

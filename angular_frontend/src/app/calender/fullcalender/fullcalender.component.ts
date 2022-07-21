@@ -39,6 +39,7 @@ export class FullcalenderComponent implements OnInit {
   events1 : any[] = []
   errorTitle=false;
   errorDate=false;
+  errorDateValidity = false;
   calendarOptions2$ = this.httpClient
   .get('http://localhost:8080/api/event/events')
   .pipe(
@@ -138,7 +139,12 @@ export class FullcalenderComponent implements OnInit {
   
       this.errorTitle = false;
       this.errorDate = false;
-      if (this.title ==undefined) {
+      this.errorDateValidity = false;
+      var date1 = new Date(this.startTime);
+      var date2 = new Date(this.endTime);
+      if(date1>date2) {
+      this.errorDateValidity = true;
+      } else if (this.title ==undefined) {
       this.errorTitle = true;
       } else if (!this.allDay && (this.startStr==undefined || this.endStr==undefined || this.startTime ==undefined || this.endTime ==undefined  )) {
       this.errorDate = true;
@@ -147,14 +153,14 @@ export class FullcalenderComponent implements OnInit {
       this.eventService.createEvent(this.titleAddEvent, before1, before2, this.startTime, this.endTime, this.allDay).subscribe( res=> 
         {
           this.calendarOptions2$ = this.httpClient
-  .get('http://localhost:8080/api/event/events')
-  .pipe(
-    map((res: any) => {
-     console.log(JSON.stringify(res))
-     this.calendarOptions.events = res;
-     return res;
-    })
-  );
+        .get('http://localhost:8080/api/event/events')
+        .pipe(
+         map((res: any) => {
+         console.log(JSON.stringify(res))
+         this.calendarOptions.events = res;
+         return res;
+         })
+      );
         });
   
     }
