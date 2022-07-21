@@ -145,8 +145,12 @@ public clear() {
 }
 
 public test() {
+  if (this.languageName == "" || this.languageVersion == "") {
+    this.errorLanguageAndVersion = true;
+  } else {
   this.tests = true;
   this.runTest1();
+  }
 }
 
 public allTestSucceed(){
@@ -180,7 +184,7 @@ var key =  Object.keys(this.challenge.solutions)[0];
 var map =  new Map(Object.entries(this.challenge.solutions));         
 var val = map.get(key)
 console.log("test 1"+ key+ "," +val)
-
+ this.errorLanguageAndVersion = false;
 // running the code
 this.requestBody.stdIn = key;
 this.requestBody.script = this.getCode();
