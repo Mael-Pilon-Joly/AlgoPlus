@@ -103,6 +103,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .antMatchers(HttpMethod.DELETE, "/api/event/**").hasAnyRole("ADMIN", "USER")
       .antMatchers("/api/exercise/**").hasAnyRole("ADMIN", "USER")
       .antMatchers("/api/admin/**").hasRole("ADMIN")
+      .antMatchers("/api/mailbox/**").permitAll()
       .anyRequest().authenticated()
             .and()
         .logout()

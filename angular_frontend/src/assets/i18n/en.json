@@ -129,7 +129,12 @@
     "rulevalue5": "-2 points",
     "rulekey6": "Cheating on exercises",
     "rulevalue6": "- 5 points",
-    "conclusions": "You agree to these terms when participating in the website. No bargaining will be permitted.",
-    "thankyou": "Thank you"
+    "conclusionrules": "You agree to these terms when participating in the website. No bargaining will be permitted.",
+    "thankyou": "Thank you",
+    "consequences": "Consequences",
+    "errorname": "Please write your name",
+    "errormessage": "Please write a message",
+    "name": "Name",
+    "message": "Message"
 
 }

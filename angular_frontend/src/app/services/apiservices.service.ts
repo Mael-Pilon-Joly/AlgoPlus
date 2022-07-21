@@ -159,6 +159,12 @@ export class ApiService {
       });
       return this.http.request(req);
     }
+
+    receiveMessage(source:String, name:String, message:String){
+      return this.http.post("http://localhost:8080/api/mailbox/receive", {source, name, message},  {
+        withCredentials: true
+      })
+    }
   }
   
   

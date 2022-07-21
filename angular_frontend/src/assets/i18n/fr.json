@@ -126,6 +126,11 @@
     "rulekey6": "Tricherie sur les exercices",
     "rulevalue6": "- 5 points",
     "conclusionrules": "Vous acceptez ces conditions lorsque vous participez au site web. Aucune négociation ne sera permise.",
-    "thankyou": "Merci"
+    "thankyou": "Merci",
+    "consequences": "Conséquences",
+    "errorname": "Veuillez inscrire votre nom",
+    "errormessage": "Veuillez écrire un message",
+    "name": "Nom",
+    "message": "Message"
 
 }

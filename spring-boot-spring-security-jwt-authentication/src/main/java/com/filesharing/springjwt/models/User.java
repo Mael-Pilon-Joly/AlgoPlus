@@ -137,7 +137,7 @@ public class User  {
     this.email = email;
     this.password = password;
     this.roles = roles;
-    this.points = 0;
+    this.points = 10;
   }
 
 

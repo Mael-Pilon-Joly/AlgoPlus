@@ -1,1 +1,30 @@
-<p>contact works!</p>
+<div class="wrapper">
+    <img src="../../../assets/postman.png" style="margin-left:10px; height:300px; width:300px">
+    <form class="form-grid">
+        <div className="alert alert-danger" *ngIf="this.errorName" style="text-align: center; vertical-align: middle;background-color:darksalmon; border-color:red; color:red">
+            {{'errorname' | translate}}
+        </div>
+        <div className="alert alert-danger" *ngIf="this.errorMessage" style="text-align: center; vertical-align: middle;background-color:darksalmon; border-color:red; color:red">
+            {{'errormessage' | translate}}
+        </div>
+        <div className="alert alert-danger" *ngIf="this.errorMail" style="text-align: center; vertical-align: middle;background-color:darksalmon; border-color:red; color:red">
+            {{'erroremailformat' | translate}}
+        </div>
+
+        <div class="form-group">
+            <label for="Name">{{'name' | translate}}</label>
+            <input [(ngModel)]="name" name="title" type="text" class="form-control" id="title" aria-describedby="...">
+        </div>
+
+        <div class="form-group">
+            <label for="email">{{'email' | translate}}</label>
+            <input [(ngModel)]="email" name="email" type="email" class="form-control" id="email" aria-describedby="..." required/>
+        </div>
+
+        <label for="Content">{{'message' | translate}}</label><textarea placeholder="..." [(ngModel)]="message" class="form-control text-left" id="form4Example3" rows="4" id="w3review" name="w3review" rows="4" cols="50">
+        </textarea>
+
+
+        <button type="submit" (click)="sendEmail()" class="btn btn-primary">{{'submit' | translate}}</button>
+    </form>
+</div>

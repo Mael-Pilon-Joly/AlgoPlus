@@ -56,6 +56,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { RulesComponent } from './general/rules/rules.component';
 import { ContactComponent } from './general/contact/contact.component';
+import { ReactiveFormsModule } from '@angular/forms';  
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -136,7 +137,9 @@ export class CustomInterceptor implements HttpInterceptor {
     MatSliderModule,
     MatDatepickerModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    ReactiveFormsModule
+
   ],
   providers: [
     {

@@ -84,4 +84,49 @@ public class EmailService implements EmailSender {
             System.out.println("Exception occurred:- " + e.getMessage());
         }
     }
+
+    @Override
+    @Async
+    public void receive(String source, String name, String subject) {
+        String API_KEY = "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";
+
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        // Configure API key authorization: api-key
+        ApiKeyAuth apiKey = (ApiKeyAuth) defaultClient.getAuthentication("api-key");
+        apiKey.setApiKey(API_KEY);
+
+        try {
+            TransactionalEmailsApi api = new TransactionalEmailsApi();
+            SendSmtpEmailSender sender = new SendSmtpEmailSender();
+            sender.setEmail(source);
+            sender.setName(name);
+            List<SendSmtpEmailTo> toList = new ArrayList<SendSmtpEmailTo>();
+            SendSmtpEmailTo to = new SendSmtpEmailTo();
+            to.setEmail("mael.pilon-joly@hotmail.com");
+            toList.add(to);
+            SendSmtpEmailReplyTo replyTo = new SendSmtpEmailReplyTo();
+            replyTo.setEmail(source);
+            replyTo.setName(name);
+            Properties headers = new Properties();
+            headers.setProperty("Some-Custom-Name", "unique-id-1234");
+            Properties params = new Properties();
+            params.setProperty("parameter", "My param value");
+            params.setProperty("subject", "New Subject");
+            SendSmtpEmail sendSmtpEmail = new SendSmtpEmail();
+            sendSmtpEmail.setSender(sender);
+            sendSmtpEmail.setTo(toList);
+
+            sendSmtpEmail.setHtmlContent(subject);
+            sendSmtpEmail.setSubject("Alogplus customer email");
+            sendSmtpEmail.setReplyTo(replyTo);
+            sendSmtpEmail.setHeaders(headers);
+            sendSmtpEmail.setParams(params);
+
+
+            CreateSmtpEmail response = api.sendTransacEmail(sendSmtpEmail);
+            System.out.println(response.toString());
+        } catch (Exception e) {
+            System.out.println("Exception occurred:- " + e.getMessage());
+        }
+    }
 }
