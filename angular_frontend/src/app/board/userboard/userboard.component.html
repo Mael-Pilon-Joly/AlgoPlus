@@ -1,18 +1,32 @@
 <div class="grid">
     <div class="header">
-        <div class="profil">
-            <div class="avatar">
-                <img [src]=this.avatarUrl onerror="this.src='../../../assets/avatar.png';" style="border-radius: 50%;" height="100px" width="100px">
-            </div>
-            <div class="name">
-                <h3> {{requestResponse.username}}</h3>
-                <p> {{requestResponse.email}}</p>
-                <div class="link ">
-                    <a mat-button routerLinkActive="active " routerLink="/updateprofile">{{ 'updateprofile' | translate }}</a>
+        <div class="profil" style="display:table">
+            <div class="left" style="float:left">
+                <div class="avatar">
+                    <img [src]=this.avatarUrl onerror="this.src='../../../assets/avatar.png';" style="border-radius: 50%;" height="100px" width="100px">
+                </div>
+                <div class="name">
+                    <h3> {{requestResponse.username}}</h3>
+                    <p> {{requestResponse.email}}</p>
+                    <div class="link ">
+                        <a mat-button routerLinkActive="active " routerLink="/updateprofile">{{ 'updateprofile' | translate }}</a>
+                    </div>
+                </div>
+                <div>
+                    <button style=" position:relative; margin:0px; padding:0px;" (click)="showCV = !showCV">CV</button>
                 </div>
             </div>
-            <div>
-                <button style=" position:relative; margin:0px; padding:0px;" (click)="showCV = !showCV">CV</button>
+            <div class="right" style="float:left">
+                <img src="../../../assets/badge.png" style="height:100px; width:100px;">
+            </div>
+            <div style="float:right">
+                <br>
+                <div class="points">
+                    {{requestResponse.points}}
+                </div>
+                <div class="right2">
+                    points
+                </div>
             </div>
         </div>
         <div class="cv">

@@ -11,5 +11,6 @@ export class User {
         roles?: Roles[];
         enabled?: boolean;
         locked?: boolean;
-        articlesDTOs?: CompleteArticle[]
+        articlesDTOs?: CompleteArticle[];
+        points?: number;
   }

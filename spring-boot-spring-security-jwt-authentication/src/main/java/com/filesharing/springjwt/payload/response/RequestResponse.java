@@ -33,6 +33,8 @@ public class RequestResponse {
     private FileDB avatar;
     private FileDB CV;
 
+    private int points;
+
     public Long getId() {
         return id;
     }
@@ -127,5 +129,13 @@ public class RequestResponse {
 
     public void setHttpsStatus(List<HttpStatus> httpsStatus) {
         this.httpsStatus = httpsStatus;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 }

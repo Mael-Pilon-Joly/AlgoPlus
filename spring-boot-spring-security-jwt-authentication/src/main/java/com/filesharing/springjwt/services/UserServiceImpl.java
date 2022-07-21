@@ -179,6 +179,7 @@ public class UserServiceImpl implements UserService {
                 requestResponse.setEmail(user.get().getEmail());
                 requestResponse.setEnabled(user.get().isEnabled());
                 requestResponse.setRoles(user.get().getRoles());
+                requestResponse.setPoints(user.get().getPoints());
                 // Convert articles to articleDTOS to prevent json infinite loop
 
                 List<ArticleDTO> articleDTOS = new ArrayList<>();
