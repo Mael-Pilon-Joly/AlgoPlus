@@ -73,6 +73,13 @@ public class User  {
   @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
   private List<Exercise> exercises;
 
+
+  @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
+  private List<Event> events;
+
+  @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
+  private List<Event> bookmarkedEvents;
+
   private int points;
 
   public int getPoints() {
@@ -216,5 +223,21 @@ public class User  {
 
   public void setExercises(List<Exercise> exercises) {
     this.exercises = exercises;
+  }
+
+  public List<Event> getEvents() {
+    return events;
+  }
+
+  public void setEvents(List<Event> events) {
+    this.events = events;
+  }
+
+  public List<Event> getBookmarkedEvents() {
+    return bookmarkedEvents;
+  }
+
+  public void setBookmarkedEvents(List<Event> bookmarkedEvents) {
+    this.bookmarkedEvents = bookmarkedEvents;
   }
 }

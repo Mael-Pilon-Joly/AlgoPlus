@@ -105,5 +105,8 @@
     "starttime": "Heure de début",
     "enddate": "Date de fin",
     "endtime": "Heure de fin",
-    "allday": "Événement dure toute la journée"
+    "allday": "Événement dure toute la journée",
+    "notloggedinevent": "Vous devez être connecté pour ajouter un événement au calendrier",
+    "deleteevent": "Supprimer cet événement?"
+
 }

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/angular';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
@@ -10,6 +10,10 @@ import { map, catchError, tap } from 'rxjs/operators';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import frLocale from '@fullcalendar/core/locales/fr';
+import { ApiService } from 'src/app/services/apiservices.service';
+import { User } from 'src/app/models/user.model';
+import { Router } from '@angular/router';
+import { calendar } from 'ngx-bootstrap/chronos/moment/calendar';
 
 @Component({
   selector: 'app-fullcalender',
@@ -18,6 +22,10 @@ import frLocale from '@fullcalendar/core/locales/fr';
 })
 export class FullcalenderComponent implements OnInit {
 
+  user: User = {};
+  event:any={};
+  eventId: number = 0;
+  eventCreator: any;
   modalRef?: BsModalRef;
   titleAddEvent: string="";
   title: string ="";
@@ -35,7 +43,7 @@ export class FullcalenderComponent implements OnInit {
   .get('http://localhost:8080/api/event/events')
   .pipe(
     map((res: any) => {
-     console.log(res)
+     console.log(JSON.stringify(res))
      this.calendarOptions.events = res;
      return res;
     })
@@ -46,15 +54,15 @@ export class FullcalenderComponent implements OnInit {
     eventClick: this.handleDateClick.bind(this),
     events: this.events1,
     displayEventTime: false,
-    locale: this.translate.currentLang
-  }
+    locale: this.translate.currentLang  }
 
   config = {
     animated: true
   }
   @ViewChild('template') template!: string;
+  @ViewChild('calendar') calendar!: ElementRef;
 
-  constructor(private httpClient: HttpClient, public translate: TranslateService, private modalService: BsModalService, private datePipe: DatePipe, private eventService: DataService) {
+  constructor(private httpClient: HttpClient, private cd: ChangeDetectorRef, private router:Router, public translate: TranslateService, private modalService: BsModalService, private service: ApiService, private datePipe: DatePipe, private eventService: DataService) {
    }
 
   onDateClick(res: { dateStr: string; }) {
@@ -72,13 +80,28 @@ export class FullcalenderComponent implements OnInit {
     console.log (date)
     this.end= date;
     this.modalRef = this.modalService.show(this.template, this.config)
+    this.eventCreator = arg.event._def.extendedProps.username_creator;
+    this.eventId =  Number(arg.event._def.publicId);
+    this.event = arg.event;
   }
  
   ngOnInit(){
+    this.user = this.service.getUserValue()!;
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.calendarOptions.locale = event.lang
     });
     }  
+
+    deleteEvent() {
+      this.eventService.deleteEvent(this.eventId).then(res=> {
+        console.log(res)
+        this.event.remove();
+        this.modalService._hideModal(this.template);
+      }).catch(error=> {
+        console.log(error)
+        this.modalService._hideModal(this.template);
+      });
+    }
 
 
     onItemChange(event:any) {
@@ -121,8 +144,20 @@ export class FullcalenderComponent implements OnInit {
       this.errorDate = true;
       } else {
       console.log("{}:" + this.startTime+","+this.endTime)
-      this.eventService.createEvent(this.titleAddEvent, before1, before2, this.startTime, this.endTime, this.allDay).subscribe();
-      }
+      this.eventService.createEvent(this.titleAddEvent, before1, before2, this.startTime, this.endTime, this.allDay).subscribe( res=> 
+        {
+          this.calendarOptions2$ = this.httpClient
+  .get('http://localhost:8080/api/event/events')
+  .pipe(
+    map((res: any) => {
+     console.log(JSON.stringify(res))
+     this.calendarOptions.events = res;
+     return res;
+    })
+  );
+        });
+  
+    }
     }
 
    convertTime12to24 = (time12h:string) => {
@@ -134,6 +169,10 @@ export class FullcalenderComponent implements OnInit {
       console.log(hours+":"+minutes)
       if (hours === '12') {
         hours = '00';
+      }
+
+      if(hours.length == 1){
+        hours = '0'+ hours;
       }
     
       if (modifier === 'PM') {

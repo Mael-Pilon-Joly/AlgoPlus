@@ -1,19 +1,17 @@
-package com.filesharing.springjwt.models;
+package com.filesharing.springjwt.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.filesharing.springjwt.models.User;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
-@Entity
-@Table(name = "event")
-public class Event {
+public class EventDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
@@ -24,10 +22,7 @@ public class Event {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date end;
 
-    @ManyToOne(fetch = FetchType.EAGER , optional = false)
-    @JoinColumn(name = "user_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private User user;
+    private String username_creator;
 
     private String startStr;
 
@@ -35,17 +30,32 @@ public class Event {
 
     private Boolean allDay;
 
-    public Event() {
+    public EventDTO() {
     }
 
-    public Event(String title, Date start, Date end, String startStr, String endStr, Boolean allDay) {
+    public EventDTO(Long id, String title, Date start, Date end, String username_creator, String startStr, String endStr, Boolean allDay) {
+        this.id = id;
         this.title = title;
         this.start = start;
         this.end = end;
+        this.username_creator = username_creator;
         this.startStr = startStr;
         this.endStr = endStr;
         this.allDay = allDay;
     }
+
+    public EventDTO(EventDTO clone) {
+        this.id = clone.id;
+        this.title = clone.title;
+        this.start = clone.start;
+        this.end = clone.end;
+        this.username_creator = clone.username_creator;
+        this.startStr = clone.startStr;
+        this.endStr = clone.endStr;
+        this.allDay = clone.allDay;
+    }
+
+
 
     public Long getId() {
         return id;
@@ -79,6 +89,14 @@ public class Event {
         this.end = end;
     }
 
+    public String getUsername_creator() {
+        return username_creator;
+    }
+
+    public void setUsername_creator(String username_creator) {
+        this.username_creator = username_creator;
+    }
+
     public String getStartStr() {
         return startStr;
     }
@@ -101,13 +119,5 @@ public class Event {
 
     public void setAllDay(Boolean allDay) {
         this.allDay = allDay;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }

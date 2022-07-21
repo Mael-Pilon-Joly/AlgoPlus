@@ -109,6 +109,8 @@
     "starttime": "Start time",
     "enddate": "End date",
     "endtime": "End time",
-    "allday": "All day event"
+    "allday": "All day event",
+    "notloggedinevent": "You need to be logged in to add an event to the calender",
+    "deleteevent": "Delete this event?"
 
 }

@@ -18,7 +18,18 @@ export class DataService {
 
    createEvent(title:String, start: string, end:string, startStr: string, endStr: string, allDay: Boolean) {
     console.log(title, start, end, startStr, endStr)
-    return this.http.post<any[]>(baseUrl +`/event?title=${title}&start=${start}&end=${end}&startStr=${startStr}&endStr=${endStr}&allday=${allDay}`,  {withCredentials:true})
+    return this.http.post<any>(baseUrl +`/event?title=${title}&start=${start}&end=${end}&startStr=${startStr}&endStr=${endStr}&allday=${allDay}`,  {withCredentials:true})
+   }
+
+   async deleteEvent(id: number): Promise<any>{
+    return new Promise((resolve, reject)=> this.http.delete<any>(baseUrl +`/event?id=${id}`,{ withCredentials: true
+  }).subscribe(
+    (response:any) => {
+      resolve(response);
+    }, error => {
+      reject({error: error.error});
+    })
+  )
    }
 
 }

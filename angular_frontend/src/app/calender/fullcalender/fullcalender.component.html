@@ -3,7 +3,7 @@
     <div class="col-md5 mt-3" style="flex: 0 0 75%; background-color: white; margin-left:260px;" container>
         <h1 class="text-muted mb-6 text-center">{{'programmingcalender' | translate}}</h1>
         <ng-container *ngIf="calendarOptions2$ | async as options">
-            <full-calendar [options]="calendarOptions"></full-calendar>
+            <full-calendar #calendar [options]="calendarOptions"></full-calendar>
         </ng-container>
     </div>
 
@@ -17,9 +17,12 @@
         <div class="modal-body">
             Start at: {{start.toString().substring(0,25)}}
             <br> End at: {{end.toString().substring(0,25)}}
+            <div *ngIf="user.username == eventCreator">
+                <button type="submit" class="btn btn-danger" (click)="deleteEvent()"> {{ 'deleteevent'| translate }}</button>
+            </div>
         </div>
     </ng-template>
-    <div class="addEvent" style="position:relative; flex: 0 0 25%; float:right; background-color: white; margin:20px; " container>
+    <div *ngIf="this.user.username" class="addEvent" style="position:relative; flex: 0 0 25%; float:right; background-color: white; margin:20px; " container>
         <h1 class="text-muted mb-6 text-center">{{'addevent' | translate}}</h1>
         <div className="alert alert-danger" *ngIf="this.errorTitle" style="text-align: center; vertical-align: middle;background-color:darksalmon; border-color:red; color:red">
             {{'errortitleevent' | translate}}
@@ -44,8 +47,11 @@
             </div>
             <button type="submit" style="margin-top:10px;" class="btn btn-primary" (click)="addEvent()"> {{ 'submit' | translate}}</button>
         </div>
+    </div>
 
-
+    <div *ngIf="!this.user.username" class="notLoggedIn" style="position:relative; flex: 0 0 25%; float:right; background-color: white; margin:20px; ">
+        <h1 class="text-muted mb-6 text-center">{{'notloggedinevent'| translate}} </h1>
+        <img src="../../../assets/notloggedin.png" style="display: block; margin-left: auto;margin-right: auto;width: 50%; height:300px; width:200px;">
     </div>
 
 </div>
