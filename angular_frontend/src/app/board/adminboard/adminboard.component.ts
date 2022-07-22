@@ -38,6 +38,11 @@ export class AdminboardComponent implements OnInit {
     console.log("this title is:" + this.articleTitle)
     this.router.navigate(['/management', {articles: this.articleTitle}])
   }
+
+  searchExercises() {
+    console.log("this title is:" + this.exerciseTitle)
+    this.router.navigate(['/management', {exercise: this.exerciseTitle}])
+  }
   
 
 

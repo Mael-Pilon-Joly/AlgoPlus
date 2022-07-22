@@ -141,5 +141,7 @@
     "searcharticle": "Search by article title",
     "searchexercise": "Search by exercise title",
     "searchuser": "Search by username",
-    "admindeletecomment": "Delete this comment"
+    "admindeletecomment": "Delete this comment",
+    "deleteexercise": "Delete this exercise",
+    "deleteexerciseconfirmation": "Do you really want to delete this exercise? This action is irreversible"
 }

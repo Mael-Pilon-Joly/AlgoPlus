@@ -6,6 +6,7 @@ import { User } from 'src/app/models/user.model';
 import { ApiService } from 'src/app/services/apiservices.service';
 import { ArticleserviceService } from 'src/app/services/articleservice.service';
 import { CommentService } from 'src/app/services/comment.service';
+import { ExerciseService } from 'src/app/services/exercise.service';
 
 @Component({
   selector: 'app-managementboard',
@@ -15,14 +16,17 @@ import { CommentService } from 'src/app/services/comment.service';
 export class ManagementboardComponent implements OnInit {
 
   title = "";
+  exerciseTitle=""
   articles$!: any[]; 
-  exercises:any[] = []
+  exercises$!:any[];
   user: User ={}
   displayArticles = false
   displayExercises = false
   displayUser = false
 
-  constructor(private translateService: TranslateService , private services: ApiService, private articleServices: ArticleserviceService, private router:Router, private route: ActivatedRoute, private commentService: CommentService) { }
+  constructor(private translateService: TranslateService , private services: ApiService, private articleServices: ArticleserviceService,
+              private router:Router, private route: ActivatedRoute, private commentService: CommentService, private exerciseServices: ExerciseService) { }
+ 
   ngOnInit(): void {
    this.validateAdminRole()
    this.title = this.route.snapshot.paramMap.get('articles')!
@@ -32,8 +36,14 @@ export class ManagementboardComponent implements OnInit {
       console.log(this.articles$)
     })
    }
-   console.log(this.title)
-   
+   this.exerciseTitle = this.route.snapshot.paramMap.get('exercise')!
+   console.log(this.exerciseTitle)
+   if (this.exerciseTitle!=""){
+    this.exerciseServices.getExercisesByTitle(this.exerciseTitle).subscribe((list)=>{
+      this.exercises$ = list as any[]
+      console.log(this.exercises$)
+    })
+   }   
 
   }
 
@@ -68,5 +78,16 @@ export class ManagementboardComponent implements OnInit {
       console.log(error)
     })
   }
+}
+
+async deleteExercise(id: number) {
+  if(confirm(this.translateService.instant('deleteexerciseconfirmation'))) {
+    await  this.exerciseServices.deleteExercise(id).then( res=> {
+      console.log(res)
+      window.location.reload()
+  }).catch (error => {
+    console.log(error)
+  })
+}
 }
 }

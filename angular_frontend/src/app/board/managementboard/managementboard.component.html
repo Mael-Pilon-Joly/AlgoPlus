@@ -1,7 +1,6 @@
 <div class="grid">
     <div class="header">
         <div *ngIf="articles$ ">
-
             <div clss="left">
                 <ng-container *ngFor="let article of articles$">
                     <div style="border-bottom: thick double #32a1ce;">
@@ -27,3 +26,20 @@
                 </ng-container>
             </div>
         </div>
+
+        <!-- Exercises display -->
+        <div *ngIf="exercises$ ">
+            <div clss="left">
+                <ng-container *ngFor="let exercise of exercises$">
+                    <div style="border-bottom: thick double #32a1ce;">
+                        <b> {{exercise.title}}</b>
+                        <br> {{'author'|translate}} {{exercise.creator_username}}
+                        <br> {{exercise.published}}
+                        <br>
+                        <button type="submit" (click)="deleteExercise(exercise.id)" class="btn btn-danger">{{'deleteexercise'| translate}}</button>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

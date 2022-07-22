@@ -18,6 +18,20 @@ public class NewExerciseDTO {
     public NewExerciseDTO() {
     }
 
+    public NewExerciseDTO(Long id, String title, String creator_username, Date published) {
+        this.id = id;
+        this.title = title;
+        this.creator_username = creator_username;
+        this.published = published;
+    }
+
+    public NewExerciseDTO(NewExerciseDTO clone, boolean miniClone) {
+        this.id = clone.id;
+        this.title = clone.title;
+        this.creator_username = clone.creator_username;
+        this.published = clone.published;
+    }
+
     public NewExerciseDTO(Long id, String title, FileDB image, String creator_username, String explanation, Date published) {
         this.id = id;
         this.title = title;

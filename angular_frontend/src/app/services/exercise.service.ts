@@ -55,7 +55,7 @@ export class ExerciseService {
       })
       )}
 
-      async fetchExerciseById(id: number): Promise<any> {
+  async fetchExerciseById(id: number): Promise<any> {
         return new Promise ((resolve,reject) => this.http.get( baseUrl +`/exercise?id=${id}` , {
           withCredentials: true
         }).subscribe(
@@ -65,5 +65,21 @@ export class ExerciseService {
             reject({error: error.error});
           })
           )} 
+
+  getExercisesByTitle(title:string): Observable<any> {
+            return this.http.get<any>(`http://localhost:8080/api/admin/exercise?title=${title}`, {withCredentials:true})
+          }
+
+async deleteExercise(id:number): Promise<any> {
+            return new Promise ((resolve,reject) => this.http.delete( `http://localhost:8080/api/admin/exercise?id=${id}`, {
+              withCredentials: true
+            }).subscribe(
+              (response:any) => {
+                resolve(response);
+              }, error => {
+                reject({error: error.error});
+              })
+            )
+          }
   }
 

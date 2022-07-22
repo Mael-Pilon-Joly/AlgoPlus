@@ -2,10 +2,13 @@ package com.filesharing.springjwt.controllers;
 
 import com.filesharing.springjwt.dto.ArticleDTO;
 import com.filesharing.springjwt.dto.CommentDTO;
+import com.filesharing.springjwt.dto.NewExerciseDTO;
 import com.filesharing.springjwt.models.Article;
 import com.filesharing.springjwt.models.Comment;
+import com.filesharing.springjwt.models.Exercise;
 import com.filesharing.springjwt.payload.response.RequestResponse;
 import com.filesharing.springjwt.repository.ArticleRepository;
+import com.filesharing.springjwt.repository.ExerciseRepository;
 import com.filesharing.springjwt.services.AdminService;
 import com.filesharing.springjwt.utils.SecurityCipher;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +32,9 @@ public class AdminController {
   @Autowired
   ArticleRepository articleRepository;
 
+  @Autowired
+  ExerciseRepository exerciseRepository;
+
   @PostMapping("/auth")
   @PreAuthorize("hasRole('ADMIN')")
   public ResponseEntity<RequestResponse> adminAccess(@RequestHeader(name = "Authorization", required = false) String token, @CookieValue(name = "accessToken", required=false) String accessToken) {
@@ -44,7 +50,6 @@ public class AdminController {
     try {
       Optional<List<Article>> articles = articleRepository.findByTitle(title);
       List<ArticleDTO> articlesDTOS = new ArrayList<>();
-
       if(articles.isEmpty()) {
         return new ResponseEntity<>(new ArrayList<ArticleDTO>(), HttpStatus.INTERNAL_SERVER_ERROR);
       }
@@ -65,6 +70,36 @@ public class AdminController {
       return new ResponseEntity<>(articlesDTOS, HttpStatus.OK);
     } catch (Exception e){
       return new ResponseEntity<>(new ArrayList<ArticleDTO>(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @GetMapping("/exercise")
+  public ResponseEntity<Object>  getExerciseByTitle(@RequestParam("title") String title){
+    try {
+      Optional<List<Exercise>> exercises = exerciseRepository.findByTitle(title);
+      List<NewExerciseDTO> listDTOs = new ArrayList<>();
+      if (exercises.isEmpty()) {
+        return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+      for (Exercise exercise : exercises.get()) {
+        NewExerciseDTO newExerciseDTO = new NewExerciseDTO(exercise.getId(), exercise.getTitle(), exercise.getCreator().getUsername(), exercise.getPublished());
+        NewExerciseDTO clone = new NewExerciseDTO(newExerciseDTO, true);
+        listDTOs.add(clone);
+      }
+      return new ResponseEntity<>(listDTOs, HttpStatus.OK);
+    } catch (Exception e){
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @DeleteMapping("/exercise")
+  public ResponseEntity<Object> deleteExercise(@RequestParam("id") Long id){
+    try{
+      Optional<Exercise> exercise = exerciseRepository.findById(id);
+      exerciseRepository.delete(exercise.get());
+      return new ResponseEntity<>(null, HttpStatus.OK);
+    } catch(Exception e){
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 }

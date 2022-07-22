@@ -137,6 +137,8 @@
     "searcharticle": "Recherche l'article par son titre",
     "searchexercise": "Rechercher l'exercise par son titre",
     "searchuser": "Rechercher l'internaute par son titre",
-    "admindeletecomment": "Supprimer ce commentaire"
+    "admindeletecomment": "Supprimer ce commentaire",
+    "deleteexercise": "Supprimer cet exercise",
+    "deleteexerciseconfirmation": "Voulez-vous vraiment supprimer cet exercise? Cette action est irréversible."
 
 }
