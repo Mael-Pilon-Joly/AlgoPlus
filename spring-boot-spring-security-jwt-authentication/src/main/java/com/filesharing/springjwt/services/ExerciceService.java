@@ -132,6 +132,8 @@ public class ExerciceService {
         exercise.setSolutions(solutionsHashMap);
         exercise.setPublished(new Date());
         Exercise savedExercise = exerciseRepository.save(exercise);
+        user.get().setPoints(user.get().getPoints()+10);
+        userRepository.save(user.get());
         return new NewExerciseDTO(savedExercise.getId(), savedExercise.getTitle(), savedExercise.getImage(), savedExercise.getCreator().getUsername(), savedExercise.getExplanation(), savedExercise.getPublished() );
     }
 }

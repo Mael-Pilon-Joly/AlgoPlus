@@ -9,6 +9,9 @@ import java.util.List;
 public class UserDto {
     private Long userId;
     private String username;
+
+    private String email;
+
     private int points;
 
     private boolean locked;
@@ -73,6 +76,14 @@ public class UserDto {
 
     public boolean isLocked() {
         return locked;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setLocked(boolean locked) {

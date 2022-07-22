@@ -215,6 +215,20 @@ async updateUserStatus(username:string): Promise<any> {
     getUsers(): Observable<any[]> {
       return this.http.get<any[]>(`http://localhost:8080/api/user/ranking`, {withCredentials:true})
     }
+
+    async messageBetweenUsers(username: string, source:string, dest:string, message:string): Promise<any> {
+      return new Promise ((resolve,reject) => this.http.post(loggedInUrl + `/messagebetweenuser?username=${username}&source=${source}&dest=${dest}&message=${message}`,  {
+        withCredentials: true
+      }).subscribe(
+        (response:any) => {
+          console.log("response"+response)
+          resolve(response);
+        }, error => {
+          console.log("error"+JSON.stringify(error.error))
+          reject({error: error.error});
+        })
+      )
+    }
   }
   
   

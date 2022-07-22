@@ -152,5 +152,7 @@
     "profile": "Profile",
     "leaderboard": "Leaderboard",
     "userarticles": "Articles from this user",
-    "noarticles": "This user hasn't wrote any articles yet..."
+    "noarticles": "This user hasn't wrote any articles yet...",
+    "writetouser": "Write a message to this user",
+    "messagesent": "The message has been sent!"
 }

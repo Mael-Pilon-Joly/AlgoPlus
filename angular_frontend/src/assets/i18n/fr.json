@@ -148,5 +148,7 @@
     "profile": "Profil",
     "leaderboard": "Classement",
     "userarticles": "Articles de cet internaute",
-    "noarticles": "Cet internaute n'a pas écrit d'articles jusqu'à présent ..."
+    "noarticles": "Cet internaute n'a pas écrit d'articles jusqu'à présent ...",
+    "writetouser": "Écrire un message à cet internaute",
+    "messagesent": "Le message a bien été envoyé!"
 }

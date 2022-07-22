@@ -5,6 +5,7 @@ import com.filesharing.springjwt.models.User;
 import com.filesharing.springjwt.payload.response.ArticleResponse;
 import com.filesharing.springjwt.payload.response.LoginResponse;
 import com.filesharing.springjwt.payload.response.RequestResponse;
+import com.filesharing.springjwt.registration.email.EmailService;
 import com.filesharing.springjwt.repository.UserRepository;
 import com.filesharing.springjwt.security.jwt.AuthTokenFilter;
 import com.filesharing.springjwt.security.jwt.JwtUtils;
@@ -38,6 +39,9 @@ public class LoggedInController {
 
     @Autowired
     private TokenProvider tokenProvider;
+
+    @Autowired
+    EmailService emailService;
 
     @GetMapping("/profil")
     public ResponseEntity<RequestResponse> getUserProfil(@RequestHeader(name = "Authorization", required = false) String token, @CookieValue(name = "accessToken", required = false) String accessToken) {
@@ -90,5 +94,15 @@ public class LoggedInController {
             requestResponse.setHttpsStatus(status);
         return new ResponseEntity<>(requestResponse, HttpStatus.OK);
 
+    }
+
+    @PostMapping("/messagebetweenuser")
+    public ResponseEntity<Object> messageBetweenUser(String username, String source, String dest, String message){
+        try{
+            emailService.messageBetweenUser(username,source,dest,message);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     }

@@ -20,12 +20,33 @@
     grid-column-start: 3;
     grid-column-end: 8;
     grid-row-start: 2;
+    grid-row-end: 5;
+    background: white !important;
+    border-radius: 5px;
+    box-shadow: 5px 5px 12.5px grey;
+}
+
+.profile2 {
+    font-family: "Satisfy-Regular";
+    grid-column-start: 3;
+    grid-column-end: 8;
+    grid-row-start: 6;
     background: white !important;
     border-radius: 5px;
     box-shadow: 5px 5px 12.5px grey;
 }
 
 .profile .title {
+    background: rgb(2, 27, 2) !important;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 5px 5px 0px 0px;
+    border-radius: 5px 5px 0px 0px;
+    padding: 20px;
+    width: 100%;
+    color: white;
+}
+
+.profile2 .title {
     background: rgb(2, 27, 2) !important;
     -moz-border-radius: 0px;
     -webkit-border-radius: 5px 5px 0px 0px;

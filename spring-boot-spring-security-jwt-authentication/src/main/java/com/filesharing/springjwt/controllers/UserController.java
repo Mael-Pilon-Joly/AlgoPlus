@@ -76,6 +76,7 @@ public class UserController {
                 }
                 userDto.setArticleDTOList(articlesDTOs);
                 UserDto clone = new UserDto(userDto);
+                clone.setEmail(user.getEmail());
                 userDtos.add(clone);
             }
            return new ResponseEntity<>(userDtos, HttpStatus.OK);

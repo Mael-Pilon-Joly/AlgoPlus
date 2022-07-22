@@ -76,6 +76,8 @@ public class ArticleService {
             article.setContent(request.getContent());
             article.setLanguage(ELanguage.valueOf(request.getLanguage().toUpperCase()));
             articleRepository.save(article);
+            user.get().setPoints(user.get().getPoints()+5);
+            userRepository.save(user.get());
             return article;
         } else {
             return null;

@@ -6,31 +6,48 @@
                 <ng-container *ngIf="convertAvatarToImage(user$);let image">
                     <img [src]=image style="height: 50px; width:50px; border-radius: 50%;">
                 </ng-container>
-            </div>
-            <div *ngIf="user$.articleDTOList">
-                {{'userarticles'| translate}}
-                <ul>
-                    <li *ngFor="let a of user$.articleDTOList">
-                        <div class="article">
-                            <a routerLinkActive="active " routerLink="/readarticle" [state]="{ data: a}">
-                                <div class="leftpart">
-                                    <div class="image">
-                                        <ng-container *ngIf="convertDataToImage(a);let image">
-                                            <img [src]=image style="height: 75px; width:100px;">
-                                        </ng-container>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <h5>{{a.title}}</h5>
-                                    <p> {{a.content.toString().substring(0,80)}}..</p>
-                                </div>
-                            </a>
+                <div class="cv" style="margin:10px;">
+                    <div>
+                        <button style=" position:relative; margin:0px; padding:0px;" (click)="showCV = !showCV">CV</button>
+                    </div>
+                    <div>
+                        <div id="divToRender" *ngIf="showCV">
+                            <pdf-viewer [src]=this.cvUrl [render-text]="false" [external-link-target]="'blank'" [original-size]="false" style="width: 400px; height: 500px"></pdf-viewer>
                         </div>
-                    </li>
-                </ul>
-
+                    </div>
+                </div>
             </div>
-            <div *ngIf="user$.articleDTOList.length == 0" style="color: lightgray">{{'noarticles'|translate}}</div>
+            <div *ngIf="loggedUser$.username">
+                {{'writetouser'| translate}}
+                <label for="Content">{{'message' | translate}}</label><textarea placeholder="..." [(ngModel)]="message" class="form-control text-left" id="form4Example3" rows="4" id="w3review" name="w3review" rows="4" cols="50">
+                </textarea>
+                <button class="btn btn-success" (click)="messageBetweenUsers()">{{'submit'|translate}}</button>
+            </div>
         </div>
+    </div>
+    <div class="profile2">
+        <div *ngIf="user$.articleDTOList">
+            <div class="title">{{'userarticles'| translate}}</div>
+            <ul>
+                <li *ngFor="let a of user$.articleDTOList">
+                    <div class="article">
+                        <a routerLinkActive="active " routerLink="/readarticle" [state]="{ data: a}">
+                            <div class="leftpart">
+                                <div class="image">
+                                    <ng-container *ngIf="convertDataToImage(a);let image">
+                                        <img [src]=image style="height: 75px; width:100px;">
+                                    </ng-container>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <h5>{{a.title}}</h5>
+                                <p> {{a.content.toString().substring(0,80)}}..</p>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div *ngIf="user$.articleDTOList.length == 0" style="color: lightgray">{{'noarticles'|translate}}</div>
     </div>
 </div>
