@@ -88,6 +88,7 @@ export class FullcalenderComponent implements OnInit {
  
   ngOnInit(){
     this.user = this.service.getUserValue()!;
+    console.log(this.user.username)
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.calendarOptions.locale = event.lang
     });

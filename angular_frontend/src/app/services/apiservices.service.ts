@@ -90,6 +90,7 @@ export class ApiService {
       this.isLoggedIn = false;
       sessionStorage.setItem('token', "")
       this.getLogged.emit(this.isLoggedIn);
+      window.location.reload()
     },
       error => {
         console.log(error);
