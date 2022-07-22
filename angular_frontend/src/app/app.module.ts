@@ -56,7 +56,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { RulesComponent } from './general/rules/rules.component';
 import { ContactComponent } from './general/contact/contact.component';
-import { ReactiveFormsModule } from '@angular/forms';  
+import { ReactiveFormsModule } from '@angular/forms';
+import { ManagementboardComponent } from './board/managementboard/managementboard.component';  
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -110,7 +111,8 @@ export class CustomInterceptor implements HttpInterceptor {
     ExerciseslistComponent,
     FullcalenderComponent,
     RulesComponent,
-    ContactComponent
+    ContactComponent,
+    ManagementboardComponent
   ],
   imports: [
     BrowserModule,

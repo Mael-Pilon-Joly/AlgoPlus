@@ -12,7 +12,7 @@ export class SidebarComponent implements OnInit {
 
   constructor(private services:ApiService) { }
   isLoggedIn!: boolean;
-  roles: Roles[] = [];
+  roles:Roles={};
   isUser = false;
   isAdmin = false;
 
@@ -20,13 +20,6 @@ export class SidebarComponent implements OnInit {
     this.services.getLogged.subscribe(logged => this.isLoggedIn = logged);
     this.services.getRoles.subscribe(roles => {
     this.roles = roles
-    if( this.roles.filter(e => e.name === 'ROLE_ADMIN').length > 0 ) {
-      this.isAdmin = true;
-    }
-
-    if( this.roles.filter(e => e.name === 'ROLE_USER').length > 0 ) {
-      this.isUser = true;
-    }
   });
     console.log(this.roles + "," + this.isUser+ "," + this.isAdmin)
   }

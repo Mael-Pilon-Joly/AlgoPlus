@@ -11,7 +11,7 @@
 .grid .header {
     display: grid;
     padding: 5px;
-    margin-left:20px;
+    margin-left: 20px;
     grid-column-start: 3;
     grid-column-end: 9;
     grid-row-start: 1;
@@ -22,7 +22,7 @@
 
 .grid .header .profil {
     grid-column-start: 1;
-    grid-column-end: 2;
+    grid-column-end: 10;
     grid-row-start: 1;
     grid-row-end: 4;
 }
@@ -51,18 +51,18 @@
     border-bottom-color: darkgrey;
 }
 
-.articles .article a{
+.articles .article a {
     display: flex;
     text-decoration: none;
 }
 
-.articles .article a .leftpart{
+.articles .article a .leftpart {
     display: inline-block;
     margin-right: 10px;
     margin-bottom: 5px;
 }
 
-.articles .article a .content{
+.articles .article a .content {
     display: inline-block;
     align-self: flex-end;
 }

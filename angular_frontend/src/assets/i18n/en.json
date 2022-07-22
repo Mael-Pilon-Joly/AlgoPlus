@@ -136,6 +136,10 @@
     "errormessage": "Please write a message",
     "name": "Name",
     "message": "Message",
-    "errorlanguageversion": "You need to specify a language and a version!"
-
+    "errorlanguageversion": "You need to specify a language and a version!",
+    "adminboard": "Admin board",
+    "searcharticle": "Search by article title",
+    "searchexercise": "Search by exercise title",
+    "searchuser": "Search by username",
+    "admindeletecomment": "Delete this comment"
 }

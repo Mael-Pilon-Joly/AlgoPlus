@@ -1,2 +1,34 @@
 <div class="grid">
+    <div class="header">
+        <div class="title">{{'articles'|translate}}</div>
+        <div class="input-group" style="height:40px">
+            <div class="form-outline">
+                <input [(ngModel)]="articleTitle" type="search" id="form1" class="form-control" />
+            </div>
+            <button (click)="searchArticles()" type="submit" class="btn btn-primary"> {{'searcharticle'|translate}}
+            </button>
+        </div>
+        <div class="title">{{'exercise'|translate}}</div>
+        <div class="input-group">
+            <div class="form-outline">
+                <input type="search" id="form1" class="form-control" />
+            </div>
+            <button type="button" class="btn btn-primary">
+              <i class="fas fa-search"></i>  {{'searchexercise'|translate}}
+            </button>
+        </div>
+        <br>
+        <br>
+        <div class="title">Points</div>
+        <div class="input-group">
+            <div class="form-outline">
+                <input type="search" id="form1" class="form-control" />
+            </div>
+            <button type="button" class="btn btn-primary">
+              <i class="fas fa-search"> </i>{{'searchuser'|translate}}
+            </button>
+        </div>
+        <br>
+        <br>
+    </div>
 </div>

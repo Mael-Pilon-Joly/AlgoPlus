@@ -1,0 +1,29 @@
+<div class="grid">
+    <div class="header">
+        <div *ngIf="articles$ ">
+
+            <div clss="left">
+                <ng-container *ngFor="let article of articles$">
+                    <div style="border-bottom: thick double #32a1ce;">
+                        <b> {{article.title}}</b>
+                        <br> {{'author'|translate}} {{article.username}}
+                        <br> {{article.published}}
+                        <br> {{article.content.substring(0,150)}}...
+                        <br>
+                        <button type="submit" (click)="deleteArticle(article.id)" class="btn btn-danger">{{'deletearticle'| translate}}</button>
+                    </div>
+                    <ul>
+                        {{'comments'|translate}}
+                        <ng-container *ngFor="let comment of article.commentDTOList">
+                            <li>
+                                <br> {{'author'|translate}}{{comment.username}}
+                                <br> {{comment.content}}
+                                <br> {{comment.published}}
+                                <br>
+                                <button type="submit" (click)="deleteComment(comment.id)" class="btn btn-danger">{{'admindeletecomment'| translate}}</button>
+                            </li>
+                        </ng-container>
+                    </ul>
+                </ng-container>
+            </div>
+        </div>

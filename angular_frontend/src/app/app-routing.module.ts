@@ -27,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { RulesComponent } from './general/rules/rules.component';
 import { ContactComponent } from './general/contact/contact.component';
+import { ManagementboardComponent } from './board/managementboard/managementboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -55,6 +56,7 @@ const routes: Routes = [
   { path: 'homecalender', component: FullcalenderComponent},
   { path: 'rules', component: RulesComponent},
   { path: 'contact', component: ContactComponent},
+  { path: 'management', component: ManagementboardComponent},
   
 ];
 

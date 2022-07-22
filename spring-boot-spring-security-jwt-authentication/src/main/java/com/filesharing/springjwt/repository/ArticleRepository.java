@@ -15,6 +15,8 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query(value="select * from Article where language=:index ORDER BY published desc",  nativeQuery = true)
     Optional<List<Article>> findByLanguage(int index);
 
+    Optional<List<Article>> findByTitle(String title);
+
     Optional<Article> findById(Long id);
 
     @Query(value="select user_id from Article ORDER BY published desc",  nativeQuery = true)

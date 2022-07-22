@@ -6,6 +6,13 @@
         </header>
         <ul class="nav">
 
+            <li *ngIf="this.roles == 'admin'">
+                <a routerLinkActive="active " routerLink="/adminboard">
+                    <img src="../../../assets/admin.png" height=20px weight=20px> &nbsp; {{ 'adminboard' | translate }}
+                </a>
+
+            </li>
+
             <li>
                 <a *ngIf="this.isLoggedIn " routerLinkActive="active " routerLink="/userboard">
                     <fa-icon [icon]="faClipboardList"></fa-icon>

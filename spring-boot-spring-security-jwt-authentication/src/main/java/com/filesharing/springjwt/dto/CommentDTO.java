@@ -17,7 +17,16 @@ public class CommentDTO {
     public CommentDTO() {
     }
 
-    public CommentDTO( CommentDTO commentDTO) {
+    public CommentDTO(Long id, FileDB user_avatar, Date published, String content, String username, Long usernameId) {
+        this.id = id;
+        this.user_avatar = user_avatar;
+        this.published = published;
+        this.content = content;
+        this.username = username;
+        this.usernameId = usernameId;
+    }
+
+    public CommentDTO(CommentDTO commentDTO) {
         this.id = commentDTO.id;
         this.title = commentDTO.title;
         this.user_avatar = commentDTO.user_avatar;

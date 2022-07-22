@@ -132,6 +132,11 @@
     "errormessage": "Veuillez écrire un message",
     "name": "Nom",
     "message": "Message",
-    "errorlanguageversion": "Vous devez spécifié un language et une version!"
+    "errorlanguageversion": "Vous devez spécifié un language et une version!",
+    "adminboard": "Taleau de bord de gestion",
+    "searcharticle": "Recherche l'article par son titre",
+    "searchexercise": "Rechercher l'exercise par son titre",
+    "searchuser": "Rechercher l'internaute par son titre",
+    "admindeletecomment": "Supprimer ce commentaire"
 
 }

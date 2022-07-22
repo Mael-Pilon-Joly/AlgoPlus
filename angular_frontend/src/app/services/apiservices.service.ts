@@ -41,7 +41,16 @@ export class ApiService {
   setValue(roles: Roles[]){
     console.log("settig user roles globally..." + JSON.stringify(roles))
     this.user.roles = roles;
-    this.getRoles.emit(this.user.roles)
+    var role;
+    if( roles.filter(e => e.name === 'ROLE_ADMIN').length > 0 ) {
+      role="admin";
+    }
+
+    if( roles.filter(e => e.name === 'ROLE_USER').length > 0 ) {
+      role="user";
+    }
+  
+    this.getRoles.emit(role)
    }
  
    getValue(){
@@ -164,6 +173,18 @@ export class ApiService {
       return this.http.post("http://localhost:8080/api/mailbox/receive", {source, name, message},  {
         withCredentials: true
       })
+    }
+
+    async validateAdminRole(): Promise<any> {
+       return new Promise((resolve,reject) =>  this.http.post("http://localhost:8080/api/admin/auth", {
+        withCredentials: true
+      }).subscribe(
+        (response:any) => {
+          resolve(response);
+        }, error => {
+          reject({error: error.error});
+        })
+      )
     }
   }
   

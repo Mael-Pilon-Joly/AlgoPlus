@@ -81,4 +81,8 @@ export class ArticleserviceService {
   getArticles(): Observable<CompleteArticle[]> {
     return this.http.get<CompleteArticle[]>(baseUrl +"/articles", {withCredentials:true})
   }
+
+   getArticlesByTitle(title:string): Observable<any> {
+    return this.http.get<any>(`http://localhost:8080/api/admin/article?title=${title}`, {withCredentials:true})
+  }
 }

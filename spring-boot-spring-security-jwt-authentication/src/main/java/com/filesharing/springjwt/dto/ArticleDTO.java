@@ -10,6 +10,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
+import java.util.List;
 
 public class ArticleDTO {
     private Long id;
@@ -30,6 +31,8 @@ public class ArticleDTO {
 
     private ELanguage language;
 
+    List<CommentDTO> commentDTOList;
+
     public ArticleDTO(){};
 
     public ArticleDTO(ArticleDTO articleDTO){
@@ -42,6 +45,20 @@ public class ArticleDTO {
         this.language = articleDTO.language;
         this.published = articleDTO.published;
         this.lastEdited = articleDTO.lastEdited;
+        this.commentDTOList = articleDTO.commentDTOList;
+    }
+
+    public ArticleDTO(Long id, String title, FileDB image, Date published, Date lastEdited, String content, String username, Long usernameId, ELanguage language, List<CommentDTO> commentDTOList) {
+        this.id = id;
+        this.title = title;
+        this.image = image;
+        this.published = published;
+        this.lastEdited = lastEdited;
+        this.content = content;
+        this.username = username;
+        this.usernameId = usernameId;
+        this.language = language;
+        this.commentDTOList = commentDTOList;
     }
 
     public Long getId() {
@@ -116,4 +133,11 @@ public class ArticleDTO {
         this.language = language;
     }
 
+    public List<CommentDTO> getCommentDTOList() {
+        return commentDTOList;
+    }
+
+    public void setCommentDTOList(List<CommentDTO> commentDTOList) {
+        this.commentDTOList = commentDTOList;
+    }
 }
