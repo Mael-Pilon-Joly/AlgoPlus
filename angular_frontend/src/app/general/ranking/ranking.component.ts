@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/apiservices.service';
 import { FileservicesService } from 'src/app/services/fileservices.service';
 
@@ -11,7 +12,7 @@ export class RankingComponent implements OnInit {
 
   users$!:any[];
 
-  constructor(private apiServices: ApiService, private fileServices:FileservicesService) { }
+  constructor(private apiServices: ApiService, private fileServices:FileservicesService, private router: Router) { }
 
   ngOnInit(): void {
     this.apiServices.getUsers().subscribe((list)=>{
@@ -27,6 +28,11 @@ export class RankingComponent implements OnInit {
     } else {
      return" ../../../assets/avatar.png"
     }
+  }
+
+  onUserClick(user:any){
+  console.log(user);
+  this.router.navigate(['/publicprofile', {user: JSON.stringify(user)}])
   }
 
 }

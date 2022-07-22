@@ -29,6 +29,7 @@ import { RulesComponent } from './general/rules/rules.component';
 import { ContactComponent } from './general/contact/contact.component';
 import { ManagementboardComponent } from './board/managementboard/managementboard.component';
 import { RankingComponent } from './general/ranking/ranking.component';
+import { PublicprofileComponent } from './general/publicprofile/publicprofile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -58,7 +59,8 @@ const routes: Routes = [
   { path: 'rules', component: RulesComponent},
   { path: 'contact', component: ContactComponent},
   { path: 'management', component: ManagementboardComponent},
-  { path: 'leaderboard', component: RankingComponent}
+  { path: 'leaderboard', component: RankingComponent},
+  { path: 'publicprofile', component: PublicprofileComponent}
   
 ];
 

@@ -5,7 +5,7 @@
         </div>
         <div *ngIf="this.users$" class="users">
             <ng-container *ngFor="let user of users$; let i = index">
-                <div class="user">
+                <div class="user" (click)="onUserClick(user)">
                     <div style="display:flex;">
                         <div class="image">
                             <ng-container *ngIf="convertDataToImage(user);let image">

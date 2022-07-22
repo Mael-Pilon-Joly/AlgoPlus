@@ -58,7 +58,8 @@ import { RulesComponent } from './general/rules/rules.component';
 import { ContactComponent } from './general/contact/contact.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ManagementboardComponent } from './board/managementboard/managementboard.component';
-import { RankingComponent } from './general/ranking/ranking.component';  
+import { RankingComponent } from './general/ranking/ranking.component';
+import { PublicprofileComponent } from './general/publicprofile/publicprofile.component';  
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -114,7 +115,8 @@ export class CustomInterceptor implements HttpInterceptor {
     RulesComponent,
     ContactComponent,
     ManagementboardComponent,
-    RankingComponent
+    RankingComponent,
+    PublicprofileComponent
   ],
   imports: [
     BrowserModule,

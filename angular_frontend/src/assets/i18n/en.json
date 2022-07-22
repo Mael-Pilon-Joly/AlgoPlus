@@ -150,5 +150,7 @@
     "islocked": "This account is suspended",
     "updatestatus": "Update user status",
     "profile": "Profile",
-    "leaderboard": "Leaderboard"
+    "leaderboard": "Leaderboard",
+    "userarticles": "Articles from this user",
+    "noarticles": "This user hasn't wrote any articles yet..."
 }

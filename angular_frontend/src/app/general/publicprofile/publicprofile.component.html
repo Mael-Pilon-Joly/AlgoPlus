@@ -1,0 +1,36 @@
+<div class="wrapper">
+    <div class="profile">
+        <div *ngIf="user$ ">
+            <div class="title">{{user$.username}}</div>
+            <div class="description" style="margin:10px">
+                <ng-container *ngIf="convertAvatarToImage(user$);let image">
+                    <img [src]=image style="height: 50px; width:50px; border-radius: 50%;">
+                </ng-container>
+            </div>
+            <div *ngIf="user$.articleDTOList">
+                {{'userarticles'| translate}}
+                <ul>
+                    <li *ngFor="let a of user$.articleDTOList">
+                        <div class="article">
+                            <a routerLinkActive="active " routerLink="/readarticle" [state]="{ data: a}">
+                                <div class="leftpart">
+                                    <div class="image">
+                                        <ng-container *ngIf="convertDataToImage(a);let image">
+                                            <img [src]=image style="height: 75px; width:100px;">
+                                        </ng-container>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h5>{{a.title}}</h5>
+                                    <p> {{a.content.toString().substring(0,80)}}..</p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+            <div *ngIf="user$.articleDTOList.length == 0" style="color: lightgray">{{'noarticles'|translate}}</div>
+        </div>
+    </div>
+</div>

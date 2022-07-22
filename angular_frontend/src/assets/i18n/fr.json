@@ -146,5 +146,7 @@
     "islocked": "Le compte de cet internaute est suspendu",
     "updatestatus": "Modifier l'état du compte de cet internaute",
     "profile": "Profil",
-    "leaderboard": "Classement"
+    "leaderboard": "Classement",
+    "userarticles": "Articles de cet internaute",
+    "noarticles": "Cet internaute n'a pas écrit d'articles jusqu'à présent ..."
 }
