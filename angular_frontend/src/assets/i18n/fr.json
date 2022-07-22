@@ -139,6 +139,11 @@
     "searchuser": "Rechercher l'internaute par son titre",
     "admindeletecomment": "Supprimer ce commentaire",
     "deleteexercise": "Supprimer cet exercise",
-    "deleteexerciseconfirmation": "Voulez-vous vraiment supprimer cet exercise? Cette action est irréversible."
-
+    "deleteexerciseconfirmation": "Voulez-vous vraiment supprimer cet exercise? Cette action est irréversible.",
+    "erroraccountlocked": "Ce compte est présentement vérouillé. Veuillez contactez l'administrateur pour plus de renseignements.",
+    "updatepoints": "Modifier le nombre de points pour cet internaute.",
+    "isenabled": "Le compte de cet internaute est activé",
+    "islocked": "Le compte de cet internaute est suspendu",
+    "updatestatus": "Modifier l'état du compte de cet internaute",
+    "profile": "Profil"
 }

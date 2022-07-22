@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
 
   errorLogin: boolean = false;
   errorPendingConfirmation: boolean = false;
+  errorAccountLocked: boolean = false;
 
   constructor(private services: ApiService, private router: Router) { 
   }
@@ -52,7 +53,9 @@ export class LoginComponent implements OnInit {
     
     if (this.requestResponse) {
     await  this.services.login(data, this.userDTO.rememberme).then( res=> {
-    console.log(this.userDTO.rememberme);
+
+      console.log("login successful")
+      console.log(this.userDTO.rememberme);
     localStorage.setItem('loggedin', 'true');
     localStorage.setItem('username', this.userDTO.username);
     if (this.userDTO.rememberme == true) {
@@ -67,14 +70,19 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/userboard']);
 
   }).catch ( error => {
+    console.log("login failed")
+
     this.errorLogin = false;
+    this.errorAccountLocked = false;
     this.errorPendingConfirmation = false;
     console.log(JSON.stringify(error.error))
     this.errorLogin = false;
     this.errorPendingConfirmation = false;
     if (error.error.status == 412) {
       this.errorPendingConfirmation = true;
-    } else {
+    } else if(error.error.status == 409) {
+    this.errorAccountLocked = true;
+    } else{
     this.errorLogin = true;
     }
   })

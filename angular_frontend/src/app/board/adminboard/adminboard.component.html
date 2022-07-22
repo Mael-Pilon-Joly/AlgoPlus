@@ -19,12 +19,12 @@
         </div>
         <br>
         <br>
-        <div class="title">Points</div>
+        <div class="title">{{'profile'|translate}}</div>
         <div class="input-group">
             <div class="form-outline">
-                <input type="search" id="form1" class="form-control" />
+                <input type="search" [(ngModel)]="username" id="form1" class="form-control" />
             </div>
-            <button type="button" class="btn btn-primary">
+            <button type="submit" (click)="searchUser()" class="btn btn-primary">
               <i class="fas fa-search"> </i>{{'searchuser'|translate}}
             </button>
         </div>

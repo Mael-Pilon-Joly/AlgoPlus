@@ -43,6 +43,11 @@ export class AdminboardComponent implements OnInit {
     console.log("this title is:" + this.exerciseTitle)
     this.router.navigate(['/management', {exercise: this.exerciseTitle}])
   }
+
+  searchUser(){
+    console.log("this username is:" + this.username)
+    this.router.navigate(['/management', {username: this.username}])
+  }
   
 
 

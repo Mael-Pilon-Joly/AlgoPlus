@@ -95,6 +95,12 @@ public class UserServiceImpl implements UserService {
                     HttpStatus.PRECONDITION_FAILED);
         }
 
+        if (user.get().isLocked()) {
+            return new ResponseEntity<>(
+                    new LoginResponse(null, null, null, null, null, null, LoginResponse.SuccessFailure.FAILURE, "Email account not verified yet", null),
+                    HttpStatus.CONFLICT);
+        }
+
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());

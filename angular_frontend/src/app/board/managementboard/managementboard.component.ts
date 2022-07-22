@@ -17,12 +17,14 @@ export class ManagementboardComponent implements OnInit {
 
   title = "";
   exerciseTitle=""
-  articles$!: any[]; 
+  username=""
+  articles$!:any[]; 
   exercises$!:any[];
-  user: User ={}
+  user$!:User;
   displayArticles = false
   displayExercises = false
   displayUser = false
+  points = 0;
 
   constructor(private translateService: TranslateService , private services: ApiService, private articleServices: ArticleserviceService,
               private router:Router, private route: ActivatedRoute, private commentService: CommentService, private exerciseServices: ExerciseService) { }
@@ -44,10 +46,18 @@ export class ManagementboardComponent implements OnInit {
       console.log(this.exercises$)
     })
    }   
+  this.username = this.route.snapshot.paramMap.get('username')!
+   console.log(this.username)
+   if (this.username!=""){
+    this.services.getUserByUsername(this.username).subscribe((user)=>{
+      this.user$ = user as any
+      console.log(this.user$)
+    })
+   }   
 
   }
 
-  async validateAdminRole(): Promise<void> {
+async validateAdminRole(): Promise<void> {
     this.services.validateAdminRole().then(res=>{
       console.log(res)
     }).catch(err =>{
@@ -57,7 +67,7 @@ export class ManagementboardComponent implements OnInit {
     })
   }
 
-  deleteComment(id: number) {
+deleteComment(id: number) {
     if(confirm(this.translateService.instant('deletecommentconfirmation'))) {
       this.commentService.deleteComment(id).subscribe((res) => {
         console.log(res)
@@ -69,7 +79,7 @@ export class ManagementboardComponent implements OnInit {
       }
   }
 
-  async deleteArticle(id: number) {
+async deleteArticle(id: number) {
     if(confirm(this.translateService.instant('deletearticleconfirmation'))) {
       await  this.articleServices.deleteArticle(id).then( res=> {
         console.log(res)
@@ -90,4 +100,30 @@ async deleteExercise(id: number) {
   })
 }
 }
+
+handleMinus() {
+  this.points--;  
 }
+handlePlus() {
+  this.points++;    
+}
+
+async updatePoints(username:string) {
+  await this.services.updateUserPoints(username, this.points).then( (res: any)=> {
+      console.log(res)
+      window.location.reload()
+  }).catch ((error: any) => {
+    console.log(error)
+  })
+}
+
+async updateStatus(username:string) {
+ await this.services.updateUserStatus(username).then( (res: any)=> {
+     console.log(res)
+     window.location.reload()
+ }).catch ((error: any) => {
+   console.log(error)
+ })
+}
+}
+

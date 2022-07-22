@@ -186,6 +186,30 @@ export class ApiService {
         })
       )
     }
+
+getUserByUsername(username:string): Observable<any> {
+      return this.http.get<any>(`http://localhost:8080/api/admin/user?username=${username}`, {withCredentials:true})
+    }
+
+async updateUserPoints(username:string, points:number): Promise<any> {
+  return new Promise((resolve,reject) => this.http.put<any>(`http://localhost:8080/api/admin/userpoints?username=${username}&points=${points}`, {withCredentials:true}).subscribe(
+    (response:any) => {
+      resolve(response);
+    }, error => {
+      reject({error: error.error});
+    })
+  )
+    }
+
+async updateUserStatus(username:string): Promise<any> {
+  return new Promise((resolve,reject) => this.http.put<any>(`http://localhost:8080/api/admin/userlocked?username=${username}`, {withCredentials:true}).subscribe(
+    (response:any) => {
+      resolve(response);
+    }, error => {
+      reject({error: error.error});
+    })
+  )
+    }
   }
   
   

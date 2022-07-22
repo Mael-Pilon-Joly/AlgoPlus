@@ -41,5 +41,24 @@
                 </ng-container>
             </div>
         </div>
+
+        <!-- User display -->
+        <div *ngIf="user$ ">
+            <div clss="left">
+                <b> {{user$.username}}</b>
+                <br> Points: {{user$.points}}
+                <br> {{'isenabled'}}: {{user$.enabled}}
+                <br> {{'islocked'}}: {{user$.locked}}
+                <br>
+                <div class="counter">
+                    <button class="plusminus" (click)="handleMinus()">-</button>
+                    <input type="number" [(ngModel)]="points" class="num" value="0" />
+                    <button class="plusminus" (click)="handlePlus()">+</button>
+                </div>
+                <button type="submit" (click)="updatePoints(user$.username!)" class="btn btn-success">{{'updatepoints'| translate}}</button>
+                <br>
+                <button type="submit" (click)="updateStatus(user$.username!)" class="btn btn-success">{{'updatestatus'| translate}}</button>
+            </div>
+        </div>
     </div>
 </div>

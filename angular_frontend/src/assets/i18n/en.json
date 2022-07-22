@@ -143,5 +143,11 @@
     "searchuser": "Search by username",
     "admindeletecomment": "Delete this comment",
     "deleteexercise": "Delete this exercise",
-    "deleteexerciseconfirmation": "Do you really want to delete this exercise? This action is irreversible"
+    "deleteexerciseconfirmation": "Do you really want to delete this exercise? This action is irreversible",
+    "erroraccountlocked": "This account is currently locked. Contact the administrator for more informations.",
+    "updatepoints": "Update points for this user",
+    "isenabled": "This account is locked",
+    "islocked": "This account is suspended",
+    "updatestatus": "Update user status",
+    "profile": "Profile"
 }

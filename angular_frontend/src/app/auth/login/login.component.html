@@ -9,6 +9,9 @@
         <div className="alert alert-danger" *ngIf="this.errorLogin" style="text-align: center; vertical-align: middle;background-color:darksalmon; border-color:red; color:red">
             {{'errorlogin' | translate}}
         </div>
+        <div className="alert alert-danger" *ngIf="this.errorAccountLocked" style="text-align: center; vertical-align: middle;background-color:darksalmon; border-color:red; color:red">
+            {{'erroraccountlocked' | translate}}
+        </div>
         <div className="alert alert-danger" *ngIf="this.errorPendingConfirmation" style="text-align: center; vertical-align: middle;background-color:darksalmon; border-color:red; color:red">
             {{'errorpendingconfirmation' | translate}}
         </div>

@@ -3,12 +3,15 @@ package com.filesharing.springjwt.controllers;
 import com.filesharing.springjwt.dto.ArticleDTO;
 import com.filesharing.springjwt.dto.CommentDTO;
 import com.filesharing.springjwt.dto.NewExerciseDTO;
+import com.filesharing.springjwt.dto.UserDto;
 import com.filesharing.springjwt.models.Article;
 import com.filesharing.springjwt.models.Comment;
 import com.filesharing.springjwt.models.Exercise;
+import com.filesharing.springjwt.models.User;
 import com.filesharing.springjwt.payload.response.RequestResponse;
 import com.filesharing.springjwt.repository.ArticleRepository;
 import com.filesharing.springjwt.repository.ExerciseRepository;
+import com.filesharing.springjwt.repository.UserRepository;
 import com.filesharing.springjwt.services.AdminService;
 import com.filesharing.springjwt.utils.SecurityCipher;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +37,9 @@ public class AdminController {
 
   @Autowired
   ExerciseRepository exerciseRepository;
+
+  @Autowired
+  UserRepository userRepository;
 
   @PostMapping("/auth")
   @PreAuthorize("hasRole('ADMIN')")
@@ -91,6 +97,53 @@ public class AdminController {
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
+
+  @GetMapping("/user")
+  public ResponseEntity<Object>  getUserByUsername(@RequestParam("username") String username){
+    try {
+      Optional<User> user = userRepository.findByUsername(username);
+      if (user.isEmpty()) {
+        return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+      UserDto userDTO = new UserDto(user.get().getId(), user.get().getUsername(), user.get().getPoints());
+      userDTO.setLocked(user.get().isLocked());
+      userDTO.setEnabled(user.get().isEnabled());
+      return new ResponseEntity<>(userDTO, HttpStatus.OK);
+    } catch (Exception e){
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @PutMapping("/userpoints")
+  public ResponseEntity<Object>  updateUserPoints(@RequestParam("username") String username, @RequestParam("points") int points){
+    try {
+      Optional<User> user = userRepository.findByUsername(username);
+      if (user.isEmpty()) {
+        return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+      user.get().setPoints(user.get().getPoints() + points);
+      userRepository.save(user.get());
+      return new ResponseEntity<>(null, HttpStatus.OK);
+    } catch (Exception e){
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @PutMapping("/userlocked")
+  public ResponseEntity<Object>  updateUserEnabledStatus(@RequestParam("username") String username){
+    try {
+      Optional<User> user = userRepository.findByUsername(username);
+      if (user.isEmpty()) {
+        return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+      user.get().setLocked(!user.get().isLocked());
+      userRepository.save(user.get());
+      return new ResponseEntity<>(null, HttpStatus.OK);
+    } catch (Exception e){
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
 
   @DeleteMapping("/exercise")
   public ResponseEntity<Object> deleteExercise(@RequestParam("id") Long id){
