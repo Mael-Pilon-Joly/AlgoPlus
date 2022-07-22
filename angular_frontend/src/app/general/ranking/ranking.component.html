@@ -1,0 +1,31 @@
+<div class="wrapper">
+    <div class="ranking">
+        <div class="title">
+            Leaderboard
+        </div>
+        <div *ngIf="this.users$" class="users">
+            <ng-container *ngFor="let user of users$; let i = index">
+                <div class="user">
+                    <div style="display:flex;">
+                        <div class="image">
+                            <ng-container *ngIf="convertDataToImage(user);let image">
+                                <img [src]=image style="height: 50px; width:50px; border-radius: 50%;">
+                            </ng-container>
+                        </div>
+                        <div class="description">
+                            <br> {{user.username}}
+                            <br> {{user.points}} points
+                            <br>
+                        </div>
+                    </div>
+                    <div class="hexagon">
+                        <div style=" position: absolute;
+                        z-index: 1000;
+                        width: 100%;
+                        text-align: center;"> {{i+1}}
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>

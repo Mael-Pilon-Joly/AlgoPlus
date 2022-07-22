@@ -1,6 +1,11 @@
 package com.filesharing.springjwt.controllers;
 
+import com.filesharing.springjwt.dto.ArticleDTO;
+import com.filesharing.springjwt.dto.CommentDTO;
 import com.filesharing.springjwt.dto.PasswordDto;
+import com.filesharing.springjwt.dto.UserDto;
+import com.filesharing.springjwt.models.Article;
+import com.filesharing.springjwt.models.Comment;
 import com.filesharing.springjwt.models.User;
 import com.filesharing.springjwt.payload.request.LoginRequest;
 import com.filesharing.springjwt.payload.request.ResetPasswordRequest;
@@ -44,6 +49,40 @@ public class UserController {
 
     @Autowired
     PasswordEncoder encoder;
+
+    @GetMapping("/ranking")
+    public ResponseEntity<List<UserDto>> findAllByPointsDesc() {
+        try {
+            List<User> users = userRepository.findAllByOrderByPointsDesc();
+            List<UserDto> userDtos = new ArrayList<>();
+            for (User user: users){
+                UserDto userDto = new UserDto(user.getId(), user.getUsername(), user.getPoints(), user.getAvatar(), user.getCV());
+
+                List<Article> articles = user.getArticles();
+                List<ArticleDTO> articlesDTOs = new ArrayList<>();
+
+                for(Article article: articles){
+                    ArticleDTO articleDTO = new ArticleDTO(article.getId(), article.getTitle(), article.getImage(), article.getPublished(), article.getLastEdited(), article.getContent(), article.getUser().getUsername(), article.getUser().getId(), article.getLanguage());
+                    List<Comment> comments = article.getComments();
+                    List<CommentDTO> commentDTOS = new ArrayList<>();
+                    for(Comment comment: comments) {
+                        CommentDTO commentDTO = new CommentDTO(comment.getId(), comment.getUser().getAvatar(), comment.getPublished(), comment.getContent(), comment.getUser().getUsername(), comment.getUser().getId());
+                        CommentDTO clone = new CommentDTO(commentDTO);
+                        commentDTOS.add(clone);
+                    }
+                    articleDTO.setCommentDTOList(commentDTOS);
+                    ArticleDTO clone_article = new ArticleDTO(articleDTO);
+                    articlesDTOs.add(clone_article);
+                }
+                userDto.setArticleDTOList(articlesDTOs);
+                UserDto clone = new UserDto(userDto);
+                userDtos.add(clone);
+            }
+           return new ResponseEntity<>(userDtos, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }
+    }
 
     @PostMapping("/resetpassword")
     public ResponseEntity<RequestResponse> resetPassword( @Valid @RequestBody ResetPasswordRequest resetRequest, BindingResult bindingResult) {

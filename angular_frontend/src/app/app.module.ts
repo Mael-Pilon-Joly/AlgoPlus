@@ -57,7 +57,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { RulesComponent } from './general/rules/rules.component';
 import { ContactComponent } from './general/contact/contact.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ManagementboardComponent } from './board/managementboard/managementboard.component';  
+import { ManagementboardComponent } from './board/managementboard/managementboard.component';
+import { RankingComponent } from './general/ranking/ranking.component';  
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -112,7 +113,8 @@ export class CustomInterceptor implements HttpInterceptor {
     FullcalenderComponent,
     RulesComponent,
     ContactComponent,
-    ManagementboardComponent
+    ManagementboardComponent,
+    RankingComponent
   ],
   imports: [
     BrowserModule,

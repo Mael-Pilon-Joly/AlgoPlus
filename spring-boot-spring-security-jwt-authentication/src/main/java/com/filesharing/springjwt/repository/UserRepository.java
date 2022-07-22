@@ -23,6 +23,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
   @Query(value = "SELECT id, username, email, avatar_id, cv_id, points  FROM User WHERE id = :id", nativeQuery = true)
   UserProjection findByNativeQuery(@Param("id")Long id);
 
+  List<User> findAllByOrderByPointsDesc();
+
   @Query(value = "select user_id from comments where id=:id order by published desc", nativeQuery = true)
   Long findUserByCommentId(@Param("id")Long commentId);
 

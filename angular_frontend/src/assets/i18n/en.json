@@ -149,5 +149,6 @@
     "isenabled": "This account is locked",
     "islocked": "This account is suspended",
     "updatestatus": "Update user status",
-    "profile": "Profile"
+    "profile": "Profile",
+    "leaderboard": "Leaderboard"
 }

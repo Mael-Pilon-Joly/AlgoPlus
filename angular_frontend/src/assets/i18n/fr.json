@@ -145,5 +145,6 @@
     "isenabled": "Le compte de cet internaute est activé",
     "islocked": "Le compte de cet internaute est suspendu",
     "updatestatus": "Modifier l'état du compte de cet internaute",
-    "profile": "Profil"
+    "profile": "Profil",
+    "leaderboard": "Classement"
 }

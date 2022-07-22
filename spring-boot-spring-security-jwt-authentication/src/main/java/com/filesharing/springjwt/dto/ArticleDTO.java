@@ -48,6 +48,18 @@ public class ArticleDTO {
         this.commentDTOList = articleDTO.commentDTOList;
     }
 
+    public ArticleDTO(Long id, String title, FileDB image, Date published, Date lastEdited, String content, String username, Long usernameId, ELanguage language) {
+        this.id = id;
+        this.title = title;
+        this.image = image;
+        this.published = published;
+        this.lastEdited = lastEdited;
+        this.content = content;
+        this.username = username;
+        this.usernameId = usernameId;
+        this.language = language;
+    }
+
     public ArticleDTO(Long id, String title, FileDB image, Date published, Date lastEdited, String content, String username, Long usernameId, ELanguage language, List<CommentDTO> commentDTOList) {
         this.id = id;
         this.title = title;
