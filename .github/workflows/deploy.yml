@@ -4,14 +4,13 @@ on:
   push:
     branches: [ main ]
   workflow_dispatch:
-
+    defaults:
+      run:
+        working-directory: ./spring-boot-spring-security-jwt-authentication
 jobs:
   build_and_push:
     name: Build & Push to DockerHub
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./spring-boot-spring-security-jwt-authentication
     steps:
       - uses: actions/checkout@v3
       - name: Login to DockerHub
