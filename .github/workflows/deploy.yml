@@ -47,7 +47,7 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             whoami
-            cd /algoplus
+            cd algoplus
             docker-compose stop
             docker rm backend
             docker rm frontend
