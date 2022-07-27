@@ -19,12 +19,19 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: Docker Build and Push to DockerHub
+      - name: Docker Build Back-End and Push to DockerHub
         uses: docker/build-push-action@v3
         with:
           context: ./spring-boot-spring-security-jwt-authentication
           push: true
           tags: maelpj/algoplusv1:backend
+
+      - name: Docker Build Front-End and Push to DockerHub
+        uses: docker/build-push-action@v3
+        with:
+          context: ./angular_frontend
+          push: true
+          tags: maelpj/algoplusv1:frontend
 
   deploy_to_droplet:
     runs-on: ubuntu-latest
@@ -41,8 +48,8 @@ jobs:
           script: |
             tail -f /var/log/auth.log
             cd /alogplus
-            docker-compose stop 
+            docker-compose stop
             docker rm backend
             docker-compose pull
-            docker-compose up -d 
+            docker-compose up -d
             docker ps -a

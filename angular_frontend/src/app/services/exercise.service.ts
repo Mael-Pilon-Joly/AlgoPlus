@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { CompileRequest } from '../models/compileRequest.model';
 import { Exercise } from '../models/exercise.model';
 
-const baseUrl = "http://localhost:8080/api/exercise"
+const baseUrl = "http://143.198.169.178/8080/api/exercise"
 
 @Injectable({
   providedIn: 'root'
@@ -67,11 +67,11 @@ export class ExerciseService {
           )} 
 
   getExercisesByTitle(title:string): Observable<any> {
-            return this.http.get<any>(`http://localhost:8080/api/admin/exercise?title=${title}`, {withCredentials:true})
+            return this.http.get<any>(`http://143.198.169.178/8080/api/admin/exercise?title=${title}`, {withCredentials:true})
           }
 
 async deleteExercise(id:number): Promise<any> {
-            return new Promise ((resolve,reject) => this.http.delete( `http://localhost:8080/api/admin/exercise?id=${id}`, {
+            return new Promise ((resolve,reject) => this.http.delete( `http://` + window.location.hostname +`:8080/api/admin/exercise?id=${id}`, {
               withCredentials: true
             }).subscribe(
               (response:any) => {
