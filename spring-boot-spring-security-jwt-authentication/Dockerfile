@@ -2,6 +2,6 @@
 FROM openjdk:17-jdk as build
 
 
-ADD ./target/spring-boot-security-jwt-0.0.1-SNAPSHOT.jar spring-boot-security-jwt-0.0.1-SNAPSHOT.jar
+ADD spring-boot-spring-security-jwt-authentication/target/spring-boot-security-jwt-0.0.1-SNAPSHOT.jar spring-boot-security-jwt-0.0.1-SNAPSHOT.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "spring-boot-security-jwt-0.0.1-SNAPSHOT.jar"]
