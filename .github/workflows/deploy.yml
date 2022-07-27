@@ -20,8 +20,9 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Docker Build and Push to DockerHub
-        uses: docker/build-push-action@v3
+      - uses: actions/checkout@v3
       - run: mv -f spring-boot-spring-security-jwt-authentication/* .
+        uses: docker/build-push-action@v3
         with:
           context: ./spring-boot-spring-security-jwt-authentication
           push: true
