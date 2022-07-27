@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin(origins = "http://143.198.169.178:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/api/event")
 public class EventController {

@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin(origins = "http://143.198.169.178:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/api/mailbox")
 public class MailBoxController {

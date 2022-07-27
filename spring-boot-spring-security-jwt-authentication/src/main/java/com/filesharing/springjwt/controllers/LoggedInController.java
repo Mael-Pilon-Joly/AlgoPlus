@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin(origins = "http://143.198.169.178:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/api/loggedin")
 public class LoggedInController {

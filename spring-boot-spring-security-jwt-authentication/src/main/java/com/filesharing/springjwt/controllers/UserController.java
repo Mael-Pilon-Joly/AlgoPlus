@@ -32,7 +32,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.util.*;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin(origins = "http://143.198.169.178:4200", maxAge = 3600)
 @RestController
 @Validated
 @RequestMapping("/api/user")
@@ -121,9 +121,9 @@ public class UserController {
 
         boolean result = userService.validatePasswordResetToken( token);
         if (result == false) {
-            response.sendRedirect("http://localhost:4200/failedpasswordresetvalidation");
+            response.sendRedirect("http://143.198.169.178:4200/failedpasswordresetvalidation");
         } else {
-            response.sendRedirect("http://localhost:4200/updatepassword?token=" + token);
+            response.sendRedirect("http://143.198.169.178:4200/updatepassword?token=" + token);
         }
     }
 

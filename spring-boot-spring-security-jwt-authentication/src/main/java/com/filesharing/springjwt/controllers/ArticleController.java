@@ -24,7 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.util.*;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin(origins = "http://143.198.169.178:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/api/article")
 public class ArticleController {
