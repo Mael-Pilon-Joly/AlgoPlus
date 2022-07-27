@@ -9,9 +9,6 @@ jobs:
   build_and_push:
     name: Build & Push to DockerHub
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory:./spring-boot-spring-security-jwt-authentication
     steps:
       - uses: actions/checkout@v3
       - name: Login to DockerHub
@@ -29,6 +26,9 @@ jobs:
 
   deploy_to_droplet:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./spring-boot-spring-security-jwt-authentication
     needs: build_and_push
     name: Deploy to Droplet
     steps:
