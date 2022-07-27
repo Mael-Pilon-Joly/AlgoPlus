@@ -47,9 +47,10 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             whoami
-            cd /alogplus
+            cd /algoplus
             docker-compose stop
             docker rm backend
+            docker rm frontend
             docker-compose pull
             docker-compose up -d
             docker ps -a
