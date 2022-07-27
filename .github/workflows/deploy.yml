@@ -23,7 +23,7 @@ jobs:
       - name: Docker Build and Push to DockerHub
         uses: docker/build-push-action@v3
         with:
-          context: ./spring-boot-spring-security-jwt-authentication
+          context: .
           push: true
           tags: maelpj/algoplusv1:backend
 
