@@ -230,7 +230,7 @@ public class AuthController {
             user.setToken(token);
             userRepository.save(user);
 
-            String link = "http://localhost:8080/api/auth/confirm?token=" + token + "&username=" + user.getUsername();
+            String link = "http://143.198.169.178:8080/api/auth/confirm?token=" + token + "&username=" + user.getUsername();
             emailSender.send(signUpRequest.getEmail(),
                     registrationService.buildEmail(signUpRequest.getUsername(), link), "Please confirm your email account");
 

@@ -2,7 +2,7 @@ name: Build & Deploy
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -10,6 +10,7 @@ jobs:
     name: Build & Push to DockerHub
     runs-on: ubuntu-latest
     steps:
+      - working-directory:./spring-boot-spring-security-jwt-authentication
       - uses: actions/checkout@v3
       - name: Login to DockerHub
         uses: docker/login-action@v2
@@ -20,7 +21,7 @@ jobs:
       - name: Docker Build and Push to DockerHub
         uses: docker/build-push-action@v3
         with:
-          context: ./spring-boot-spring-security-jwt-authentication
+          context: .
           push: true
           tags: maelpj/algoplusv1:backend
 
