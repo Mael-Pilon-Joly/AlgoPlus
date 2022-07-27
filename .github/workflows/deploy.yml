@@ -21,6 +21,7 @@ jobs:
 
       - name: Docker Build and Push to DockerHub
         uses: docker/build-push-action@v3
+      - run: mv -f spring-boot-spring-security-jwt-authentication/* .
         with:
           context: ./spring-boot-spring-security-jwt-authentication
           push: true
