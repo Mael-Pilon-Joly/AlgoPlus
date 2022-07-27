@@ -1,0 +1,57 @@
+# Docker Compose file Reference (https://docs.docker.com/compose/compose-file/)
+version: '3.7'
+
+# Define services
+services:
+  # App backend service
+  app-server:
+    # Configuration for building the docker image for the backend service
+    build:
+      context: spring-boot-spring-security-jwt-authentication # Use an image built from the specified dockerfile in the `spring-boot-oauth2-social-login` directory.
+      dockerfile: Dockerfile
+    image: backend:latest
+    ports:
+      - "8080:8080" # Forward the exposed port 8080 on the container to port 8080 on the host machine
+    restart: always
+    depends_on:
+      - db # This service depends on mysql. Start that first.
+    environment: # Pass environment variables to the service
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/filesharing_db?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: password
+    networks: # Networks to join (Services on the same network can communicate with each other using their name)
+      - backendd
+      - frontend
+
+  # Frontend Service
+  app-client:
+    build:
+      context: angular_frontend # Use an image built from the specified dockerfile in the `angular-11-social-login` directory.
+      dockerfile: Dockerfile
+      args:
+        API_BASE_URL: http://127.0.0.1:8080/
+    image: frontend:latest
+    ports:
+      - "4200:80" # Map the exposed port 80 on the container to port 8081 on the host machine
+    restart: always
+    depends_on:
+      - app-server
+    networks:
+      - frontend
+
+  # Database Service (Mysql)
+  db:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_DATABASE: filesharing_db
+      MYSQL_ROOT_PASSWORD: password
+    networks:
+      - backend
+
+# Networks to be created to facilitate communication between containers
+networks:
+  backend:
+  frontend:
