@@ -46,7 +46,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
-            tail -f /var/log/auth.log
+            whoami
             cd /alogplus
             docker-compose stop
             docker rm backend
