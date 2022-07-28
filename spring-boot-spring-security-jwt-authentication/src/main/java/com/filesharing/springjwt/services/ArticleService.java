@@ -11,6 +11,7 @@ import com.filesharing.springjwt.repository.FileDBRepository;
 import com.filesharing.springjwt.repository.UserRepository;
 import com.filesharing.springjwt.security.jwt.AuthTokenFilter;
 import com.filesharing.springjwt.security.jwt.JwtUtils;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.*;
 
+@NoArgsConstructor
 @Service
 public class ArticleService {
 
@@ -35,6 +37,11 @@ public class ArticleService {
 
     @Autowired
     UserRepository userRepository;
+
+    public ArticleService(JwtUtils jwtUtils, UserRepository userRepository) {
+        this.jwtUtils = jwtUtils;
+        this.userRepository = userRepository;
+    }
 
     public List<ArticleDTO> findArticlesByUser(String token) {
         String username = jwtUtils.getUserNameFromJwtToken(token);

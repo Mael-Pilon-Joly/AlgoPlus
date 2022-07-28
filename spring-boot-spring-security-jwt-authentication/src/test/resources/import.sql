@@ -4,10 +4,10 @@ CREATE TABLE IF NOT EXISTS roles (
     PRIMARY KEY(id)
 );
 
-INSERT IGNORE INTO `roles`
+INSERT INTO `roles`
 SET `id` = 1,
 `name` =  'ROLE_ADMIN';
 
-INSERT IGNORE INTO `roles`
+INSERT INTO `roles`
 SET `id` = 2,
 `name` =  'ROLE_USER';

@@ -37,8 +37,16 @@ public class Comment {
         return content;
     }
 
+    public Comment() {
+    }
 
-    // getters and setter
+    public Comment(Long id, User user, Article article) {
+        this.id = id;
+        this.user = user;
+        this.article = article;
+    }
+
+// getters and setter
 
     public void setContent(String content) {
         this.content = content;

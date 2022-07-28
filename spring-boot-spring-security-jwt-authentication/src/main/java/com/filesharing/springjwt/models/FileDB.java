@@ -29,6 +29,14 @@ public class FileDB {
         this.type = type;
         this.data = data;
     }
+
+    public FileDB(Long id, String name, String type, byte[] data) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.data = data;
+    }
+
     public Long getId() {
         return id;
     }

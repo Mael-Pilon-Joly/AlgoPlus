@@ -9,6 +9,7 @@ import com.filesharing.springjwt.repository.CommentRepository;
 import com.filesharing.springjwt.repository.FileDBRepository;
 import com.filesharing.springjwt.repository.UserRepository;
 import com.filesharing.springjwt.security.jwt.JwtUtils;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+@NoArgsConstructor
 @Service
 public class CommentService {
 
@@ -34,6 +36,11 @@ public class CommentService {
 
     @Autowired
     FileDBRepository fileDBRepository;
+
+    public CommentService(ArticleRepository articleRepository, UserRepository userRepository) {
+        this.articleRepository = articleRepository;
+        this.userRepository = userRepository;
+    }
 
     public List<CommentDTO> findByArticleId(Long articleId) {
 
