@@ -9,8 +9,8 @@ import { LoginResponse } from '../models/loginresponse.model';
 import { Roles } from '../models/roles.model';
 
 const baseUrl = 'http://143.198.169.178:8080/api/auth';
-const loggedInUrl = 'http://143.198.169.178/:8080/api/loggedin';
-const userUrl = 'http://143.198.169.178/:8080/api/user'
+const loggedInUrl = 'http://143.198.169.178:8080/api/loggedin';
+const userUrl = 'http://143.198.169.178:8080/api/user'
 
 @Injectable({
   providedIn: 'root'
@@ -49,16 +49,16 @@ export class ApiService {
     if( roles.filter(e => e.name === 'ROLE_USER').length > 0 ) {
       role="user";
     }
-  
+
     this.getRoles.emit(role)
    }
- 
+
    getValue(){
     return  this.user.roles;
    }
 
   async login(data: any, rememberme:boolean): Promise<User> {
-    
+
     return new Promise ((resolve,reject) =>  this.http.post<LoginResponse>(baseUrl + "/signin", data, {
       withCredentials: true
     }).subscribe(async data => {
@@ -84,7 +84,7 @@ export class ApiService {
   }
 
   logout(): void {
-    this.http.post("http://143.198.169.178/8080/logout", null, {
+    this.http.post("http://143.198.169.178:8080/logout", null, {
       withCredentials: true
     }).subscribe(data => {
       this.isLoggedIn = false;
@@ -98,7 +98,7 @@ export class ApiService {
   }
 
   async getProfil(): Promise<User> {
-   return new Promise ((resolve,reject) => this.http.get("http://143.198.169.178/8080/api/loggedin/profil", {
+   return new Promise ((resolve,reject) => this.http.get("http://143.198.169.178:8080/api/loggedin/profil", {
       withCredentials: true
     }).subscribe(response => {
       this.isLoggedIn = true;
@@ -171,13 +171,13 @@ export class ApiService {
     }
 
     receiveMessage(source:String, name:String, message:String){
-      return this.http.post("http://143.198.169.178/8080/api/mailbox/receive", {source, name, message},  {
+      return this.http.post("http://143.198.169.178:8080/api/mailbox/receive", {source, name, message},  {
         withCredentials: true
       })
     }
 
     async validateAdminRole(): Promise<any> {
-       return new Promise((resolve,reject) =>  this.http.post("http://143.198.169.178/8080/api/admin/auth", {
+       return new Promise((resolve,reject) =>  this.http.post("http://143.198.169.178:8080/api/admin/auth", {
         withCredentials: true
       }).subscribe(
         (response:any) => {
@@ -189,11 +189,11 @@ export class ApiService {
     }
 
 getUserByUsername(username:string): Observable<any> {
-      return this.http.get<any>(`http://143.198.169.178/8080/api/admin/user?username=${username}`, {withCredentials:true})
+      return this.http.get<any>(`http://143.198.169.178:8080/api/admin/user?username=${username}`, {withCredentials:true})
     }
 
 async updateUserPoints(username:string, points:number): Promise<any> {
-  return new Promise((resolve,reject) => this.http.put<any>(`http://143.198.169.178/8080/api/admin/userpoints?username=${username}&points=${points}`, {withCredentials:true}).subscribe(
+  return new Promise((resolve,reject) => this.http.put<any>(`http://143.198.169.178:8080/api/admin/userpoints?username=${username}&points=${points}`, {withCredentials:true}).subscribe(
     (response:any) => {
       resolve(response);
     }, error => {
@@ -203,7 +203,7 @@ async updateUserPoints(username:string, points:number): Promise<any> {
     }
 
 async updateUserStatus(username:string): Promise<any> {
-  return new Promise((resolve,reject) => this.http.put<any>(`http://143.198.169.178/8080/api/admin/userlocked?username=${username}`, {withCredentials:true}).subscribe(
+  return new Promise((resolve,reject) => this.http.put<any>(`http://143.198.169.178:8080/api/admin/userlocked?username=${username}`, {withCredentials:true}).subscribe(
     (response:any) => {
       resolve(response);
     }, error => {
@@ -213,7 +213,7 @@ async updateUserStatus(username:string): Promise<any> {
     }
 
     getUsers(): Observable<any[]> {
-      return this.http.get<any[]>(`http://143.198.169.178/8080/api/user/ranking`, {withCredentials:true})
+      return this.http.get<any[]>(`http://143.198.169.178:8080/api/user/ranking`, {withCredentials:true})
     }
 
     async messageBetweenUsers(username: string, source:string, dest:string, message:string): Promise<any> {
@@ -230,11 +230,11 @@ async updateUserStatus(username:string): Promise<any> {
       )
     }
   }
-  
-  
- 
 
-  
+
+
+
+
 
 
 

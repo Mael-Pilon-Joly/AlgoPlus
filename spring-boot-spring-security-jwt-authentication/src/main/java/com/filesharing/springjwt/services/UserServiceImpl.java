@@ -268,7 +268,7 @@ public class UserServiceImpl implements UserService {
         List<HttpStatus> status = new ArrayList<>();
         requestResponse.setUsername(user.getUsername());
         try {
-            String email = "<div> <p1> Hi " + user.getUsername() + ", you have requested a password reset from AlgoPlus.</p1> <p2> Please click this link to reset your password, or ignore this message if you haven't made this request: </p2> <a href='http://localhost:8080/api/user/validatepassword?token=" + token + "'>Reset your password</a></div>";
+            String email = "<div> <p1> Hi " + user.getUsername() + ", you have requested a password reset from AlgoPlus.</p1> <p2> Please click this link to reset your password, or ignore this message if you haven't made this request: </p2> <a href='http://143.198.169.178:8080/api/user/validatepassword?token=" + token + "'>Reset your password</a></div>";
             emailSender.send(dest, email, "Reset your password");
             status.add(HttpStatus.OK);
             requestResponse.setHttpsStatus(status);

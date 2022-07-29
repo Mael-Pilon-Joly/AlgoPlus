@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Article } from '../models/article.model';
 import { CompleteArticle } from '../models/completearticle.model';
 
-const baseUrl = 'http://143.198.169.178/8080/api/article';
+const baseUrl = 'http://143.198.169.178:8080/api/article';
 
 @Injectable({
   providedIn: 'root'
@@ -83,6 +83,6 @@ export class ArticleserviceService {
   }
 
 getArticlesByTitle(title:string): Observable<any> {
-    return this.http.get<any>(`http://143.198.169.178/8080/api/admin/article?title=${title}`, {withCredentials:true})
+    return this.http.get<any>(`http://143.198.169.178:8080/api/admin/article?title=${title}`, {withCredentials:true})
   }
 }
