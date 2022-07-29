@@ -25,7 +25,7 @@ public class RequestResponse {
     List<Solution> solutions;
     List<NewExerciseDTO> exercises;
     List<HttpStatus> httpsStatus;
-
+    private String message;
     private String email;
     private Boolean locked;
     private Boolean enabled;
@@ -137,5 +137,13 @@ public class RequestResponse {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

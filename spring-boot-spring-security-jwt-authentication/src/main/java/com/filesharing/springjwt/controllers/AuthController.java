@@ -208,6 +208,7 @@ public class AuthController {
           }
         } catch (Exception e) {
           response.add(HttpStatus.INTERNAL_SERVER_ERROR);
+          responseObj.setMessage(e.getMessage());
           register = false;
         }
 
@@ -237,6 +238,7 @@ public class AuthController {
             return new ResponseEntity<>(responseObj, HttpStatus.OK);
           } catch (Exception e) {
             response.add(HttpStatus.INTERNAL_SERVER_ERROR);
+            responseObj.setMessage(e.getMessage());
 
           }
         }
