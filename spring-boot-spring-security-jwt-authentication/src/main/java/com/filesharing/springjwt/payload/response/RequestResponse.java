@@ -26,6 +26,7 @@ public class RequestResponse {
     List<NewExerciseDTO> exercises;
     List<HttpStatus> httpsStatus;
     private String message;
+    private String cause;
     private String email;
     private Boolean locked;
     private Boolean enabled;
@@ -145,5 +146,13 @@ public class RequestResponse {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getCause() {
+        return cause;
+    }
+
+    public void setCause(String cause) {
+        this.cause = cause;
     }
 }
