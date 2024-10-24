@@ -29,7 +29,7 @@ services:
       context: angular_frontend # Use an image built from the specified dockerfile in the `angular-11-social-login` directory.
       dockerfile: Dockerfile
       args:
-        API_BASE_URL: http://143.198.169.178:8080/
+        API_BASE_URL:  http://143.198.169.178:8080/
     image: frontend:latest
     ports:
       - "4200:80" # Map the exposed port 80 on the container to port 8081 on the host machine
@@ -38,6 +38,7 @@ services:
       - app-server
     networks:
       - frontend
+
 
   # Database Service (Mysql)
   db:
